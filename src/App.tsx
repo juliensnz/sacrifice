@@ -18,8 +18,11 @@ class App extends React.Component {
         <div className="characters">
           {characters.map((character) => (
             <div className="character">
-              <div className="characterText">a message</div>
-              <div className="characterImage">&nbsp;</div>
+              <div className="characterImageContainer">
+              {/*<div className="characterText">a message</div>*/}
+                <div className="characterImage" style={{'backgroundImage': 'url(berger-allemand.jpg)'}}>&nbsp;</div>
+                <div className="characterShield">&nbsp;</div>
+              </div>
               <div className="characterName">{character.name}</div>
             </div>
           ) )}
