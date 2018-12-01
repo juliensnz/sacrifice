@@ -1,16 +1,23 @@
+body, html, div {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 20px;
+}
+
 .App {
   display: flex;
   width: 100vw;
   height: 100vh;
+  color: white;
 }
 
 .events {
-  flex-basis: 200px;
-  background: red;
+  flex-basis: 20%;
+  background: #222222;
+  flex-shrink: 0;
 }
 
 .characters {
-  background: blue;
+  background: #000000;
   flex-grow: 1;
 
   display: flex;
@@ -19,4 +26,29 @@
 
 .character {
   flex-basis: 16.6666%;
+  text-align: center;
+}
+
+.characterImage {
+  background: white;
+  border-radius: 10000px;
+  display: inline-block;
+  width: calc((100vh - 5 * 30px) / 5);
+  height: calc((100vh - 5 * 30px) / 5);
+}
+
+.characterName {
+  color: white;
+  height: 30px;
+  overflow: hidden;
+}
+
+.characterText {
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  display: block;
+  padding: 20px;
+  border: 1px solid black;
+  color: black;
 }

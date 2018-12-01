@@ -5,7 +5,9 @@ class App extends React.Component {
   public render() {
     const characters = [];
     for(let i = 0; i < 6*5; i++) {
-      characters.push({});
+      characters.push({
+        name: 'Michel',
+      });
     }
 
     return (
@@ -14,7 +16,13 @@ class App extends React.Component {
           events
         </div>
         <div className="characters">
-          {characters.map((character) => (<div className="character">CH</div>) )}
+          {characters.map((character) => (
+            <div className="character">
+              <div className="characterText">a message</div>
+              <div className="characterImage">&nbsp;</div>
+              <div className="characterName">{character.name}</div>
+            </div>
+          ) )}
         </div>
       </div>
     );
