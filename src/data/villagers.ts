@@ -1,16 +1,16 @@
 export default {
   villagers: {
-    trust: [
-      {score: 'chaotic', texts: [`foo`]},
-      {score: 'bad', texts: [`foo`]},
-      {score: 'good', texts: [`foo`]},
-      {score: 'loyal', texts: [`foo`]},
-    ],
-    faith: [
-      {score: 'chaotic', texts: [`foo`]},
-      {score: 'bad', texts: [`foo`]},
-      {score: 'good', texts: [`foo`]},
-      {score: 'loyal', texts: [`foo`]},
-    ]
+    trust: {
+      chaotic: [`foo`],
+      bad: [`foo`],
+      good: [`foo`],
+      loyal: [`foo`],
+    },
+    faith: {
+      chaotic: [`foo`],
+      bad: [`foo`],
+      good: [`foo`],
+      loyal: [`foo`],
+    }
   }
 }
