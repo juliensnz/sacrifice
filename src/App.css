@@ -82,27 +82,31 @@ body {
 }
 
 .characterImageContainer.rot5 > div {
-  transform: rotate(5deg);
+  transform: rotate(4deg);
 }
 
 .characterImageContainer.rot10 > div {
-  transform: rotate(10deg);
+  transform: rotate(7deg);
 }
 
 .characterImageContainer.rot15 > div {
-  transform: rotate(15deg);
+  transform: rotate(10deg);
 }
 
 .characterImageContainer.rot-5 > div {
-  transform: rotate(-5deg);
+  transform: rotate(-4deg);
 }
 
 .characterImageContainer.rot-10 > div {
-  transform: rotate(-10deg);
+  transform: rotate(-7deg);
 }
 
 .characterImageContainer.rot-15 > div {
-  transform: rotate(-15deg);
+  transform: rotate(-10deg);
+}
+
+.characterImageContainer.flip > video {
+  transform: scale(-1, 1);
 }
 
 .characterImage {
