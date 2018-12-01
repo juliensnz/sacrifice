@@ -1,10 +1,8 @@
 // faith
 // DONE 0
-// 20
-// 40
-// 60
-// 80
-
+// 25
+// 50
+// DONE 75
 
 export default {
   shaman: [
@@ -31,6 +29,38 @@ export default {
     },
 
 
+
+
+    {
+      trust: 0,
+      faith: 75,
+      texts: [`Poor insignificant thing. Gods talked to me. You don't have what's needed to be a Jarl.
+        I don't understand why but they give you a last chance. Sacrifice your people now.
+        Or yourself, if you have what it takes...`
+      ],
+    },
+    {
+      trust: 25,
+      faith: 75,
+      texts: [`I hear whispers. People doubt you can govern them. It would be...
+        Sad, if something happened to you. Do what you have to do.
+        If you don't want me to take drastic measures.`],
+    },
+    {
+      trust: 50,
+      faith: 75,
+      texts: [`Dear Jarl. People would like to know if you are as devoted as they are.
+        It would be wise to do everything you can to thank the Gods.`
+      ],
+    },
+    {
+      trust: 75,
+      faith: 75,
+      texts: [`My dear friend. Gods are satisfied. People is blooming.
+        Sacrifices lead us to glory. Let's keep going.
+        Come on, tell me. Who will be the next? `
+      ],
+    },
     {
       trust: 0,
       faith: 0,
