@@ -1,4 +1,4 @@
-import data from 'src/data';
+import data from 'src/names';
 import {guid} from 'src/core/utils';
 
 export type Villager = {
