@@ -70,12 +70,25 @@ export const selectionStart = () => (dispatch: any, getState: () => GameState) =
 };
 
 const whatToDo = () => (dispatch: any, getState: () => GameState) => {
+  dispatch(makeVillagerSpeak());
+
   if (parameters.cycleLength === getState().cycle.time) {
     dispatch(endCycle());
   }
 
   if (parameters.cycleLength - parameters.selectionLength === getState().cycle.time) {
     dispatch(selectionAnnouncement());
+  }
+};
+
+const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
+  const villager = getRandomArray(getState().villagers);
+
+  const faithLevel = Math.abs(villager.faith - 50);
+  const trustLevel = Math.abs(villager.trust - 50);
+
+  if (faithLevel > trustLevel) {
+  } else {
   }
 };
 
