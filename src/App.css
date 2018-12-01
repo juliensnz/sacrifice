@@ -57,3 +57,20 @@ body, html, div {
   flex-basis: 20px;
   text-align: center;
 }
+
+.selected {
+  background: green;
+}
+
+.dead {
+  background: red;
+}
+
+.shamanAnnouncement {
+  background: blue;
+  display: none;
+}
+
+.shamanAnnouncement.visible {
+  display: block;
+}

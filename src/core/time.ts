@@ -1,7 +1,5 @@
 const time = (store: any) => (next: any) => (action: any) => {
-  const result = next(action);
-
-  return result;
+  return next(action);
 };
 
 export default time;
