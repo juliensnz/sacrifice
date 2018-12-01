@@ -6,12 +6,16 @@ export default {
   'outro-lost': `foo`,
   'outro-end': {
     'trust': [
-      {score: 0, text: `foo`},
-      {score: 50, text: `bar`},
+      {score: 'chaotic', text: `foo`},
+      {score: 'bad', text: `foo`},
+      {score: 'good', text: `foo`},
+      {score: 'loyal', text: `bar`},
     ],
     'faith': [
-      {score: 0, text: `foo`},
-      {score: 50, text: `bar`},
+      {score: 'chaotic', text: `foo`},
+      {score: 'bad', text: `foo`},
+      {score: 'good', text: `foo`},
+      {score: 'loyal', text: `bar`},
     ]
   }
 }
