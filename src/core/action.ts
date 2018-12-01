@@ -1,4 +1,4 @@
-import {GameState} from 'src/core/reducer';
+import {GameState, Event} from 'src/core/reducer';
 import parameters from 'src/core/parameters';
 import events from 'src/events';
 import {getRandomArray} from 'src/core/utils';
@@ -16,18 +16,23 @@ const endGame = () => (dispatch: any, getState: () => GameState) => {
   dispatch({type: 'END_GAME'});
 };
 
-const startCycle = () => (dispatch: any, getState: () => GameState) => {
+export const startCycle = () => (dispatch: any, getState: () => GameState) => {
   dispatch({type: 'START_CYCLE'});
+};
+
+export const factConfirmation = () => (dispatch: any, getState: () => GameState) => {
+  dispatch(startCycle());
+  dispatch(resume());
 };
 
 const endCycle = () => (dispatch: any, getState: () => GameState) => {
   dispatch({type: 'USER_EVENT', event: getRandomEvent()});
   dispatch({type: 'END_CYCLE'});
+  dispatch(factAnnouncement());
 
   if (getState().cycle.number === parameters.cycleCount) {
     dispatch(endGame());
   }
-  dispatch(startCycle());
 };
 
 const tick = () => (dispatch: any, getState: () => GameState) => {
@@ -51,6 +56,13 @@ export const resume = () => ({
 
 const selectionAnnouncement = () => (dispatch: any, getState: () => GameState) => {
   dispatch({type: 'SELECTION_ANNOUNCEMENT', message: "hey! that's selection time!"});
+};
+
+const factAnnouncement = () => (dispatch: any, getState: () => GameState) => {
+  dispatch({
+    type: 'FACT_ANNOUNCEMENT',
+    message: getState().events.map((event: Event) => `${event.fact} ${event.consequence}`),
+  });
 };
 
 export const selectionStart = () => (dispatch: any, getState: () => GameState) => {

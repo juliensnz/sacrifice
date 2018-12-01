@@ -3,19 +3,20 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Villager} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
-import {toggleSacrificed, selectionStart} from 'src/core/action';
+import {toggleSacrificed, selectionStart, factConfirmation} from 'src/core/action';
 import parameters from 'src/core/parameters';
 
 type ViewState = {
   villagers: Villager[]
   time: number
   sacrificeAnnouncement: string | null
-  factAnnouncement: string | null
+  factAnnouncement: string[]
 }
 
 type ViewDispatch = {
   toggleSacrificed: (id: string) => void
   announcementValidation: () => void
+  factConfirmation: () => void
 }
 
 const getFaith = (villagers: Villager[]) => {
@@ -52,13 +53,13 @@ class App extends React.Component<ViewState & ViewDispatch> {
             </div>
           ) )}
         </div>
-        <div className={`shamanAnnouncement ${null !== this.props.sacrificeAnnouncement ? 'visible' : ''}`}>
+        <div className={`sacrificeAnnouncement ${null !== this.props.sacrificeAnnouncement ? 'visible' : ''}`}>
           {this.props.sacrificeAnnouncement}
           <span onClick={this.props.announcementValidation}>OK michel</span>
         </div>
-        <div className={`cycleAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
-          {this.props.sacrificeAnnouncement}
-          <span onClick={this.props.announcementValidation}>OK michel</span>
+        <div className={`factAnnouncement ${0 !== this.props.factAnnouncement.length ? 'visible' : ''}`}>
+          {this.props.factAnnouncement.join('\n')}
+          <span onClick={this.props.factConfirmation}>OK michel</span>
         </div>
       </div>
     );
@@ -72,5 +73,6 @@ export default connect((state: GameState): ViewState => ({
   factAnnouncement: state.shaman.factAnnouncement,
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
-  announcementValidation: () => dispatch(selectionStart())
+  announcementValidation: () => dispatch(selectionStart()),
+  factConfirmation: () => dispatch(factConfirmation())
 }))(App);

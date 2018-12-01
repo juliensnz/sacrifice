@@ -69,11 +69,20 @@ body, html, div {
   background: red;
 }
 
-.shamanAnnouncement {
+.sacrificeAnnouncement {
   background: blue;
   display: none;
 }
 
-.shamanAnnouncement.visible {
+.sacrificeAnnouncement.visible {
+  display: block;
+}
+
+.factAnnouncement {
+  background: green;
+  display: none;
+}
+
+.factAnnouncement.visible {
   display: block;
 }
