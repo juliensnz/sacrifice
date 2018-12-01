@@ -53,6 +53,9 @@ class App extends React.Component<ViewState & ViewDispatch> {
           ) )}
         </div>
         <div className={`shamanAnnouncement ${null !== this.props.sacrificeAnnouncement ? 'visible' : ''}`}>
+          <video className="characterImageBig" autoPlay loop>
+            <source src="asset/shaman.mp4" type="video/mp4"/>
+          </video>
           <div className="shamanMessage">
           {this.props.sacrificeAnnouncement}
           <span onClick={this.props.announcementValidation}>OK michel</span>

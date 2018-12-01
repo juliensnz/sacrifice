@@ -49,6 +49,13 @@ body, html, div {
   background-position: 50% 50%;
 }
 
+.characterImageBig {
+  border-radius: 1000px;
+  margin: 130px 0 0 267px;
+  width: 450px;
+  position: absolute;
+}
+
 .characterShield {
   background: url('shield.png');
   background-size: contain;
