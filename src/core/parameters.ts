@@ -12,7 +12,7 @@ const parameters = {
   villagerCount: 7 * 4,
 
   // from 0 to 1: level of expressiveness (how much the villagers speaks)
-  expressiveness: 0.4,
+  expressiveness: 0.3,
 
   // range of random top and bottom trust. So at the beginning of the game all villager will have a trust of 50 +- 5
   trustLevelStartRange: 10,
