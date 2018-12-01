@@ -1,14 +1,73 @@
 export default {
   events: [
     {
-      type: "",
+      type: "ship completed",
       facts: [
-        "",
-        "",
+        "The building of the new boat is complete.",
+        "Our carpenters finished their last work.",
       ],
       consequences: [
-        {consequence: "", coef: -0},
-        {consequence: "", coef: -0},
+        {consequence: "This is the most beautiful ship we have ever designed.", coef: 4},
+        {consequence: "Next moon, our warriors will be able to raid.", coef: 5},
+        {consequence: "We will be able to venture to unexplored regions.", coef: 2},
+      ]
+    },
+    {
+      type: "business is good",
+      facts: [
+        "We closed a commercial agreement with the neighboring village.",
+        "Our merchants come back from the trading post.",
+      ],
+      consequences: [
+        {consequence: "Business is booming, our chest are full of gold.", coef: 8},
+        {consequence: "This opens up great financial prospects for our village.", coef: 3},
+      ]
+    },
+    {
+      type: "mild weather",
+      facts: [
+        "Temperatures are incredibly mild right now.",
+        "The weather has been exceptionnaly mild with us for many moons.",
+      ],
+      consequences: [
+        {consequence: "The crops will be amazing.", coef: 6},
+        {consequence: "Our livestock is doing well.", coef: 3},
+        {consequence: "Fishermen return with full nets.", coef: 7},
+        {consequence: "Children enjoy this weather to play outdoors.", coef: 0},
+      ]
+    },
+    {
+      type: "ennemy village looted",
+      facts: [
+        "Our fighters came back victorious from the raid.",
+        "The hunting horns of our warriors sound far away.",
+      ],
+      consequences: [
+        {consequence: "They come back the arms full of gold, furs and food.", coef: 10},
+        {consequence: "Their victory showers us with glory.", coef: 2},
+        {consequence: "The slaves they captured will be of great benefit.", coef: 9},
+      ]
+    },
+    {
+      type: "wild animals left",
+      facts: [
+        "Our hunters are formal.",
+        "Our scouts just returned from the forest.",
+      ],
+      consequences: [
+        {consequence: "The wolves have left the area, we will finally be able to breathe a bit.", coef: 1},
+        {consequence: "The bear family has been found dead. We have recovered the fur.", coef: 4},
+      ]
+    },
+    {
+      type: "harvest",
+      facts: [
+        "Farmers come back from the fields.",
+        "Harvests are now over.",
+      ],
+      consequences: [
+        {consequence: "The harvest is exceptional. Our barns never have been that full.", coef: 8},
+        {consequence: "Because of last season's bad weather, we have just enough to keep up.", coef: 1},
       ]
     },
     {
