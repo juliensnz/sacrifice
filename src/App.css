@@ -2,12 +2,42 @@ body, html, div {
   font-family: 'Shadows Into Light', cursive;
   font-size: 20px;
 }
+body {
+  background-color: black;
+}
+
+@keyframes fadeToBlack {
+  from {clip-path: circle(1000px at center);};
+  to {clip-path: circle(0px at center);}
+}
+
+@keyframes newDay {
+  from {opacity: 0};
+  to {opacity: 1}
+}
 
 .App {
   display: flex;
   width: 100vw;
   height: 100vh;
   color: white;
+}
+
+.App.selectionPhase {
+  animation-name: fadeToBlack;
+  animation-duration: 9s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  clip-path: circle(0px at center);
+}
+
+.App.newDay {
+  clip-path: none;
+  opacity: 1;
+  animation-name: newDay;
+  animation-duration: 3s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
 }
 
 .events {
@@ -73,12 +103,13 @@ body, html, div {
   background: blue;
   display: none;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-image: url('popup2.png');
   background-size: cover;
   background-repeat: no-repeat;
-
 }
 
 .shamanMessage {
@@ -90,11 +121,6 @@ body, html, div {
 
 .sacrificeAnnouncement.visible {
   display: block;
-}
-
-.factAnnouncement {
-  background: green;
-  display: none;
 }
 
 .factAnnouncement.visible {

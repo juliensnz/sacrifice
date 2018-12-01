@@ -1,9 +1,9 @@
 const parameters = {
   // Time in second for one cycle
-  cycleLength: 10,
+  cycleLength: 15,
 
   // Time in second for the selection phase
-  selectionLength: 3,
+  selectionLength: 10,
 
   // Maximal number of cycle in one game
   cycleCount: 20,
