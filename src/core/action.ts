@@ -2,6 +2,7 @@ import {GameState, Event} from 'src/core/reducer';
 import parameters from 'src/core/parameters';
 import events from 'src/events';
 import {getRandomArray} from 'src/core/utils';
+import villagers from 'src/villagers';
 
 export const startGame = () => (dispatch: any, getState: () => GameState) => {
   dispatch(startCycle());
@@ -82,6 +83,18 @@ const whatToDo = () => (dispatch: any, getState: () => GameState) => {
 };
 
 const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
+  const getMessageLevel = (level: number) => {
+    if (level < 25) {
+      return 'chaotic';
+    } else if (level < 50) {
+      return 'bad';
+    } else if (level < 75) {
+      return 'good';
+    } else {
+      return 'loyal';
+    }
+  };
+
   const villager = getRandomArray(getState().villagers);
 
   const faithLevel = Math.abs(villager.faith - 50);
@@ -90,9 +103,15 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
   const type = faithLevel > trustLevel ? 'faith' : 'trust';
   const influencerLevel = Math.max(faithLevel, trustLevel) / 50; // Value from 0 to 1
 
-  if (influencerLevel > parameters.expressiveness) {
-    dispatch(villagerSays());
+  if (influencerLevel > 1 - parameters.expressiveness) {
+    const messages = villagers.villagers[type][getMessageLevel(villager[type])];
+
+    dispatch(villagerSpeaks(getRandomArray(messages)));
   }
+};
+
+const villagerSpeaks = (message: string) => {
+  return {type: 'VILLAGER_SPEAKS', message};
 };
 
 const getRandomEvent = () => {
