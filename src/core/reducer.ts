@@ -1,6 +1,13 @@
 import {Villager, generateVillager} from 'src/core/model';
 import parameters from 'src/core/parameters';
 
+type Event = {
+  type: string;
+  fact: string;
+  consequence: string;
+  coef: number;
+};
+
 export type GameState = {
   villagers: Villager[];
   cycle: {
@@ -11,6 +18,7 @@ export type GameState = {
   shaman: {
     message: string | null;
   };
+  events: Event[];
   paused: boolean;
 };
 
@@ -24,6 +32,7 @@ const initialState = {
   shaman: {
     message: null,
   },
+  events: [],
   paused: false,
 };
 
@@ -84,6 +93,7 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'USER_EVENT':
+      state = {...state, events: [...state.events, action.event]};
       break;
 
     case 'PAUSE':
