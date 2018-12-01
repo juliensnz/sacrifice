@@ -1,29 +1,19 @@
-type Villager = {
-  id: string;
-  name: string;
-  faith: number;
-  trust: number;
-  alive: boolean;
-  selected: boolean;
-};
+import {Villager, generateVillager} from 'src/core/model';
 
-const generateVillager = (): Villager => ({
-  id: guid(),
-  name: 'Michel',
-  faith: Math.floor(Math.random() * 100),
-  trust: Math.floor(Math.random() * 100),
-  alive: true,
-  selected: false,
-});
-
-type GameState = {
+export type GameState = {
   villagers: Villager[];
-  currentCycle: number;
+  cycle: {
+    time: number;
+    number: number;
+  };
 };
 
 const initialState = {
-  villagers: [generateVillager(), generateVillager(), generateVillager(), generateVillager()],
-  currentCycle: 0,
+  villagers: Array.apply(null, Array(5 * 5)).map(generateVillager),
+  cycle: {
+    number: 0,
+    time: 0,
+  },
 };
 
 const updateVillager = (villagers: Villager[], events: Event[]) => {
@@ -42,7 +32,13 @@ const updateVillager = (villagers: Villager[], events: Event[]) => {
 export default (state: GameState = initialState, action: any) => {
   switch (action.type) {
     case 'START_CYCLE':
-      state = {...state, currentCycle: state.currentCycle + 1};
+      state = {
+        ...state,
+        cycle: {
+          number: state.cycle.number + 1,
+          time: 0,
+        },
+      };
 
       break;
     case 'TOGGLE_SACRIFICED':
@@ -61,6 +57,10 @@ export default (state: GameState = initialState, action: any) => {
     case 'USER_EVENT':
       break;
 
+    case 'TICK':
+      state = {...state, cycle: {...state.cycle, time: state.cycle.time + 1}};
+      break;
+
     case 'END_CYCLE':
       break;
       state = {
@@ -74,12 +74,3 @@ export default (state: GameState = initialState, action: any) => {
 
   return state;
 };
-
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}

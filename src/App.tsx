@@ -1,14 +1,16 @@
-import * as React from 'react';
 import './App.css';
+import * as React from 'react';
+import {connect} from 'react-redux';
+import {Villager} from 'src/core/model';
+import {GameState} from 'src/core/reducer';
 
-class App extends React.Component {
+type ViewState = {
+  villagers: Villager[]
+}
+
+class App extends React.Component<ViewState> {
   public render() {
-    const characters = [];
-    for(let i = 0; i < 6*5; i++) {
-      characters.push({
-        name: 'Michel',
-      });
-    }
+
 
     return (
       <div className="App">
@@ -16,11 +18,11 @@ class App extends React.Component {
           events
         </div>
         <div className="characters">
-          {characters.map((character) => (
+          {this.props.villagers.map((villager: Villager) => (
             <div className="character">
               <div className="characterText">a message</div>
               <div className="characterImage">&nbsp;</div>
-              <div className="characterName">{character.name}</div>
+              <div className="characterName">{villager.name}</div>
             </div>
           ) )}
         </div>
@@ -29,4 +31,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect((state: GameState): ViewState => ({
+  villagers: state.villagers
+}))(App);
