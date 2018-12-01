@@ -54,30 +54,61 @@ body {
 }
 
 .character {
-  flex-basis: calc(100% / 6);
+  flex-basis: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
 }
 
 .characterImageContainer {
+  margin: 100px 0 0 100px;
   flex-grow: 1;
   position: relative;
 }
 
-.characterImage, .characterShield {
+.characterImage, .characterShield, .characterPancarte, .characterName {
   position: absolute;
   width: 180px;
   height: 180px;
   border-radius: 10000px;
+  margin: -100px 0 0 -100px;
+}
+
+.characterPancarte {
+  height: 190px;
+  border-radius: 0;
+  background: url('pancarte.png');
+  background-size: 100%;
+}
+
+.characterImageContainer.rot5 > div {
+  transform: rotate(5deg);
+}
+
+.characterImageContainer.rot10 > div {
+  transform: rotate(10deg);
+}
+
+.characterImageContainer.rot15 > div {
+  transform: rotate(15deg);
+}
+
+.characterImageContainer.rot-5 > div {
+  transform: rotate(-5deg);
+}
+
+.characterImageContainer.rot-10 > div {
+  transform: rotate(-10deg);
+}
+
+.characterImageContainer.rot-15 > div {
+  transform: rotate(-15deg);
 }
 
 .characterImage {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
   width: 140px;
   height: 140px;
-  margin: 20px;
+  margin: calc(-100px + 20px) 0 0 calc(-100px + 20px);
 }
 
 .characterImageBig {
@@ -95,8 +126,8 @@ body {
 }
 
 .characterName {
-  flex-basis: 20px;
   text-align: center;
+  padding-top: 154px;
 }
 
 .selected {
@@ -128,9 +159,9 @@ body {
 }
 
 .sacrificeAnnouncement.visible {
-  display: block;
+  /*display: block;*/
 }
 
 .factAnnouncement.visible {
-  display: block;
+  /*display: block;*/
 }

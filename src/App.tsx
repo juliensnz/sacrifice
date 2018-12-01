@@ -47,14 +47,14 @@ class App extends React.Component<ViewState & ViewDispatch> {
           <div className="characters">
             {this.props.villagers.map((villager: Villager) => (
               <div key={villager.id} className={`character ${villager.selected ? 'selected' : ''} ${!villager.alive ? 'dead' : ''}`} onClick={() => this.props.toggleSacrificed(villager.id)}>
-                {/*<div className="characterText">a message</div>*/}
-                <div className="characterImageContainer">
+                <div className={`characterImageContainer rot${villager.rot}`}>
                   <video className="characterImage" autoPlay loop>
                     <source src="asset/shaman.mp4" type="video/mp4"/>
                   </video>
                   <div className="characterShield"></div>
+                  <div className="characterPancarte"></div>
+                  <div className="characterName">{villager.name}</div>
                 </div>
-                <div className="characterName">{villager.name}</div>
               </div>
             ) )}
           </div>

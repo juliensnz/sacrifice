@@ -8,6 +8,7 @@ export type Villager = {
   trust: number;
   alive: boolean;
   selected: boolean;
+  rot: number;
 };
 
 export const generateVillager = (): Villager => ({
@@ -17,6 +18,7 @@ export const generateVillager = (): Villager => ({
   trust: Math.floor(Math.random() * 100),
   alive: true,
   selected: false,
+  rot: Math.floor(Math.random() * 7) * 5 - 15,
 });
 
 const firstNames = [...data.names.male, ...data.names.female];
