@@ -53,7 +53,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
                   </video>
                   <div className="characterShield"></div>
                   <div className="characterPancarte"></div>
-                  <div className="characterName">{villager.name} {null !== villager.message ? villager.message.message : ''}</div>
+                  <div className="characterName">{villager.name}</div>
+                  <div className="characterText">{null !== villager.message ? villager.message.message : ''}</div>
                 </div>
               </div>
             ) )}

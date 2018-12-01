@@ -26,9 +26,29 @@ export const generateVillager = (): Villager => ({
   alive: true,
   selected: false,
   rot: Math.floor(Math.random() * 7) * 5 - 15,
-  asset: ['shaman', 'viking_1', 'viking_2'][Math.floor(Math.random() * 3)],
+  asset: [
+    'viking_1',
+    'viking_2',
+    'Viking fin 10',
+    'Viking fin 11',
+    'Viking fin 12',
+    'Viking fin 13',
+    'Viking fin 14',
+    'Viking fin 15',
+    'Viking fin 16',
+    'Viking fin 1',
+    'Viking  fin 2',
+    'Viking  fin 3',
+    'Viking  fin 4',
+    'Viking  fin 5',
+    'Viking  fin 6',
+    'Viking  fin 7',
+    'Viking  fin 8',
+    'Viking fin 9'
+  ][Math.floor(Math.random() * 18)],
   flip: Math.random() > 0.5,
   message: null,
 });
 
 const firstNames = [...data.names.male, ...data.names.female];
+
