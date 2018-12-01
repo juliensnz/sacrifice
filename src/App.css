@@ -72,6 +72,20 @@ body, html, div {
 .shamanAnnouncement {
   background: blue;
   display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('popup2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+.shamanMessage {
+  margin: 390px 0 0 820px;
+  width: 588px;
+  color: black;
+  font-size: 40px;
 }
 
 .shamanAnnouncement.visible {
