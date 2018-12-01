@@ -56,7 +56,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
           {this.props.sacrificeAnnouncement}
           <span onClick={this.props.announcementValidation}>OK michel</span>
         </div>
-        <div <div className="shamanMessage">className={`cycleAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
+        <div className={`cycleAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <div className="shamanMessage">
             {this.props.sacrificeAnnouncement}
             <span onClick={this.props.announcementValidation}>OK michel</span>
