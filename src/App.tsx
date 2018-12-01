@@ -20,8 +20,10 @@ class App extends React.Component<ViewState> {
         <div className="characters">
           {this.props.villagers.map((villager: Villager) => (
             <div className="character">
-              <div className="characterText">a message</div>
-              <div className="characterImage">&nbsp;</div>
+              {/*<div className="characterText">a message</div>*/}
+              <div className="characterImageContainer">
+                <div className="characterImage" style={{'backgroundImage': 'url(berger-allemand.jpg)'}}>&nbsp;</div>
+              </div>
               <div className="characterName">{villager.name}</div>
             </div>
           ) )}
