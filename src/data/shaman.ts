@@ -9,22 +9,22 @@ export default {
     // {
     //   trust: 'chaotic',
     //   faith: 'chaotic',
-    //   text: ``,
+    //   data: ``,
     // },
     // {
     //   trust: 'bad',
     //   faith: 'chaotic',
-    //   text: ``,
+    //   data: ``,
     // },
     // {
     //   trust: 'good',
     //   faith: 'chaotic',
-    //   text: ``,
+    //   data: ``,
     // },
     // {
     //   trust: 'loyal',
     //   faith: 'chaotic',
-    //   text: ``,
+    //   data: ``,
     // },
 
 
