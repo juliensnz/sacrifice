@@ -9,8 +9,8 @@ import parameters from 'src/core/parameters';
 type ViewState = {
   villagers: Villager[]
   time: number
-  shamanHasSomethingToSay: boolean
-  shamanMessage: string | null
+  sacrificeAnnouncement: string | null
+  factAnnouncement: string | null
 }
 
 type ViewDispatch = {
@@ -44,15 +44,21 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className={`character ${villager.selected ? 'selected' : ''} ${!villager.alive ? 'dead' : ''}`} onClick={() => this.props.toggleSacrificed(villager.id)}>
               {/*<div className="characterText">a message</div>*/}
               <div className="characterImageContainer">
-                <div className="characterImage" style={{'backgroundImage': 'url(berger-allemand.jpg)'}}>&nbsp;</div>
+                <video className="characterImage" autoPlay loop>
+                  <source src="asset/shaman.mp4" type="video/mp4"/>
+                </video>
               </div>
               <div className="characterName">{villager.name}</div>
             </div>
           ) )}
         </div>
-        <div className={`shamanAnnouncement ${this.props.shamanHasSomethingToSay ? 'visible' : ''}`}>
+        <div className={`shamanAnnouncement ${null !== this.props.sacrificeAnnouncement ? 'visible' : ''}`}>
+          {this.props.sacrificeAnnouncement}
+          <span onClick={this.props.announcementValidation}>OK michel</span>
+        </div>
+        <div <div className="shamanMessage">className={`cycleAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <div className="shamanMessage">
-            {this.props.shamanMessage}
+            {this.props.sacrificeAnnouncement}
             <span onClick={this.props.announcementValidation}>OK michel</span>
           </div>
         </div>
@@ -64,8 +70,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
 export default connect((state: GameState): ViewState => ({
   villagers: state.villagers,
   time: state.cycle.time,
-  shamanHasSomethingToSay: null !== state.shaman.message,
-  shamanMessage: state.shaman.message
+  sacrificeAnnouncement: state.shaman.sacrificeAnnouncement,
+  factAnnouncement: state.shaman.factAnnouncement,
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart())
