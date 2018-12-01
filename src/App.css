@@ -51,6 +51,7 @@ body {
   flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
+  padding: 10px;
 }
 
 .character {

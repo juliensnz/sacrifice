@@ -12,6 +12,10 @@ export type Villager = {
   rot: number;
   asset: string;
   flip: boolean;
+  message: {
+    time: number;
+    message: string;
+  } | null;
 };
 
 export const generateVillager = (): Villager => ({
@@ -24,6 +28,7 @@ export const generateVillager = (): Villager => ({
   rot: Math.floor(Math.random() * 7) * 5 - 15,
   asset: ['shaman', 'viking_1', 'viking_2'][Math.floor(Math.random() * 3)],
   flip: Math.random() > 0.5,
+  message: null,
 });
 
 const firstNames = [...data.names.male, ...data.names.female];

@@ -103,6 +103,22 @@ export default (state: GameState = initialState, action: any) => {
       state = {...state, events: [...state.events, action.event]};
       break;
 
+    case 'VILLAGER_SPEAKS':
+      state = {
+        ...state,
+        villagers: state.villagers.map((villager: Villager) => {
+          if (villager.id === action.id) {
+            villager.message = {
+              time: parameters.villagerMessageDuration,
+              message: action.message,
+            };
+          }
+
+          return villager;
+        }),
+      };
+      break;
+
     case 'PAUSE':
       state = {...state, paused: true};
       break;
@@ -113,7 +129,21 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'TICK':
-      state = {...state, cycle: {...state.cycle, time: state.cycle.time + 1}};
+      state = {
+        ...state,
+        cycle: {...state.cycle, time: state.cycle.time + 1},
+        villagers: state.villagers.map((villager: Villager) => {
+          if (null === villager.message) {
+            return villager;
+          }
+
+          return {
+            ...villager,
+            message:
+              0 === villager.message.time ? null : {message: villager.message.message, time: villager.message.time - 1},
+          };
+        }),
+      };
       break;
 
     case 'END_CYCLE':

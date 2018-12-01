@@ -120,12 +120,12 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
   if (influencerLevel > 1 - parameters.expressiveness) {
     const messages = villagers.villagers[type][getMessageLevel(villager[type])];
 
-    dispatch(villagerSpeaks(getRandomArray(messages)));
+    dispatch(villagerSpeaks(getRandomArray(messages), villager));
   }
 };
 
-const villagerSpeaks = (message: string) => {
-  return {type: 'VILLAGER_SPEAKS', message};
+const villagerSpeaks = (message: string, villager: Villager) => {
+  return {type: 'VILLAGER_SPEAKS', message, id: villager.id};
 };
 
 const getRandomEvent = () => {
