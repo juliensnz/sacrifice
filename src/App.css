@@ -69,7 +69,7 @@ body, html, div {
   background: red;
 }
 
-.sacrificeAnnouncement {
+.sacrificeAnnouncement, .factAnnouncement {
   background: blue;
   display: none;
   position: fixed;
