@@ -1,6 +1,7 @@
 export default {
   events: [
     {
+      type: 'animals',
       facts: [
         'foo',
         'bar'
