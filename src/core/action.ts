@@ -87,8 +87,11 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
   const faithLevel = Math.abs(villager.faith - 50);
   const trustLevel = Math.abs(villager.trust - 50);
 
-  if (faithLevel > trustLevel) {
-  } else {
+  const type = faithLevel > trustLevel ? 'faith' : 'trust';
+  const influencerLevel = Math.max(faithLevel, trustLevel) / 50; // Value from 0 to 1
+
+  if (influencerLevel > parameters.expressiveness) {
+    dispatch(villagerSays());
   }
 };
 
