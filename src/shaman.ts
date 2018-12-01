@@ -6,31 +6,6 @@
 
 export default {
   shaman: [
-
-    {
-      trust: 0,
-      faith: 0,
-      texts: [``, ``],
-    },
-    {
-      trust: 25,
-      faith: 0,
-      texts: [``, ``],
-    },
-    {
-      trust: 50,
-      faith: 0,
-      texts: [``, ``],
-    },
-    {
-      trust: 75,
-      faith: 0,
-      texts: [``, ``],
-    },
-
-
-
-
     {
       trust: 0,
       faith: 75,
@@ -92,7 +67,5 @@ export default {
         An old man, a diseased widow. Please my great Jarl...`
       ],
     },
-
-
   ]
 }
