@@ -9,7 +9,7 @@ const parameters = {
   cycleCount: 20,
 
   // Number of villager in the vilage
-  villagerCount: 5 * 5,
+  villagerCount: 6 * 4,
 };
 
 export default parameters;
