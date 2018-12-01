@@ -44,7 +44,9 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className={`character ${villager.selected ? 'selected' : ''} ${!villager.alive ? 'dead' : ''}`} onClick={() => this.props.toggleSacrificed(villager.id)}>
               {/*<div className="characterText">a message</div>*/}
               <div className="characterImageContainer">
-                <div className="characterImage" style={{'backgroundImage': 'url(berger-allemand.jpg)'}}>&nbsp;</div>
+                <video className="characterImage" autoPlay loop>
+                  <source src="asset/shaman.mp4" type="video/mp4"/>
+                </video>
               </div>
               <div className="characterName">{villager.name}</div>
             </div>

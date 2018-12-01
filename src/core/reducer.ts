@@ -87,11 +87,11 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'SELECTION_ANNOUNCEMENT':
-      state = {...state, paused: true, shaman: {...state.shaman, message: action.message}};
+      state = {...state, paused: true, shaman: {...state.shaman, sacrificeAnnouncement: action.message}};
       break;
 
     case 'SELECTION_START':
-      state = {...state, paused: false, selectionStarted: true, shaman: {...state.shaman, message: null}};
+      state = {...state, paused: false, selectionStarted: true, shaman: {...state.shaman, sacrificeAnnouncement: null}};
       break;
 
     case 'USER_EVENT':
