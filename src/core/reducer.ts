@@ -1,7 +1,7 @@
 import {Villager, generateVillager} from 'src/core/model';
 import parameters from 'src/core/parameters';
 
-type Event = {
+export type Event = {
   type: string;
   fact: string;
   consequence: string;
@@ -16,7 +16,7 @@ export type GameState = {
   };
   selectionStarted: boolean;
   shaman: {
-    factAnnouncement: string | null;
+    factAnnouncement: string[];
     sacrificeAnnouncement: string | null;
   };
   events: Event[];
@@ -31,7 +31,7 @@ const initialState = {
   },
   selectionStarted: false,
   shaman: {
-    factAnnouncement: null,
+    factAnnouncement: [],
     sacrificeAnnouncement: null,
   },
   events: [],
@@ -65,6 +65,7 @@ export default (state: GameState = initialState, action: any) => {
           number: state.cycle.number + 1,
           time: 0,
         },
+        shaman: {...state.shaman, factAnnouncement: []},
         selectionStarted: false,
       };
 
@@ -88,6 +89,10 @@ export default (state: GameState = initialState, action: any) => {
 
     case 'SELECTION_ANNOUNCEMENT':
       state = {...state, paused: true, shaman: {...state.shaman, sacrificeAnnouncement: action.message}};
+      break;
+
+    case 'FACT_ANNOUNCEMENT':
+      state = {...state, paused: true, shaman: {...state.shaman, factAnnouncement: action.message}};
       break;
 
     case 'SELECTION_START':
