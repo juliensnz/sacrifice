@@ -52,6 +52,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
                   <video className="characterImage" autoPlay loop>
                     <source src="asset/shaman.mp4" type="video/mp4"/>
                   </video>
+                  <div className="characterShield"></div>
                 </div>
                 <div className="characterName">{villager.name}</div>
               </div>
