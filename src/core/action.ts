@@ -1,5 +1,7 @@
 import {GameState} from 'src/core/reducer';
 import parameters from 'src/core/parameters';
+import events from 'src/events';
+import {getRandomArray} from 'src/core/utils';
 
 export const startGame = () => (dispatch: any, getState: () => GameState) => {
   dispatch(startCycle());
@@ -19,6 +21,7 @@ const startCycle = () => (dispatch: any, getState: () => GameState) => {
 };
 
 const endCycle = () => (dispatch: any, getState: () => GameState) => {
+  dispatch({type: 'USER_EVENT', event: getRandomEvent()});
   dispatch({type: 'END_CYCLE'});
 
   if (getState().cycle.number === parameters.cycleCount) {
@@ -62,4 +65,14 @@ const whatToDo = () => (dispatch: any, getState: () => GameState) => {
   if (parameters.cycleLength - parameters.selectionLength === getState().cycle.time) {
     dispatch(selectionAnnouncement());
   }
+};
+
+const getRandomEvent = () => {
+  const event = getRandomArray(events.events);
+
+  return {
+    type: event.type,
+    fact: getRandomArray(event.facts),
+    ...getRandomArray(event.consequences),
+  };
 };
