@@ -1,8 +1,9 @@
 import {GameState, Event} from 'src/core/reducer';
 import parameters from 'src/core/parameters';
-import events from 'src/events';
+import events from 'src/data/events';
 import {getRandomArray} from 'src/core/utils';
-import villagers from 'src/villagers';
+import villagers from 'src/data/villagers';
+import {Villager} from 'src/core/model';
 
 export const startGame = () => (dispatch: any, getState: () => GameState) => {
   dispatch(startCycle());
@@ -95,13 +96,26 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
     }
   };
 
+  const getInfluencerLevel = (villager: Villager) => {
+    const faithLevel = Math.abs(villager.faith - 50);
+    const trustLevel = Math.abs(villager.trust - 50);
+
+    return Math.max(faithLevel, trustLevel) / 50; // Value from 0 to 1
+  };
+
+  const maxInfluence = getState().villagers.reduce(
+    (max: number, villager: Villager) => (getInfluencerLevel(villager) > max ? getInfluencerLevel(villager) : max),
+    0
+  );
+
   const villager = getRandomArray(getState().villagers);
 
   const faithLevel = Math.abs(villager.faith - 50);
   const trustLevel = Math.abs(villager.trust - 50);
 
   const type = faithLevel > trustLevel ? 'faith' : 'trust';
-  const influencerLevel = Math.max(faithLevel, trustLevel) / 50; // Value from 0 to 1
+
+  const influencerLevel = getInfluencerLevel(villager) / maxInfluence; // Value from 0 to 1
 
   if (influencerLevel > 1 - parameters.expressiveness) {
     const messages = villagers.villagers[type][getMessageLevel(villager[type])];
