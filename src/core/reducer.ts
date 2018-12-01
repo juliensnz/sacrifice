@@ -16,7 +16,8 @@ export type GameState = {
   };
   selectionStarted: boolean;
   shaman: {
-    message: string | null;
+    factAnnouncement: string | null;
+    sacrificeAnnouncement: string | null;
   };
   events: Event[];
   paused: boolean;
@@ -30,7 +31,8 @@ const initialState = {
   },
   selectionStarted: false,
   shaman: {
-    message: null,
+    factAnnouncement: null,
+    sacrificeAnnouncement: null,
   },
   events: [],
   paused: false,

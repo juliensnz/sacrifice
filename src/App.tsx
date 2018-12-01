@@ -9,8 +9,8 @@ import parameters from 'src/core/parameters';
 type ViewState = {
   villagers: Villager[]
   time: number
-  shamanHasSomethingToSay: boolean
-  shamanMessage: string | null
+  sacrificeAnnouncement: string | null
+  factAnnouncement: string | null
 }
 
 type ViewDispatch = {
@@ -50,8 +50,12 @@ class App extends React.Component<ViewState & ViewDispatch> {
             </div>
           ) )}
         </div>
-        <div className={`shamanAnnouncement ${this.props.shamanHasSomethingToSay ? 'visible' : ''}`}>
-          {this.props.shamanMessage}
+        <div className={`shamanAnnouncement ${null !== this.props.sacrificeAnnouncement ? 'visible' : ''}`}>
+          {this.props.sacrificeAnnouncement}
+          <span onClick={this.props.announcementValidation}>OK michel</span>
+        </div>
+        <div className={`cycleAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
+          {this.props.sacrificeAnnouncement}
           <span onClick={this.props.announcementValidation}>OK michel</span>
         </div>
       </div>
@@ -62,8 +66,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
 export default connect((state: GameState): ViewState => ({
   villagers: state.villagers,
   time: state.cycle.time,
-  shamanHasSomethingToSay: null !== state.shaman.message,
-  shamanMessage: state.shaman.message
+  sacrificeAnnouncement: state.shaman.sacrificeAnnouncement,
+  factAnnouncement: state.shaman.factAnnouncement,
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart())
