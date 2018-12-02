@@ -1,11 +1,11 @@
 import './App.css';
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Villager, Decision} from 'src/core/model';
+import {Villager, Decision, imageNumbers} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
 import {toggleSacrificed, selectionStart, factConfirmation, dismissDecision} from 'src/core/action';
 import parameters from 'src/core/parameters';
-import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
+import {getAliveVillagers, getFaith, getRandomArray, getTrust} from 'src/core/utils';
 import gameMessages from 'src/data/game-messages';
 import {decisionConfirmation} from 'src/core/action/decision';
 
@@ -73,7 +73,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
   public render() {
     return (
       <React.Fragment>
-        <div className="debug">
+        <div className={parameters.debug ? 'debug visible' : 'debug'}>
           cycle count: {this.props.cycleCount}<br/>
           time: {parameters.cycleLength - this.props.time}<br/>
           faith: {Math.round(getFaith(this.props.aliveVillagers))}%<br/>
@@ -90,6 +90,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
                   <div className="characterShield"></div>
                   <div className={`characterFaith ${this.getTrustAndFaithClass(villager.faith)}`}></div>
                   <div className={`characterTrust ${this.getTrustAndFaithClass(villager.trust)}`}></div>
+                  <div className="characterPlumeLeft"></div>
+                  <div className="characterPlumeRight"></div>
                   <video className="deadVideo" autoPlay loop muted>
                     <source src={`asset/death.mp4`} type="video/mp4"/>
                   </video>
@@ -125,7 +127,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         </div>
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <video className="characterImageBig" autoPlay loop>
-            <source src="asset/shaman.mp4" type="video/mp4"/>
+            <source src={`asset/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
           <div className="shamanMessage">

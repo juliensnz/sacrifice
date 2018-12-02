@@ -9,10 +9,12 @@ export default {
         "I heard a rebellion is in progress...",
       ],
       bad: [
-        "I'm wondering if the Jarl is capable to lead us to the path of Glory."
+        "I'm wondering if the Jarl is capable to lead us to the path of Glory.",
+        "Maybe our Jarl is not the right one...",
       ],
       good: [
         "Our Jarl is good with us.",
+        "I trust in our Jarl.",
       ],
       loyal: [
         "Such a great Jarl.",
@@ -27,10 +29,12 @@ export default {
         "I don't want to hear about those so called Gods anymore.",
         "Odin, Freya, Thor, Baldu, Loki and all the others... Farewell.",
         "Let's forget the Gods and live for us now.",
-        "The past if full of darkness and sacrifices. The future is bright and free."
+        "The past if full of darkness and sacrifices. The future is bright and free.",
+        "Our Gods are not looking at us anymore, we are lost.",
       ],
       bad: [
         "Despite our sacrifices the Gods don't protect us anymore.",
+        "Maybe our Gods are not listen to our sacrifices...",
       ],
       good: [
         "Gods are good with us.",
