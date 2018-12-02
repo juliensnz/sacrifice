@@ -37,7 +37,7 @@ export default {
       ]
     },
     {
-      type: "ennemy village looted",
+      type: "enemy village looted",
       facts: [
         "Our fighters came back victorious from the raid.",
         "The hunting horns of our warriors sound far away.",
@@ -62,11 +62,11 @@ export default {
     {
       type: "harvest",
       facts: [
-        "Farmers come back from the fields.",
+        "Farmers came back from the fields.",
         "Harvests are now over.",
       ],
       consequences: [
-        {consequence: "The harvest is exceptional. Our barns never have been that full.", coef: 8},
+        {consequence: "The harvest is exceptional. Our barns have never been that full.", coef: 8},
         {consequence: "Because of last season's bad weather, we have just enough to keep up.", coef: 1},
       ]
     },
@@ -109,7 +109,7 @@ export default {
       type: "epidemic villagers",
       facts: [
         "Villagers have contracted an unknown disease, we have never seen these symptoms.",
-        "Merchants who were returning from a commercial expedition returned with obvious illness signs",
+        "Merchants came back from a commercial expedition with obvious illness signs.",
       ],
       consequences: [
         {consequence: "The epidemic is spreading far too quickly. Almost all the village has already contracted the disease.", coef: -9},
@@ -126,7 +126,7 @@ export default {
       ],
       consequences: [
         {consequence: "They have no chance of surviving.", coef: -5},
-        {consequence: "Most will recover, but the youngest will surely die.", coef: -2},
+        {consequence: "Most will recover, but the youngest ones will surely die.", coef: -2},
       ]
     },
     {
@@ -152,11 +152,11 @@ export default {
       type: "rain",
       facts: [
         "The weather was not lenient with us, a violent storm flooded our crops.",
-        "Torrential rains fell in a few days.",
+        "Torrential rains fell last few days.",
       ],
       consequences: [
         {consequence: "Our fields are ravaged, it's terrible.", coef: -4},
-        {consequence: "Harvests have taken water and mold, it is a big lack for the community.", coef: -8},
+        {consequence: "Harvests got mold, it is a big lack for the community.", coef: -8},
       ]
     },
     {
@@ -173,6 +173,5 @@ export default {
         {consequence: "We had to amputate him to save his life. But now he's safe.", coef: -2},
       ]
     },
-
   ]
 }
