@@ -7,6 +7,7 @@ import {endGame} from 'src/core/action';
 
 export const startCycle = () => (dispatch: any, getState: () => GameState) => {
   dispatch({type: 'START_CYCLE'});
+  dispatch({type: 'PLAY_SOUND', sound: 'ambient_loop'});
 };
 
 export const endCycle = () => (dispatch: any, getState: () => GameState) => {
