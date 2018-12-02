@@ -1,6 +1,6 @@
 const parameters = {
   // Time in second for one cycle
-  cycleLength: 20,
+  cycleLength: 200,
 
   // Time in second for the selection phase
   selectionLength: 10,

@@ -3,7 +3,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Villager, Decision} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
-import {toggleSacrificed, selectionStart, factConfirmation} from 'src/core/action';
+import {toggleSacrificed, selectionStart, factConfirmation, dismissDecision} from 'src/core/action';
 import parameters from 'src/core/parameters';
 import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
 import gameMessages from 'src/data/game-messages';
@@ -15,6 +15,7 @@ type ViewState = {
   time: number
   cycleCount: number
   sacrificeAnnouncement: string | null
+  decisionAnswer: string | null
   decisionAnnouncement: Decision | null
   factAnnouncement: {
     text: string;
@@ -28,6 +29,7 @@ type ViewDispatch = {
   toggleSacrificed: (id: string) => void
   announcementValidation: () => void
   factConfirmation: () => void
+  dismissDecision: () => void
   decisionConfirmation: (type: string) => void
 }
 
@@ -142,6 +144,16 @@ class App extends React.Component<ViewState & ViewDispatch> {
           <div className="shamanYES" onClick={() => this.props.decisionConfirmation('yes')}>Yes</div>
           <div className="shamanNO" onClick={() => this.props.decisionConfirmation('no')}>No</div>
         </div>
+        <div className={`decisionAnswer ${null !== this.props.decisionAnswer ? 'visible' : ''}`}>
+          <video className="characterImageBig" autoPlay loop>
+            <source src="asset/shaman.mp4" type="video/mp4"/>
+          </video>
+          <div className="shamanBigShield"></div>
+          <div className="shamanMessage">
+            {null !== this.props.decisionAnswer ? this.props.decisionAnswer : ''}
+          </div>
+          <div className="shamanOK" onClick={this.props.dismissDecision}>OK</div>
+        </div>
       </React.Fragment>
     );
   }
@@ -155,11 +167,13 @@ export default connect((state: GameState): ViewState => ({
   sacrificeAnnouncement: state.shaman.sacrificeAnnouncement,
   factAnnouncement: state.shaman.factAnnouncement,
   decisionAnnouncement: state.decision,
+  decisionAnswer: state.decisionAnswer,
   selectionStarted: state.selectionStarted,
   gameover: state.gameover
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart()),
   factConfirmation: () => dispatch(factConfirmation()),
+  dismissDecision: () => dispatch(dismissDecision()),
   decisionConfirmation: (type: string) => dispatch(decisionConfirmation(type))
 }))(App);

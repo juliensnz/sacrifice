@@ -7,6 +7,7 @@ export type GameState = {
   previousCycles: Cycle[];
   cycle: Cycle;
   decision: Decision | null;
+  decisionAnswer: string | null;
   selectionStarted: boolean;
   shaman: {
     factAnnouncement: {
@@ -28,6 +29,7 @@ const initialState = {
     gameEvent: null,
   },
   decision: null,
+  decisionAnswer: null,
   selectionStarted: false,
   shaman: {
     factAnnouncement: null,
@@ -72,12 +74,24 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'DECISION_CONFIRMATION':
+      if (null === state.decision) {
+        break;
+      }
+
+      const decisionAnswer = state.decision[action.type];
+      state = {
+        ...state,
+        decision: null,
+        decisionAnswer: decisionAnswer.text,
+        villagers: applyDecisionEvent(state.villagers, decisionAnswer.coef),
+      };
+      break;
+
+    case 'DISMISS_DECISION':
       state = {
         ...state,
         paused: false,
-        decision: null,
-        villagers:
-          null !== state.decision ? applyDecisionEvent(state.villagers, state.decision[action.type]) : state.villagers,
+        decisionAnswer: null,
       };
       break;
 

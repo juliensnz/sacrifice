@@ -14,7 +14,9 @@ export const tick = () => (dispatch: any) => {
 };
 
 const whatToDo = () => (dispatch: any, getState: () => GameState) => {
-  dispatch(makeVillagerSpeak());
+  if (!getState().selectionStarted) {
+    dispatch(makeVillagerSpeak());
+  }
 
   // DISPLAY DECISION QUESTION AFTER A PREVIOUS CYCLE GAME EVENT
   if (parameters.decisionLength === getState().cycle.time && 1 < getState().cycle.number) {

@@ -24,7 +24,11 @@ export const factConfirmation = () => (dispatch: any, getState: () => GameState)
 };
 
 const dismissFact = () => ({
-  type: 'DISMISS_FACT'
+  type: 'DISMISS_FACT',
+});
+
+export const dismissDecision = () => ({
+  type: 'DISMISS_DECISION',
 });
 
 export const toggleSacrificed = (id: string) => ({

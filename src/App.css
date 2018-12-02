@@ -62,14 +62,17 @@ body {
 
 .characters {
   background: #000000;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
+  width: 1330px;
+  height: 820px;
+  margin: auto;
 }
 
 .character {
-  flex-basis: 250px;
+  width: 190px;
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -252,7 +255,7 @@ body {
   display: none;
 }
 
-.sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement {
+.sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement, .decisionAnswer {
   background: black;
   display: none;
   position: fixed;
@@ -267,6 +270,7 @@ body {
 }
 
 .sacrificeAnnouncement.visible,
+.decisionAnswer.visible,
 .decisionAnnouncement.visible,
 .factAnnouncement.visible {
   display: block;
@@ -304,7 +308,7 @@ body {
 .shamanMessage {
   margin: 310px 0 0 -70px;
   width: 428px;
-  font-size: 33px;
+  font-size: 29px;
   text-align: left;
   display: inline-flex;
   position: absolute;
