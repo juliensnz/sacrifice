@@ -32,11 +32,11 @@ export const endCycle = () => (dispatch: any, getState: () => GameState) => {
     dispatch(factAnnouncement());
 
     if (aliveVillagers.length === 0) {
-      dispatch(endGame());
+      dispatch(endGame('all_villagers_sacrificed'));
     } else if (trustLevel === 0) {
-      dispatch(endGame());
+      dispatch(endGame('no_more_trust'));
     } else if (faithLevel === 0) {
-      dispatch(endGame());
+      dispatch(endGame('no_more_faith'));
     }
   }, 1000 * parameters.timeToDisplayAnnouncement);
 };

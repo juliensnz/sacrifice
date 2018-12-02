@@ -6,6 +6,7 @@ import {GameState} from 'src/core/reducer';
 import {toggleSacrificed, selectionStart, factConfirmation} from 'src/core/action';
 import parameters from 'src/core/parameters';
 import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
+import gameMessages from 'src/data/game-messages';
 
 type ViewState = {
   villagers: Villager[]
@@ -17,7 +18,8 @@ type ViewState = {
     text: string;
     type: string;
   } | null;
-  selectionStarted: boolean
+  selectionStarted: boolean,
+  gameover: string|null
 }
 
 type ViewDispatch = {
@@ -107,6 +109,15 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className="shamanOK" onClick={this.props.announcementValidation}>OK</div>
           </div>
         </div>
+        <div className={`gameoverAnnouncement ${null !== this.props.gameover ? 'visible' : ''}`}>
+          <video className="characterImageBig" autoPlay loop>
+            <source src="asset/shaman.mp4" type="video/mp4"/>
+          </video>
+          <div className="shamanBigShield"></div>
+          <div className="shamanMessage">
+            {null !== this.props.gameover ? gameMessages.gameover[this.props.gameover] : ''}
+          </div>
+        </div>
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <video className="characterImageBig" autoPlay loop>
             <source src="asset/shaman.mp4" type="video/mp4"/>
@@ -130,6 +141,7 @@ export default connect((state: GameState): ViewState => ({
   sacrificeAnnouncement: state.shaman.sacrificeAnnouncement,
   factAnnouncement: state.shaman.factAnnouncement,
   selectionStarted: state.selectionStarted,
+  gameover: state.gameover
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart()),

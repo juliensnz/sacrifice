@@ -46,6 +46,10 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
 
   const aliveVillagers = getAliveVillagers(getState().villagers);
 
+  if (aliveVillagers.length === 0) {
+    return;
+  }
+
   const maxInfluence = aliveVillagers.reduce(
     (max: number, villager: Villager) => (getInfluencerLevel(villager) > max ? getInfluencerLevel(villager) : max),
     0
