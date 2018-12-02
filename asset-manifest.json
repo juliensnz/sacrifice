@@ -1,11 +1,12 @@
 {
-  "main.css": "static/css/main.387ddd83.css",
-  "main.css.map": "static/css/main.387ddd83.css.map",
-  "main.js": "static/js/main.f2abf61a.js",
-  "main.js.map": "static/js/main.f2abf61a.js.map",
+  "main.css": "static/css/main.0ddb91ba.css",
+  "main.css.map": "static/css/main.0ddb91ba.css.map",
+  "main.js": "static/js/main.d5a1fda0.js",
+  "main.js.map": "static/js/main.d5a1fda0.js.map",
   "static/media/Bulle.png": "static/media/Bulle.ac78a148.png",
   "static/media/bigPancarte.png": "static/media/bigPancarte.363f045e.png",
   "static/media/hublot.png": "static/media/hublot.f0511b46.png",
   "static/media/pancarte.png": "static/media/pancarte.39519ebd.png",
-  "static/media/pancarteButton.png": "static/media/pancarteButton.037c5e66.png"
+  "static/media/pancarteButton.png": "static/media/pancarteButton.037c5e66.png",
+  "static/media/pancartedead.png": "static/media/pancartedead.aa809ca9.png"
 }
