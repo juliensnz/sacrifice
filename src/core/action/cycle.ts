@@ -1,4 +1,4 @@
-import {GameState, Event} from 'src/core/reducer';
+import {GameState, GameEvent} from 'src/core/reducer';
 import {getSelectedVillagers} from 'src/core/reducer/villager';
 import parameters from 'src/core/parameters';
 import {getRandomArray} from 'src/core/utils';
@@ -38,6 +38,6 @@ const getRandomEvent = () => {
 const factAnnouncement = () => (dispatch: any, getState: () => GameState) => {
   dispatch({
     type: 'FACT_ANNOUNCEMENT',
-    message: getState().gameEvents.map((event: Event) => `${event.fact} ${event.consequence}`),
+    message: getState().gameEvents.map((event: GameEvent) => `${event.fact} ${event.consequence}`),
   });
 };
