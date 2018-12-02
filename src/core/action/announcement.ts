@@ -1,5 +1,4 @@
 import {GameState} from 'src/core/reducer';
-import {Villager} from 'src/core/model';
 import {getAliveVillagers, getTrust, getFaith} from 'src/core/utils';
 import shaman from 'src/data/shaman';
 
