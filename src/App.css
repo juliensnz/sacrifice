@@ -31,7 +31,7 @@ body {
 .App.selectionPhase {
   animation-name: fadeToBlack;
   animation-duration: 10s;
-  animation-delay: 5s;
+  animation-delay: 7s;
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
   clip-path: circle(1000px at center);
