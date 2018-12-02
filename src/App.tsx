@@ -63,6 +63,18 @@ class App extends React.Component<ViewState & ViewDispatch> {
     }
   }
 
+  private getTrustAndFaithClass(level: number) {
+    if (level < 25) {
+      return 'chaotic';
+    } else if (level < 50) {
+      return 'bad';
+    } else if (level < 75) {
+      return 'good';
+    } else {
+      return 'loyal';
+    }
+  }
+
   public render() {
     return (
       <React.Fragment>
@@ -81,6 +93,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
                     <source src={`asset/${villager.asset}.mp4`} type="video/mp4"/>
                   </video>
                   <div className="characterShield"></div>
+                  <div className={`characterFaith ${this.getTrustAndFaithClass(villager.faith)}`}></div>
+                  <div className={`characterTrust ${this.getTrustAndFaithClass(villager.trust)}`}></div>
                   <video className="deadVideo" autoPlay loop muted>
                     <source src={`asset/death.mp4`} type="video/mp4"/>
                   </video>
