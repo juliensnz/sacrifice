@@ -8,10 +8,9 @@ const LOW_TRUST_IMPACT = 1;
 
 const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Villager) => {
   const sacrificeCount = villagers
-    .filter((villager: Villager) => villager.alive)
-    .reduce((sacrificed: number, villager: Villager) => sacrificed + (villager.selected ? 1 : 0), 0);
+    .filter((villager: Villager) => villager.selected)
+    .length;
 
-  console.log('COUNT SACRI', sacrificeCount);
   const hasSacrified = sacrificeCount > 0;
   let impact = 0;
 
@@ -37,8 +36,8 @@ const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Vill
 
 const updateFaith = (villagers: Villager[], event: GameEvent) => (villager: Villager) => {
   const sacrificeCount = villagers
-    .filter((villager: Villager) => villager.alive)
-    .reduce((sacrificed: number, villager: Villager) => sacrificed + (villager.selected ? 1 : 0), 0);
+    .filter((villager: Villager) => villager.selected)
+    .length;
 
   const hasSacrified = sacrificeCount > 0;
 
