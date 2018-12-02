@@ -76,6 +76,9 @@ class App extends React.Component<ViewState & ViewDispatch> {
                     <source src={`asset/${villager.asset}.mp4`} type="video/mp4"/>
                   </video>
                   <div className="characterShield"></div>
+                  <video className="deadVideo" autoPlay loop muted>
+                    <source src={`asset/death.mp4`} type="video/mp4"/>
+                  </video>
                   <div className="characterPancarte"></div>
                   <div className="characterName">{villager.trust} - {villager.name} - {villager.faith}</div>
                   <div className="characterText">{null !== villager.message ?
