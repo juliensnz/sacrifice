@@ -11,13 +11,13 @@ const updateTrust = (villagers: Villager[]) => (villager: Villager) => {
 };
 
 const updateAlive = (villager: Villager) => {
-  return {...villager, alive: villager.alive && !villager.selected};
+  return {...villager, alive: villager.alive && !villager.selected, selected: false};
 };
 
 export const applyEvents = (villagers: Villager[], events: Event[]) => {
   return villagers.map(updateTrust(villagers)).map(updateAlive);
 };
 
-export const getSelectedVillager = (villagers: Villager[]): Villager[] => {
+export const getSelectedVillagers = (villagers: Villager[]): Villager[] => {
   return villagers.filter((villager: Villager) => villager.selected && villager.alive);
 };
