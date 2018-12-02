@@ -29,7 +29,7 @@ const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Vill
   }
 
   const deltaTrust = event.coef * impact * ((villager.faith / 100) + 1);
-  const totalTrust = Math.min(100, Math.max(villager.trust + deltaTrust, 0));
+  const totalTrust = Math.round(Math.min(100, Math.max(villager.trust + deltaTrust, 0)));
 
   return {...villager, trust: totalTrust};
 };
@@ -45,7 +45,7 @@ const updateFaith = (villagers: Villager[], event: GameEvent) => (villager: Vill
     ? FAITH_SACRIFICE_IMPACT
     : FAITH_NO_SACRIFICE_IMPACT;
   const deltaFaith = event.coef * impact;
-  const totalFaith = Math.min(100, Math.max(villager.faith + deltaFaith, 0));
+  const totalFaith = Math.round(Math.min(100, Math.max(villager.faith + deltaFaith, 0)));
 
   return {...villager, faith: totalFaith};
 };
