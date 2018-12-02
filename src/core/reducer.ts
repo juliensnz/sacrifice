@@ -1,11 +1,12 @@
-import {Villager, generateVillager, Cycle} from 'src/core/model';
+import {Villager, generateVillager, Cycle, Decision} from 'src/core/model';
 import parameters from 'src/core/parameters';
-import {applyGameEvent} from 'src/core/reducer/villager';
+import {applyGameEvent, applyDecisionEvent} from 'src/core/reducer/villager';
 
 export type GameState = {
   villagers: Villager[];
   previousCycles: Cycle[];
   cycle: Cycle;
+  decision: Decision | null;
   selectionStarted: boolean;
   shaman: {
     factAnnouncement: {
@@ -26,6 +27,7 @@ const initialState = {
     time: 0,
     gameEvent: null,
   },
+  decision: null,
   selectionStarted: false,
   shaman: {
     factAnnouncement: null,
@@ -62,6 +64,20 @@ export default (state: GameState = initialState, action: any) => {
 
           return villager;
         }),
+      };
+      break;
+
+    case 'DECISION_START':
+      state = {...state, paused: true, decision: action.decision};
+      break;
+
+    case 'DECISION_CONFIRMATION':
+      state = {
+        ...state,
+        paused: false,
+        decision: null,
+        villagers:
+          null !== state.decision ? applyDecisionEvent(state.villagers, state.decision[action.type]) : state.villagers,
       };
       break;
 

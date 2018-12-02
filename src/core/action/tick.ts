@@ -37,11 +37,11 @@ const whatToDo = () => (dispatch: any, getState: () => GameState) => {
 
 const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
   const getMessageLevel = (level: number) => {
-    if (level < 25) {
+    if (level < 10) {
       return 'chaotic';
     } else if (level < 50) {
       return 'bad';
-    } else if (level < 75) {
+    } else if (level < 90) {
       return 'good';
     } else {
       return 'loyal';

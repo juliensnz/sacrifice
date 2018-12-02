@@ -61,3 +61,7 @@ export const applyGameEvent = (villagers: Villager[], currentEvent: GameEvent | 
 export const getSelectedVillagers = (villagers: Villager[]): Villager[] => {
   return villagers.filter((villager: Villager) => villager.selected && villager.alive);
 };
+
+export const applyDecisionEvent = (villagers: Villager[], decision: {text: string; coef: number}) => {
+  return villagers;
+};

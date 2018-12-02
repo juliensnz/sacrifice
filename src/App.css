@@ -252,7 +252,7 @@ body {
   display: none;
 }
 
-.sacrificeAnnouncement, .factAnnouncement, .gameoverAnnouncement {
+.sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement {
   background: black;
   display: none;
   position: fixed;
@@ -267,6 +267,7 @@ body {
 }
 
 .sacrificeAnnouncement.visible,
+.decisionAnnouncement.visible,
 .factAnnouncement.visible {
   display: block;
   opacity: 1;
@@ -310,7 +311,7 @@ body {
   color: white;
 }
 
-.shamanOK {
+.shamanOK, .shamanYES, .shamanNO {
   margin: 590px 0px 0 120px;
   width: 200px;
   height: 80px;
@@ -324,4 +325,12 @@ body {
   padding-top: 40px;
   font-size: 34px;
   font-weight: bold;
+}
+
+.shamanYES {
+  margin: 590px 0px 0 -50px;
+}
+
+.shamanNO {
+  margin: 590px 0px 0 170px;
 }
