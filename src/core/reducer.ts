@@ -1,18 +1,12 @@
-import {Villager, generateVillager} from 'src/core/model';
+import {Villager, generateVillager, Cycle, Decision} from 'src/core/model';
 import parameters from 'src/core/parameters';
-import {applyGameEvent} from 'src/core/reducer/villager';
-import {GameEvent} from 'src/core/model';
-
-type Cycle = {
-  time: number;
-  number: number;
-  gameEvent: GameEvent | null;
-};
+import {applyGameEvent, applyDecisionEvent} from 'src/core/reducer/villager';
 
 export type GameState = {
   villagers: Villager[];
   previousCycles: Cycle[];
   cycle: Cycle;
+  decision: Decision | null;
   selectionStarted: boolean;
   shaman: {
     factAnnouncement: {
@@ -22,6 +16,7 @@ export type GameState = {
     sacrificeAnnouncement: string | null;
   };
   paused: boolean;
+  gameover: string | null;
 };
 
 const initialState = {
@@ -32,12 +27,14 @@ const initialState = {
     time: 0,
     gameEvent: null,
   },
+  decision: null,
   selectionStarted: false,
   shaman: {
     factAnnouncement: null,
     sacrificeAnnouncement: null,
   },
   paused: false,
+  gameover: null,
 };
 
 export default (state: GameState = initialState, action: any) => {
@@ -50,9 +47,46 @@ export default (state: GameState = initialState, action: any) => {
           time: 0,
           gameEvent: null,
         },
-        shaman: {...state.shaman, factAnnouncement: null},
         selectionStarted: false,
       };
+      break;
+
+    case 'VILLAGER_SPEAKS':
+      state = {
+        ...state,
+        villagers: state.villagers.map((villager: Villager) => {
+          if (villager.id === action.id) {
+            villager.message = {
+              time: parameters.villagerMessageDuration,
+              message: action.message,
+            };
+          }
+
+          return villager;
+        }),
+      };
+      break;
+
+    case 'DECISION_START':
+      state = {...state, paused: true, decision: action.decision};
+      break;
+
+    case 'DECISION_CONFIRMATION':
+      state = {
+        ...state,
+        paused: false,
+        decision: null,
+        villagers:
+          null !== state.decision ? applyDecisionEvent(state.villagers, state.decision[action.type]) : state.villagers,
+      };
+      break;
+
+    case 'SELECTION_ANNOUNCEMENT':
+      state = {...state, paused: true, shaman: {...state.shaman, sacrificeAnnouncement: action.message}};
+      break;
+
+    case 'SELECTION_START':
+      state = {...state, paused: false, selectionStarted: true, shaman: {...state.shaman, sacrificeAnnouncement: null}};
       break;
 
     case 'TOGGLE_SACRIFICED':
@@ -72,8 +106,17 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
-    case 'SELECTION_ANNOUNCEMENT':
-      state = {...state, paused: true, shaman: {...state.shaman, sacrificeAnnouncement: action.message}};
+    case 'REGISTER_GAME_EVENT':
+      state = {...state, cycle: {...state.cycle, gameEvent: action.gameEvent}};
+      break;
+
+    case 'END_CYCLE':
+      state = {
+        ...state,
+        paused: true,
+        villagers: applyGameEvent(state.villagers, state.cycle.gameEvent),
+        previousCycles: [...state.previousCycles, state.cycle],
+      };
       break;
 
     case 'FACT_ANNOUNCEMENT':
@@ -84,27 +127,19 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
-    case 'SELECTION_START':
-      state = {...state, paused: false, selectionStarted: true, shaman: {...state.shaman, sacrificeAnnouncement: null}};
-      break;
-
-    case 'REGISTER_GAME_EVENT':
-      state = {...state, cycle: {...state.cycle, gameEvent: action.gameEvent}};
-      break;
-
-    case 'VILLAGER_SPEAKS':
+    case 'DISMISS_FACT':
       state = {
         ...state,
-        villagers: state.villagers.map((villager: Villager) => {
-          if (villager.id === action.id) {
-            villager.message = {
-              time: parameters.villagerMessageDuration,
-              message: action.message,
-            };
-          }
+        shaman: {...state.shaman, factAnnouncement: null},
+      };
+      break;
 
-          return villager;
-        }),
+    case 'END_GAME':
+      const reason = action.reason;
+      state = {
+        ...state,
+        gameover: reason,
+        paused: true,
       };
       break;
 
@@ -131,15 +166,6 @@ export default (state: GameState = initialState, action: any) => {
               0 === villager.message.time ? null : {message: villager.message.message, time: villager.message.time - 1},
           };
         }),
-      };
-      break;
-
-    case 'END_CYCLE':
-      state = {
-        ...state,
-        paused: true,
-        villagers: applyGameEvent(state.villagers, state.cycle.gameEvent),
-        previousCycles: [...state.previousCycles, state.cycle],
       };
       break;
 

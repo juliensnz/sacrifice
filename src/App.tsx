@@ -1,11 +1,13 @@
 import './App.css';
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Villager} from 'src/core/model';
+import {Villager, Decision} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
 import {toggleSacrificed, selectionStart, factConfirmation} from 'src/core/action';
 import parameters from 'src/core/parameters';
 import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
+import gameMessages from 'src/data/game-messages';
+import {decisionConfirmation} from 'src/core/action/decision';
 
 type ViewState = {
   villagers: Villager[]
@@ -13,17 +15,20 @@ type ViewState = {
   time: number
   cycleCount: number
   sacrificeAnnouncement: string | null
+  decisionAnnouncement: Decision | null
   factAnnouncement: {
     text: string;
     type: string;
   } | null;
-  selectionStarted: boolean
+  selectionStarted: boolean,
+  gameover: string|null
 }
 
 type ViewDispatch = {
   toggleSacrificed: (id: string) => void
   announcementValidation: () => void
   factConfirmation: () => void
+  decisionConfirmation: (type: string) => void
 }
 
 class App extends React.Component<ViewState & ViewDispatch> {
@@ -109,6 +114,15 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className="shamanOK" onClick={this.props.announcementValidation}>OK</div>
           </div>
         </div>
+        <div className={`gameoverAnnouncement ${null !== this.props.gameover ? 'visible' : ''}`}>
+          <video className="characterImageBig" autoPlay loop>
+            <source src="asset/shaman.mp4" type="video/mp4"/>
+          </video>
+          <div className="shamanBigShield"></div>
+          <div className="shamanMessage">
+            {null !== this.props.gameover ? gameMessages.gameover[this.props.gameover] : ''}
+          </div>
+        </div>
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <video className="characterImageBig" autoPlay loop>
             <source src="asset/shaman.mp4" type="video/mp4"/>
@@ -118,6 +132,17 @@ class App extends React.Component<ViewState & ViewDispatch> {
             {null !== this.props.factAnnouncement ? this.props.factAnnouncement.text : ''}
           </div>
           <div className="shamanOK" onClick={this.props.factConfirmation}>OK</div>
+        </div>
+        <div className={`decisionAnnouncement ${null !== this.props.decisionAnnouncement ? 'visible' : ''}`}>
+          <video className="characterImageBig" autoPlay loop>
+            <source src="asset/shaman.mp4" type="video/mp4"/>
+          </video>
+          <div className="shamanBigShield"></div>
+          <div className="shamanMessage">
+            {null !== this.props.decisionAnnouncement ? this.props.decisionAnnouncement.text : ''}
+          </div>
+          <div className="shamanYES" onClick={() => this.props.decisionConfirmation('yes')}>Yes</div>
+          <div className="shamanNO" onClick={() => this.props.decisionConfirmation('no')}>No</div>
         </div>
       </React.Fragment>
     );
@@ -131,9 +156,12 @@ export default connect((state: GameState): ViewState => ({
   cycleCount: state.cycle.number,
   sacrificeAnnouncement: state.shaman.sacrificeAnnouncement,
   factAnnouncement: state.shaman.factAnnouncement,
+  decisionAnnouncement: state.decision,
   selectionStarted: state.selectionStarted,
+  gameover: state.gameover
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart()),
-  factConfirmation: () => dispatch(factConfirmation())
+  factConfirmation: () => dispatch(factConfirmation()),
+  decisionConfirmation: (type: string) => dispatch(decisionConfirmation(type))
 }))(App);

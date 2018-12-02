@@ -15,6 +15,7 @@ const generateEventsFrom = (rawEvents: RawEvent[]): GameEvent[] => {
               type: rawEvent.type,
               text: `${fact} ${consequence.consequence}`,
               coef: consequence.coef,
+              decision: undefined !== consequence.decision ? consequence.decision : null,
             };
           }),
         ],
