@@ -68,4 +68,10 @@ export type GameEvent = {
   coef: number;
 };
 
+export type Cycle = {
+  time: number;
+  number: number;
+  gameEvent: GameEvent | null;
+};
+
 const firstNames = [...data.names.male, ...data.names.female];

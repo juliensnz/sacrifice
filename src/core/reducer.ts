@@ -1,13 +1,6 @@
-import {Villager, generateVillager} from 'src/core/model';
+import {Villager, generateVillager, Cycle} from 'src/core/model';
 import parameters from 'src/core/parameters';
 import {applyGameEvent} from 'src/core/reducer/villager';
-import {GameEvent} from 'src/core/model';
-
-type Cycle = {
-  time: number;
-  number: number;
-  gameEvent: GameEvent | null;
-};
 
 export type GameState = {
   villagers: Villager[];
