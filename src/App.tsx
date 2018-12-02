@@ -87,17 +87,22 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <video className="characterImageBig" autoPlay loop>
               <source src="asset/shaman.mp4" type="video/mp4"/>
             </video>
+            <div className="shamanBigShield"></div>
             <div className="shamanMessage">
               {this.props.sacrificeAnnouncement}
-              <span onClick={this.props.announcementValidation}>OK michel</span>
             </div>
+            <div className="shamanOK" onClick={this.props.announcementValidation}>OK</div>
           </div>
         </div>
         <div className={`factAnnouncement ${0 !== this.props.factAnnouncement.length ? 'visible' : ''}`}>
+          <video className="characterImageBig" autoPlay loop>
+            <source src="asset/shaman.mp4" type="video/mp4"/>
+          </video>
+          <div className="shamanBigShield"></div>
           <div className="shamanMessage">
             {this.props.factAnnouncement.join('\n')}
-            <span onClick={this.props.factConfirmation}>OK michel</span>
           </div>
+          <div className="shamanOK" onClick={this.props.factConfirmation}>OK</div>
         </div>
       </React.Fragment>
     );
