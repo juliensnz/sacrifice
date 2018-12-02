@@ -5,7 +5,7 @@ import {Villager} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
 import {toggleSacrificed, selectionStart, factConfirmation} from 'src/core/action';
 import parameters from 'src/core/parameters';
-import {getAliveVillagers} from 'src/core/utils';
+import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
 
 type ViewState = {
   villagers: Villager[]
@@ -24,18 +24,6 @@ type ViewDispatch = {
   toggleSacrificed: (id: string) => void
   announcementValidation: () => void
   factConfirmation: () => void
-}
-
-const getFaith = (villagers: Villager[]) => {
-  return villagers.reduce((faith: number, villager: Villager) => {
-    return faith + villager.faith;
-  }, 0) / villagers.length;
-}
-
-const getTrust = (villagers: Villager[]) => {
-  return villagers.reduce((trust: number, villager: Villager) => {
-    return trust + villager.trust;
-  }, 0) / villagers.length;
 }
 
 class App extends React.Component<ViewState & ViewDispatch> {
@@ -63,6 +51,18 @@ class App extends React.Component<ViewState & ViewDispatch> {
     }
   }
 
+  private getTrustAndFaithClass(level: number) {
+    if (level < 25) {
+      return 'chaotic';
+    } else if (level < 50) {
+      return 'bad';
+    } else if (level < 75) {
+      return 'good';
+    } else {
+      return 'loyal';
+    }
+  }
+
   public render() {
     return (
       <React.Fragment>
@@ -81,6 +81,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
                     <source src={`asset/${villager.asset}.mp4`} type="video/mp4"/>
                   </video>
                   <div className="characterShield"></div>
+                  <div className={`characterFaith ${this.getTrustAndFaithClass(villager.faith)}`}></div>
+                  <div className={`characterTrust ${this.getTrustAndFaithClass(villager.trust)}`}></div>
                   <video className="deadVideo" autoPlay loop muted>
                     <source src={`asset/death.mp4`} type="video/mp4"/>
                   </video>
