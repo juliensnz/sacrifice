@@ -1,7 +1,7 @@
 import {GameState} from 'src/core/reducer';
 import {getSelectedVillagers} from 'src/core/reducer/villager';
 import parameters from 'src/core/parameters';
-import {getRandomArray} from 'src/core/utils';
+import {getRandomArray, getTrust, getFaith} from 'src/core/utils';
 import {endGame} from 'src/core/action';
 import {possibleEvents} from 'src/core/reducer/events';
 import {Villager} from '../model';
@@ -17,22 +17,6 @@ export const endCycle = () => (dispatch: any, getState: () => GameState) => {
   const numberOfSacrificed = getSelectedVillagers(getState().villagers).length;
   dispatch({type: 'PLAY_SOUND', sound: 0 === numberOfSacrificed ? 'no_sacrifice' : 'sacrifice'});
   dispatch({type: 'END_CYCLE'});
-
-  const getTrust = (villagers: Villager[]) => {
-    return (
-      villagers.reduce((trust: number, villager: Villager) => {
-        return (trust += villager.trust);
-      }, 0) / villagers.length
-    );
-  };
-
-  const getFaith = (villagers: Villager[]) => {
-    return (
-      villagers.reduce((faith: number, villager: Villager) => {
-        return (faith += villager.faith);
-      }, 0) / villagers.length
-    );
-  };
 
   const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
   const aliveVillagers = getAliveVillagers(getState().villagers);
