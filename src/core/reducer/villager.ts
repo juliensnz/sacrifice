@@ -34,7 +34,10 @@ const updateFaith = (villagers: Villager[], event: GameEvent) => (villager: Vill
   const hasSacrificed = sacrificeCount > 0;
 
   const impact = hasSacrificed ? parameters.faithSacrificeImpact : parameters.faithNoSacrificeImpact;
-  const deltaFaith = event.coef * impact;
+
+  let deltaFaith = event.coef * impact;
+  deltaFaith = hasSacrificed ? deltaFaith * sacrificeCount : deltaFaith;
+
   const totalFaith = Math.round(Math.min(100, Math.max(villager.faith + deltaFaith, 0)));
 
   return {...villager, faith: totalFaith};
