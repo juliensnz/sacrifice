@@ -132,6 +132,7 @@ export default (state: GameState = initialState, action: any) => {
     case 'END_CYCLE':
       state = {
         ...state,
+        paused: true,
         villagers: applyEvents(state.villagers, [action.randomEvent]),
       };
       break;
