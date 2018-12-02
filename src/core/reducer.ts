@@ -83,7 +83,7 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'APPLY_GAME_EVENT':
-      state = {...state, gameEvents: [...state.gameEvents, action.event]};
+      state = {...state, gameEvents: [...state.gameEvents, action.gameEvent]};
       break;
 
     case 'VILLAGER_SPEAKS':

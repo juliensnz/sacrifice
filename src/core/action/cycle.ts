@@ -38,6 +38,6 @@ const getRandomEvent = () => {
 const factAnnouncement = () => (dispatch: any, getState: () => GameState) => {
   dispatch({
     type: 'FACT_ANNOUNCEMENT',
-    message: getState().gameEvents.map((event: GameEvent) => `${event.fact} ${event.consequence}`),
+    message: getState().gameEvents.map((gameEvent: GameEvent) => `${gameEvent.fact} ${gameEvent.consequence}`),
   });
 };
