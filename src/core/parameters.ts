@@ -1,4 +1,6 @@
 const parameters = {
+  debug: false,
+
   // Time in second for one cycle
   cycleLength: 20,
 

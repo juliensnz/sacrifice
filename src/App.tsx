@@ -71,7 +71,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
   public render() {
     return (
       <React.Fragment>
-        <div className="debug">
+        <div className={parameters.debug ? 'debug visible' : 'debug'}>
           cycle count: {this.props.cycleCount}<br/>
           time: {parameters.cycleLength - this.props.time}<br/>
           faith: {Math.round(getFaith(this.props.aliveVillagers))}%<br/>
