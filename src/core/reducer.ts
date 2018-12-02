@@ -1,31 +1,18 @@
 import {Villager, generateVillager} from 'src/core/model';
 import parameters from 'src/core/parameters';
-import {applyCurrentEvent} from 'src/core/reducer/villager';
-import rawEvents from 'src/data/events';
+import {applyGameEvent} from 'src/core/reducer/villager';
+import {GameEvent} from 'src/core/reducer/events';
 
-type RawEventConsequence = {
-  consequence: string;
-  coef: number;
-};
-
-type RawEvent = {
-  type: string;
-  facts: string[];
-  consequences: RawEventConsequence[];
-};
-
-export type GameEvent = {
-  type: string;
-  text: string;
-  coef: number;
+type Cycle = {
+  time: number;
+  number: number;
+  gameEvent: GameEvent | null;
 };
 
 export type GameState = {
   villagers: Villager[];
-  cycle: {
-    time: number;
-    number: number;
-  };
+  previousCycles: Cycle[];
+  cycle: Cycle;
   selectionStarted: boolean;
   shaman: {
     factAnnouncement: {
@@ -34,41 +21,22 @@ export type GameState = {
     } | null;
     sacrificeAnnouncement: string | null;
   };
-  currentEvent: GameEvent | null;
-  possibleEvents: GameEvent[];
   paused: boolean;
 };
 
-const generateEventsFrom = (rawEvents: RawEvent[]): GameEvent[] =>
-  rawEvents.reduce(
-    (gameEvents: GameEvent[], rawEvent: RawEvent) => [
-      ...gameEvents,
-      ...rawEvent.facts.reduce(
-        (generatedEvents: GameEvent[], fact: string) => [
-          ...generatedEvents,
-          ...rawEvent.consequences.map((consequence: RawEventConsequence) => {
-            return {type: rawEvent.type, text: `${fact} ${consequence.consequence}`, coef: consequence.coef};
-          }),
-        ],
-        []
-      ),
-    ],
-    []
-  );
-
 const initialState = {
   villagers: Array.apply(null, Array(parameters.villagerCount)).map(generateVillager),
+  previousCycles: [],
   cycle: {
     number: 0,
     time: 0,
+    gameEvent: null,
   },
   selectionStarted: false,
   shaman: {
     factAnnouncement: null,
     sacrificeAnnouncement: null,
   },
-  currentEvent: null,
-  possibleEvents: generateEventsFrom(rawEvents.events),
   paused: false,
 };
 
@@ -80,6 +48,7 @@ export default (state: GameState = initialState, action: any) => {
         cycle: {
           number: state.cycle.number + 1,
           time: 0,
+          gameEvent: null,
         },
         shaman: {...state.shaman, factAnnouncement: null},
         selectionStarted: false,
@@ -120,7 +89,7 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'REGISTER_GAME_EVENT':
-      state = {...state, currentEvent: action.gameEvent};
+      state = {...state, cycle: {...state.cycle, gameEvent: action.gameEvent}};
       break;
 
     case 'VILLAGER_SPEAKS':
@@ -169,7 +138,8 @@ export default (state: GameState = initialState, action: any) => {
       state = {
         ...state,
         paused: true,
-        villagers: applyCurrentEvent(state.villagers, state.currentEvent),
+        villagers: applyGameEvent(state.villagers, state.cycle.gameEvent),
+        previousCycles: [...state.previousCycles, state.cycle],
       };
       break;
 
