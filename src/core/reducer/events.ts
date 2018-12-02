@@ -19,7 +19,7 @@ export type GameEvent = {
   coef: number;
 };
 
-export const generateEventsFrom = (rawEvents: RawEvent[]): GameEvent[] => {
+const generateEventsFrom = (rawEvents: RawEvent[]): GameEvent[] => {
   return rawEvents.reduce(
     (gameEvents: GameEvent[], rawEvent: RawEvent) => [
       ...gameEvents,

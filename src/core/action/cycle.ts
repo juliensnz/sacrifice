@@ -21,7 +21,7 @@ export const endCycle = () => (dispatch: any, getState: () => GameState) => {
   const getTrust = (villagers: Villager[]) => {
     return (
       villagers.reduce((trust: number, villager: Villager) => {
-        return (trust += villager.trust);
+        return (trust + villager.trust);
       }, 0) / villagers.length
     );
   };
@@ -29,7 +29,7 @@ export const endCycle = () => (dispatch: any, getState: () => GameState) => {
   const getFaith = (villagers: Villager[]) => {
     return (
       villagers.reduce((faith: number, villager: Villager) => {
-        return (faith += villager.faith);
+        return (faith + villager.faith);
       }, 0) / villagers.length
     );
   };
