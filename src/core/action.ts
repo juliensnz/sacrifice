@@ -11,14 +11,21 @@ export const startGame = () => (dispatch: any, getState: () => GameState) => {
   }, 1000);
 };
 
-export const endGame = () => (dispatch: any, getState: () => GameState) => {
-  dispatch({type: 'END_GAME'});
+export const endGame = (reason: string) => (dispatch: any, getState: () => GameState) => {
+  dispatch({type: 'END_GAME', reason});
 };
 
 export const factConfirmation = () => (dispatch: any, getState: () => GameState) => {
-  dispatch(startCycle());
-  dispatch(resume());
+  dispatch(dismissFact());
+  if (getState().gameover === null) {
+    dispatch(startCycle());
+    dispatch(resume());
+  }
 };
+
+const dismissFact = () => ({
+  type: 'DISMISS_FACT'
+});
 
 export const toggleSacrificed = (id: string) => ({
   type: 'TOGGLE_SACRIFICED',

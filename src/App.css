@@ -252,7 +252,7 @@ body {
   display: none;
 }
 
-.sacrificeAnnouncement, .factAnnouncement {
+.sacrificeAnnouncement, .factAnnouncement, .gameoverAnnouncement {
   background: black;
   display: none;
   position: fixed;
@@ -271,6 +271,12 @@ body {
   display: block;
   opacity: 1;
   animation: visible 2s ease-out;
+}
+
+.gameoverAnnouncement.visible {
+  display: block;
+  opacity: 1;
+  animation: visible 4s ease-out;
 }
 
 @-webkit-keyframes visible {

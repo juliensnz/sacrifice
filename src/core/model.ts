@@ -69,6 +69,12 @@ export type GameEvent = {
   decision: Decision | null;
 };
 
+export type Cycle = {
+  time: number;
+  number: number;
+  gameEvent: GameEvent | null;
+};
+
 const firstNameMaleGenerator = new RandomGenerator(data.names.male);
 const firstNameFemaleGenerator = new RandomGenerator(data.names.female);
 const characterImageNumberGenerator = new RandomGenerator([

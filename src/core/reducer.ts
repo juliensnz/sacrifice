@@ -1,13 +1,6 @@
-import {Villager, generateVillager} from 'src/core/model';
+import {Villager, generateVillager, Cycle} from 'src/core/model';
 import parameters from 'src/core/parameters';
 import {applyGameEvent} from 'src/core/reducer/villager';
-import {GameEvent} from 'src/core/action/events';
-
-type Cycle = {
-  time: number;
-  number: number;
-  gameEvent: GameEvent | null;
-};
 
 export type GameState = {
   villagers: Villager[];
@@ -22,6 +15,7 @@ export type GameState = {
     sacrificeAnnouncement: string | null;
   };
   paused: boolean;
+  gameover: string | null;
 };
 
 const initialState = {
@@ -38,6 +32,7 @@ const initialState = {
     sacrificeAnnouncement: null,
   },
   paused: false,
+  gameover: null,
 };
 
 export default (state: GameState = initialState, action: any) => {
@@ -50,7 +45,6 @@ export default (state: GameState = initialState, action: any) => {
           time: 0,
           gameEvent: null,
         },
-        shaman: {...state.shaman, factAnnouncement: null},
         selectionStarted: false,
       };
       break;
@@ -134,12 +128,28 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
+    case 'DISMISS_FACT':
+      state = {
+        ...state,
+        shaman: {...state.shaman, factAnnouncement: null},
+      };
+      break;
+
     case 'END_CYCLE':
       state = {
         ...state,
         paused: true,
         villagers: applyGameEvent(state.villagers, state.cycle.gameEvent),
         previousCycles: [...state.previousCycles, state.cycle],
+      };
+      break;
+
+    case 'END_GAME':
+      const reason = action.reason;
+      state = {
+        ...state,
+        gameover: reason,
+        paused: true,
       };
       break;
 
