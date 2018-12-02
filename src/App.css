@@ -78,8 +78,8 @@ body {
   margin: -100px 0 0 -100px;
 }
 
-.characterImageContainer:hover .characterTrust,
-.characterImageContainer:hover .characterFaith {
+.character:not(.dead) .characterImageContainer:hover .characterTrust,
+.character:not(.dead) .characterImageContainer:hover .characterFaith {
   opacity: 1;
 }
 
