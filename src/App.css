@@ -8,8 +8,11 @@ body {
 }
 
 @keyframes fadeToBlack {
-  from {clip-path: circle(1000px at center)}
-  to {clip-path: circle(0px at center)}
+  /* The 10%, 70% are 1s and 7s because the animation is 10s long. */
+  0% {opacity: 0}
+  10% {opacity: 1}
+  70% {opacity: 1}
+  100% {opacity: 0}
 }
 
 @keyframes newDay {
@@ -26,10 +29,10 @@ body {
 
 .App.selectionPhase {
   animation-name: fadeToBlack;
-  animation-duration: 9s;
-  animation-timing-function: ease-in;
+  animation-duration: 10s;
+  animation-timing-function: linear;
   animation-iteration-count: 1;
-  clip-path: circle(0px at center);
+  opacity: 0;
 }
 
 .App.newDay {
