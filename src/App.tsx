@@ -5,7 +5,7 @@ import {Villager} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
 import {toggleSacrificed, selectionStart, factConfirmation} from 'src/core/action';
 import parameters from 'src/core/parameters';
-import {getAliveVillagers} from 'src/core/utils';
+import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
 
 type ViewState = {
   villagers: Villager[]
@@ -24,18 +24,6 @@ type ViewDispatch = {
   toggleSacrificed: (id: string) => void
   announcementValidation: () => void
   factConfirmation: () => void
-}
-
-const getFaith = (villagers: Villager[]) => {
-  return villagers.reduce((faith: number, villager: Villager) => {
-    return faith + villager.faith;
-  }, 0) / villagers.length;
-}
-
-const getTrust = (villagers: Villager[]) => {
-  return villagers.reduce((trust: number, villager: Villager) => {
-    return trust + villager.trust;
-  }, 0) / villagers.length;
 }
 
 class App extends React.Component<ViewState & ViewDispatch> {
