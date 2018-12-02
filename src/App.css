@@ -81,7 +81,7 @@ body {
   position: relative;
 }
 
-.characterImage, .characterShield, .characterPancarte, .characterName, .deadVideo, .characterTrust, .characterFaith {
+.characterImage, .characterShield, .characterPancarte, .characterName, .deadVideo, .characterTrust, .characterFaith, .characterPlumeLeft, .characterPlumeRight {
   position: absolute;
   width: 180px;
   height: 180px;
@@ -89,8 +89,36 @@ body {
   margin: -100px 0 0 -100px;
 }
 
-.character:not(.dead) .characterImageContainer:hover .characterTrust,
-.character:not(.dead) .characterImageContainer:hover .characterFaith {
+.selected .characterImage {
+  opacity: 0.7;
+}
+
+.character:not(.dead):not(.selected) .characterImageContainer:hover .characterTrust,
+.character:not(.dead):not(.selected) .characterImageContainer:hover .characterFaith {
+  opacity: 1;
+}
+
+.characterPlumeLeft,
+.characterPlumeRight {
+  opacity: 0;
+  background-size: contain;
+  width: 126px;
+  background-repeat: no-repeat;
+  transition: opacity 0.2s;
+  transform: none;
+}
+
+.characterPlumeLeft {
+  background-image: url('plumeleft.png');
+  margin-left: -134px;
+}
+.characterPlumeRight {
+  background-image: url('plumeright.png');
+  margin-left: -10px;
+}
+
+.selected .characterPlumeLeft,
+.selected .characterPlumeRight {
   opacity: 1;
 }
 
@@ -178,6 +206,7 @@ body {
   width: 140px;
   height: 140px;
   margin: calc(-100px + 20px) 0 0 calc(-100px + 20px);
+  transition: opacity 0.2s;
 }
 
 .characterImageBig {
@@ -236,17 +265,14 @@ body {
   padding: 34px 24px 0px;
 }
 
-.selected {
-  background: green;
-}
-
 .character .deadVideo {
   display: none;
-  clip-path: circle(83px at center)
+  clip-path: circle(84.5px at center)
 }
 .character.dead .deadVideo {
   display: block;
 }
+
 .character.dead .characterImage,
 .character.dead .characterShield {
   display: none;

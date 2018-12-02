@@ -83,6 +83,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
                   <div className="characterShield"></div>
                   <div className={`characterFaith ${this.getTrustAndFaithClass(villager.faith)}`}></div>
                   <div className={`characterTrust ${this.getTrustAndFaithClass(villager.trust)}`}></div>
+                  <div className="characterPlumeLeft"></div>
+                  <div className="characterPlumeRight"></div>
                   <video className="deadVideo" autoPlay loop muted>
                     <source src={`asset/death.mp4`} type="video/mp4"/>
                   </video>
