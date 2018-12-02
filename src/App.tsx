@@ -11,7 +11,10 @@ type ViewState = {
   time: number
   cycleCount: number
   sacrificeAnnouncement: string | null
-  factAnnouncement: string[]
+  factAnnouncement: {
+    text: string;
+    type: string;
+  } | null;
   selectionStarted: boolean
 }
 
@@ -100,13 +103,13 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className="shamanOK" onClick={this.props.announcementValidation}>OK</div>
           </div>
         </div>
-        <div className={`factAnnouncement ${0 !== this.props.factAnnouncement.length ? 'visible' : ''}`}>
+        <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <video className="characterImageBig" autoPlay loop>
             <source src="asset/shaman.mp4" type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
           <div className="shamanMessage">
-            {this.props.factAnnouncement.join('\n')}
+            {null !== this.props.factAnnouncement ? this.props.factAnnouncement.text : ''}
           </div>
           <div className="shamanOK" onClick={this.props.factConfirmation}>OK</div>
         </div>

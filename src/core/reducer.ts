@@ -1,11 +1,22 @@
 import {Villager, generateVillager} from 'src/core/model';
 import parameters from 'src/core/parameters';
-import {applyGameEvents} from 'src/core/reducer/villager';
+import {applyCurrentEvent} from 'src/core/reducer/villager';
+import rawEvents from 'src/data/events';
+
+type RawEventConsequence = {
+  consequence: string;
+  coef: number;
+}
+
+type RawEvent = {
+  type: string;
+  facts: string[];
+  consequences: RawEventConsequence[];
+};
 
 export type GameEvent = {
   type: string;
-  fact: string;
-  consequence: string;
+  text: string;
   coef: number;
 };
 
@@ -17,12 +28,34 @@ export type GameState = {
   };
   selectionStarted: boolean;
   shaman: {
-    factAnnouncement: string[];
+    factAnnouncement: {
+      text: string;
+      type: string;
+    } | null;
     sacrificeAnnouncement: string | null;
   };
-  gameEvents: GameEvent[];
+  currentEvent: GameEvent | null;
+  possibleEvents: GameEvent[];
   paused: boolean;
 };
+
+const generateEventsFrom = (rawEvents: RawEvent[]): GameEvent[] => rawEvents.reduce(
+  (gameEvents: GameEvent[], rawEvent: RawEvent) => [
+    ...gameEvents,
+    ...rawEvent.facts.reduce(
+      (generatedEvents: GameEvent[], fact: string) => [
+        ...generatedEvents,
+        ...rawEvent.consequences.map(
+            (consequence: RawEventConsequence) => {
+              return {type: rawEvent.type, text: `${fact} ${consequence.consequence}`, coef: consequence.coef}
+            }
+          )
+      ],
+      []
+    )
+  ],
+  []
+);
 
 const initialState = {
   villagers: Array.apply(null, Array(parameters.villagerCount)).map(generateVillager),
@@ -32,10 +65,11 @@ const initialState = {
   },
   selectionStarted: false,
   shaman: {
-    factAnnouncement: [],
+    factAnnouncement: null,
     sacrificeAnnouncement: null,
   },
-  gameEvents: [],
+  currentEvent: null,
+  possibleEvents: generateEventsFrom(rawEvents.events),
   paused: false,
 };
 
@@ -48,11 +82,11 @@ export default (state: GameState = initialState, action: any) => {
           number: state.cycle.number + 1,
           time: 0,
         },
-        shaman: {...state.shaman, factAnnouncement: []},
+        shaman: {...state.shaman, factAnnouncement: null},
         selectionStarted: false,
       };
-
       break;
+
     case 'TOGGLE_SACRIFICED':
       if (!state.selectionStarted) {
         break;
@@ -75,7 +109,11 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'FACT_ANNOUNCEMENT':
-      state = {...state, paused: true, shaman: {...state.shaman, factAnnouncement: action.message}};
+      state = {
+        ...state,
+        paused: true,
+        shaman: {...state.shaman, factAnnouncement: {text: action.event.text, type: action.event.type}}
+      };
       break;
 
     case 'SELECTION_START':
@@ -83,7 +121,7 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'REGISTER_GAME_EVENT':
-      state = {...state, gameEvents: [...state.gameEvents, action.gameEvent]};
+      state = {...state, currentEvent: action.gameEvent};
       break;
 
     case 'VILLAGER_SPEAKS':
@@ -108,7 +146,6 @@ export default (state: GameState = initialState, action: any) => {
 
     case 'RESUME':
       state = {...state, paused: false};
-
       break;
 
     case 'TICK':
@@ -133,7 +170,7 @@ export default (state: GameState = initialState, action: any) => {
       state = {
         ...state,
         paused: true,
-        villagers: applyGameEvents(state.villagers, state.gameEvents),
+        villagers: applyCurrentEvent(state.villagers, state.currentEvent),
       };
       break;
 
