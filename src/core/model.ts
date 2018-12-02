@@ -1,6 +1,7 @@
 import data from 'src/data/names';
 import {guid} from 'src/core/utils';
 import parameters from 'src/core/parameters';
+import {RandomGenerator} from "./RandomGenerator";
 
 export type Villager = {
   id: string;
@@ -18,37 +19,23 @@ export type Villager = {
   } | null;
 };
 
-export const generateVillager = (): Villager => ({
-  id: guid(),
-  name: firstNames[Math.floor(Math.random() * firstNames.length)],
-  faith: 50 - parameters.faithLevelStartRange / 2 + Math.floor(Math.random() * parameters.faithLevelStartRange),
-  trust: 50 - parameters.trustLevelStartRange / 2 + Math.floor(Math.random() * parameters.trustLevelStartRange),
-  alive: true,
-  selected: false,
-  rot: Math.floor(Math.random() * 7) * 5 - 15,
-  asset: [
-    'viking_1',
-    'viking_2',
-    'viking_3',
-    'viking_4',
-    'viking_5',
-    'viking_6',
-    'viking_7',
-    'viking_8',
-    'viking_9',
-    'viking_10',
-    'viking_11',
-    'viking_12',
-    'viking_13',
-    'viking_14',
-    'viking_15',
-    'viking_16',
-    'viking_17',
-    'viking_18',
-  ][Math.floor(Math.random() * 18)],
-  flip: Math.random() > 0.5,
-  message: null,
-});
+export const generateVillager = (): Villager => {
+  const id = characterImageNumberGenerator.pick();
+  const male = id <= 16;
+  const name = male ? firstNameMaleGenerator.pick() : firstNameFemaleGenerator.pick();
+  return {
+    id: guid(),
+    name: name,
+    faith: 50 - parameters.faithLevelStartRange / 2 + Math.floor(Math.random() * parameters.faithLevelStartRange),
+    trust: 50 - parameters.trustLevelStartRange / 2 + Math.floor(Math.random() * parameters.trustLevelStartRange),
+    alive: true,
+    selected: false,
+    rot: Math.floor(Math.random() * 7) * 5 - 15,
+    asset: 'viking_' + id,
+    flip: Math.random() > 0.5,
+    message: null,
+  }
+};
 
 export type RawEvent = {
   type: string;
@@ -74,4 +61,6 @@ export type Cycle = {
   gameEvent: GameEvent | null;
 };
 
-const firstNames = [...data.names.male, ...data.names.female];
+const firstNameMaleGenerator = new RandomGenerator(data.names.male);
+const firstNameFemaleGenerator = new RandomGenerator(data.names.female);
+const characterImageNumberGenerator = new RandomGenerator([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]);
