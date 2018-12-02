@@ -38,6 +38,8 @@ body {
 }
 
 .App.announcementPhase {
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
   opacity: 0;
 }
 

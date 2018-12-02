@@ -50,4 +50,22 @@ export const generateVillager = (): Villager => ({
   message: null,
 });
 
+export type RawEvent = {
+  type: string;
+  facts: string[];
+  consequences: RawEventConsequence[];
+};
+
+export type RawEventConsequence = {
+  consequence: string;
+  coef: number;
+};
+
+export type GameEvent = {
+  id: string;
+  type: string;
+  text: string;
+  coef: number;
+};
+
 const firstNames = [...data.names.male, ...data.names.female];
