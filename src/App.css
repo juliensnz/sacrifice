@@ -198,6 +198,19 @@ body {
 .sacrificeAnnouncement.visible,
 .factAnnouncement.visible {
   display: block;
+  opacity: 1;
+  animation: visible 2s ease-out;
+}
+
+@-webkit-keyframes visible {
+  from{
+    opacity: 0;
+  }
+}
+@keyframes visible {
+  from{
+    opacity: 0;
+  }
 }
 
 .shamanBigShield {
