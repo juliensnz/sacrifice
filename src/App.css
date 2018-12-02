@@ -119,7 +119,7 @@ body {
 
 .characterImageBig {
   border-radius: 1000px;
-  margin: 130px 0 0 267px;
+  margin: 100px 0 0 -603px;
   width: 450px;
   position: absolute;
 }
@@ -182,29 +182,56 @@ body {
 }
 
 .sacrificeAnnouncement, .factAnnouncement {
-  background: blue;
+  background: black;
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('popup2.png');
-  background-size: cover;
+  text-align: center;
+  background-image: url('bigPancarte.png');
+  background-position: center 180px;
   background-repeat: no-repeat;
 }
 
-.shamanMessage {
-  margin: 390px 0 0 820px;
-  width: 588px;
-  color: black;
-  font-size: 40px;
-}
-
-.sacrificeAnnouncement.visible {
-  display: block;
-}
-
+.sacrificeAnnouncement.visible,
 .factAnnouncement.visible {
   display: block;
+}
+
+.shamanBigShield {
+  background-image: url('hublot.png');
+  width: 550px;
+  height: 550px;
+  background-size: contain;
+  display: inline-flex;
+  position: absolute;
+  margin: 50px 0 0 -650px;
+}
+
+.shamanMessage {
+  margin: 310px 0 0 -70px;
+  width: 428px;
+  font-size: 40px;
+  display: inline-flex;
+  position: absolute;
+  color: white;
+}
+
+.shamanOK {
+  margin: 590px 0px 0 120px;
+  width: 200px;
+  height: 80px;
+  display: inline-flex;
+  position: absolute;
+  background: url('pancarteButton.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: black;
+  padding-left: 80px;
+  padding-top: 40px;
+  font-size: 34px;
+  cursor: pointer;
+  font-weight: bold;
 }
