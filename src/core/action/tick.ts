@@ -5,7 +5,7 @@ import {getRandomArray} from 'src/core/utils';
 import villagers from 'src/data/villagers';
 import {endCycle} from 'src/core/action/cycle';
 
-export const tick = () => (dispatch: any, getState: () => GameState) => {
+export const tick = () => (dispatch: any) => {
   dispatch({type: 'TICK'});
 
   dispatch(whatToDo());
@@ -70,7 +70,7 @@ const villagerSpeaks = (message: string, villager: Villager) => {
   return {type: 'VILLAGER_SPEAKS', message, id: villager.id};
 };
 
-const selectionAnnouncement = () => (dispatch: any, getState: () => GameState) => {
+const selectionAnnouncement = () => (dispatch: any) => {
   dispatch({type: 'SELECTION_ANNOUNCEMENT', message: "hey! that's selection time!"});
 };
 

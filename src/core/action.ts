@@ -25,10 +25,6 @@ export const toggleSacrificed = (id: string) => ({
   id,
 });
 
-export const pause = () => ({
-  type: 'PAUSE',
-});
-
 export const resume = () => ({
   type: 'RESUME',
 });
