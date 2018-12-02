@@ -34,6 +34,27 @@ const getTrust = (villagers: Villager[]) => {
 }
 
 class App extends React.Component<ViewState & ViewDispatch> {
+  private videos: {[key: string]: React.RefObject<HTMLVideoElement>} = {};
+
+  constructor(props: ViewState & ViewDispatch) {
+    super(props);
+
+    this.videos = props.villagers.reduce((refs: {[key: string]: React.RefObject<HTMLVideoElement>}, villager: Villager) => {
+      return {...refs, [villager.id]: React.createRef<HTMLVideoElement>()}
+    }, {});
+  }
+
+  componentDidMount() {
+    for (const video of Object.values(this.videos)) {
+      setTimeout(() => {
+        if (null !== video.current) {
+          video.current.play();
+          video.current.playbackRate = 0.7;
+        }
+      }, Math.random() * 200);
+    }
+  }
+
   public render() {
     return (
       <React.Fragment>
@@ -48,7 +69,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
             {this.props.villagers.map((villager: Villager) => (
               <div key={villager.id} className={`character ${villager.selected ? 'selected' : ''} ${!villager.alive ? 'dead' : ''}`} onClick={() => this.props.toggleSacrificed(villager.id)}>
                 <div className={`characterImageContainer rot${villager.rot} ${villager.flip ? 'flip' : ''}`}>
-                  <video className="characterImage" autoPlay loop>
+                  <video className="characterImage" autoPlay loop muted ref={this.videos[villager.id]}>
                     <source src={`asset/${villager.asset}.mp4`} type="video/mp4"/>
                   </video>
                   <div className="characterShield"></div>
