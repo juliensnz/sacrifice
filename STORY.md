@@ -34,3 +34,11 @@ Now you are the new Jarl of...
 (LA ON EFFACE LES PARAGRPHES DE TEXTE, LE NOM DU VILLAGE APPARAIT)
 
 Fórnir
+
+## Anonymous letter
+
+My dear Jarl,
+
+The shaman is malicious and cruel. He is not looking for the forgiveness of the Gods, but rather to increase its own power. Please, don't trust its advises blindly, this could lead to your end, and to the despair of your people.
+
+– An anonymous inhabitant that wants the well-being of his fellow citizen.
