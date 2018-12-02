@@ -82,7 +82,7 @@ export default (state: GameState = initialState, action: any) => {
       state = {...state, paused: false, selectionStarted: true, shaman: {...state.shaman, sacrificeAnnouncement: null}};
       break;
 
-    case 'APPLY_GAME_EVENT':
+    case 'REGISTER_GAME_EVENT':
       state = {...state, gameEvents: [...state.gameEvents, action.gameEvent]};
       break;
 
@@ -133,7 +133,7 @@ export default (state: GameState = initialState, action: any) => {
       state = {
         ...state,
         paused: true,
-        villagers: applyGameEvents(state.villagers, [action.randomGameEvent]),
+        villagers: applyGameEvents(state.villagers, state.gameEvents),
       };
       break;
 
