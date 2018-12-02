@@ -11,7 +11,7 @@ export const startCycle = () => (dispatch: any, getState: () => GameState) => {
 };
 
 export const endCycle = () => (dispatch: any, getState: () => GameState) => {
-  dispatch({type: 'USER_EVENT', event: getRandomEvent()});
+  dispatch({type: 'APPLY_GAME_EVENT', gameEvent: getRandomEvent()});
 
   const numberOfSacrificed = getSelectedVillagers(getState().villagers).length;
   dispatch({type: 'PLAY_SOUND', sound: 0 === numberOfSacrificed ? 'no_sacrifice' : 'sacrifice'});
@@ -38,6 +38,6 @@ const getRandomEvent = () => {
 const factAnnouncement = () => (dispatch: any, getState: () => GameState) => {
   dispatch({
     type: 'FACT_ANNOUNCEMENT',
-    message: getState().events.map((event: Event) => `${event.fact} ${event.consequence}`),
+    message: getState().gameEvents.map((event: Event) => `${event.fact} ${event.consequence}`),
   });
 };

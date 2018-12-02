@@ -1,8 +1,8 @@
 import {Villager, generateVillager} from 'src/core/model';
 import parameters from 'src/core/parameters';
-import {applyEvents} from 'src/core/reducer/villager';
+import {applyGameEvents} from 'src/core/reducer/villager';
 
-export type Event = {
+export type GameEvent = {
   type: string;
   fact: string;
   consequence: string;
@@ -20,7 +20,7 @@ export type GameState = {
     factAnnouncement: string[];
     sacrificeAnnouncement: string | null;
   };
-  events: Event[];
+  gameEvents: GameEvent[];
   paused: boolean;
 };
 
@@ -35,7 +35,7 @@ const initialState = {
     factAnnouncement: [],
     sacrificeAnnouncement: null,
   },
-  events: [],
+  gameEvents: [],
   paused: false,
 };
 
@@ -82,8 +82,8 @@ export default (state: GameState = initialState, action: any) => {
       state = {...state, paused: false, selectionStarted: true, shaman: {...state.shaman, sacrificeAnnouncement: null}};
       break;
 
-    case 'USER_EVENT':
-      state = {...state, events: [...state.events, action.event]};
+    case 'APPLY_GAME_EVENT':
+      state = {...state, gameEvents: [...state.gameEvents, action.event]};
       break;
 
     case 'VILLAGER_SPEAKS':
@@ -133,7 +133,7 @@ export default (state: GameState = initialState, action: any) => {
       state = {
         ...state,
         paused: true,
-        villagers: applyEvents(state.villagers, [action.randomEvent]),
+        villagers: applyGameEvents(state.villagers, [action.randomGameEvent]),
       };
       break;
 
