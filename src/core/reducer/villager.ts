@@ -11,10 +11,10 @@ const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Vill
     .filter((villager: Villager) => villager.selected)
     .length;
 
-  const hasSacrified = sacrificeCount > 0;
+  const hasSacrificed = sacrificeCount > 0;
   let impact = 0;
 
-  if (hasSacrified) {
+  if (hasSacrificed) {
     if (event.coef > 0) {
       impact = HIGH_TRUST_IMPACT;
     } else {
@@ -39,9 +39,9 @@ const updateFaith = (villagers: Villager[], event: GameEvent) => (villager: Vill
     .filter((villager: Villager) => villager.selected)
     .length;
 
-  const hasSacrified = sacrificeCount > 0;
+  const hasSacrificed = sacrificeCount > 0;
 
-  const impact = hasSacrified
+  const impact = hasSacrificed
     ? FAITH_SACRIFICE_IMPACT
     : FAITH_NO_SACRIFICE_IMPACT;
   const deltaFaith = event.coef * impact;

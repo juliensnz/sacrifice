@@ -1,3 +1,5 @@
+import {Villager} from "./model"
+
 export const guid = () => {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -10,3 +12,5 @@ export const guid = () => {
 export const getRandomArray = <T>(array: T[]): T => {
   return array[Math.floor(Math.random() * array.length)];
 };
+
+export const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
