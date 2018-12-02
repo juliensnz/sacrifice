@@ -3,7 +3,7 @@ import {getSelectedVillagers} from 'src/core/reducer/villager';
 import parameters from 'src/core/parameters';
 import {getRandomArray, getTrust, getFaith} from 'src/core/utils';
 import {endGame} from 'src/core/action';
-import {possibleEvents} from 'src/core/reducer/events';
+import {possibleEvents} from 'src/core/action/events';
 import {Villager} from '../model';
 
 export const startCycle = () => (dispatch: any) => {

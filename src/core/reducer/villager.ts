@@ -1,5 +1,5 @@
 import {Villager} from 'src/core/model';
-import {GameEvent} from 'src/core/reducer/events';
+import {GameEvent} from 'src/core/model';
 import parameters from 'src/core/parameters';
 
 const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Villager) => {
