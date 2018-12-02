@@ -240,7 +240,8 @@ body {
 .shamanMessage {
   margin: 310px 0 0 -70px;
   width: 428px;
-  font-size: 40px;
+  font-size: 33px;
+  text-align: left;
   display: inline-flex;
   position: absolute;
   color: white;

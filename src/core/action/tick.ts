@@ -1,7 +1,7 @@
 import parameters from 'src/core/parameters';
 import {GameState} from 'src/core/reducer';
 import {Villager} from 'src/core/model';
-import {getRandomArray} from 'src/core/utils';
+import {getRandomArray, getAliveVillagers} from 'src/core/utils';
 import villagers from 'src/data/villagers';
 import {endCycle} from 'src/core/action/cycle';
 import shaman from 'src/data/shaman';
@@ -108,13 +108,13 @@ const selectionAnnouncement = () => (dispatch: any, getState: () => GameState) =
 
   const getFaith = (villagers: Villager[]) => {
     return villagers.reduce((faith: number, villager: Villager) => {
-      return faith += villager.faith;
+      return faith + villager.faith;
     }, 0) / villagers.length;
   };
 
   const getTrust = (villagers: Villager[]) => {
     return villagers.reduce((trust: number, villager: Villager) => {
-      return trust += villager.trust;
+      return trust + villager.trust;
     }, 0) / villagers.length;
   };
 
@@ -133,5 +133,3 @@ const selectionAnnouncement = () => (dispatch: any, getState: () => GameState) =
 
   dispatch({type: 'SELECTION_ANNOUNCEMENT', message: message.text});
 };
-
-const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
