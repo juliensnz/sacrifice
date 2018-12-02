@@ -130,6 +130,7 @@ export default (state: GameState = initialState, action: any) => {
         paused: true,
         villagers: applyGameEvent(state.villagers, state.cycle.gameEvent),
         previousCycles: [...state.previousCycles, state.cycle],
+        selectionStarted: false,
       };
       break;
 

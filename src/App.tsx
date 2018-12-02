@@ -115,6 +115,10 @@ class App extends React.Component<ViewState & ViewDispatch> {
             </div>
             <div className="shamanOK" onClick={this.props.announcementValidation}>OK</div>
           </div>
+          <div className="iris1"/>
+          <div className="iris2"/>
+          <div className="iris3"/>
+          <div className="iris4"/>
         </div>
         <div className={`gameoverAnnouncement ${null !== this.props.gameover ? 'visible' : ''}`}>
           <video className="characterImageBig" autoPlay loop>

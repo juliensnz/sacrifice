@@ -12,11 +12,11 @@ body {
   overflow-x: hidden;
 }
 
-@keyframes fadeToBlack {
+/* @keyframes fadeToBlack {
   0% {clip-path: circle(1000px at center); opacity: 1}
   20% {clip-path: circle(0px at center); opacity: 0}
   100% {clip-path: circle(0px at center); opacity: 0}
-}
+} */
 
 @keyframes newDay {
   from {opacity: 0}
@@ -32,14 +32,67 @@ body {
   transition: opacity 1s linear;
 }
 
-.App.selectionPhase {
+.App .iris1, .App .iris2, .App .iris3, .App .iris4 {
+  width: 100vw;
+  height: 100vw;
+  position: fixed;
+  background-size: 100% 100%;
+  transition: transform 5s ease-in-out;
+  transition-delay: 5s;
+}
+
+.App .iris1 {
+  top: 0;
+  left: 0;
+  background-image: url("images/Texture_1.png");
+  transform: translate(-100vw, -100vw);
+}
+
+.App.selectionPhase .iris1 {
+  transform: translate(0, 0);
+}
+
+.App .iris2 {
+  bottom: 0;
+  right: 0;
+  background-image: url("images/Texture_2.png");
+  transform: translate(100vw, 100vw);
+}
+
+.App.selectionPhase .iris2 {
+  transform: translate(0, 0);
+}
+
+.App .iris3 {
+  top: 0;
+  right: 0;
+  background-image: url("images/Texture_3.png");
+  transform: translate(100vw, -100vw);
+}
+
+.App.selectionPhase .iris3 {
+  transform: translate(0, -50vh);
+}
+
+.App .iris4 {
+  bottom: 0;
+  left: 0;
+  background-image: url("images/Texture_4.png");
+  transform: translate(-100vw, 100vw);
+}
+
+.App.selectionPhase .iris4 {
+  transform: translate(0, 50vh);
+}
+
+/* .App.selectionPhase {
   animation-name: fadeToBlack;
   animation-duration: 10s;
   animation-delay: 7s;
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
   clip-path: circle(1000px at center);
-}
+} */
 
 .App.announcementPhase {
   animation-timing-function: linear;
