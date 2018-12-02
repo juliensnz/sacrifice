@@ -9,8 +9,9 @@ import gameReducer from 'src/core/reducer';
 import {startGame} from 'src/core/action';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import time from 'src/core/time';
 
-const store = createStore(gameReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(gameReducer, composeWithDevTools(applyMiddleware(thunk, time)));
 
 store.dispatch(startGame());
 
