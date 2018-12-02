@@ -46,12 +46,15 @@ class App extends React.Component<ViewState & ViewDispatch> {
 
   componentDidMount() {
     for (const video of Object.values(this.videos)) {
-      setTimeout(() => {
+      if (null !== video.current) {
+        video.current.playbackRate = 0.7;
+      }
+
+      setInterval(() => {
         if (null !== video.current) {
-          video.current.play();
-          video.current.playbackRate = 0.7;
+          video.current.paused ? video.current.play() : video.current.pause();
         }
-      }, Math.random() * 200);
+      }, Math.random() * 2000 + 1000);
     }
   }
 
