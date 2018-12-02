@@ -3,7 +3,7 @@ export default {
     `first chapter`,
     `second chapter...`,
   ],
-  'outro-lost': `foo`,
+  'outro-lost': `Villagers doesn't believe in you anymore.`,
   'outro-end': {
     'trust': {
       chaotic: `foo`,

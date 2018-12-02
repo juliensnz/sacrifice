@@ -1,50 +1,43 @@
 import {Villager} from 'src/core/model';
-import {GameEvent} from "../reducer";
-
-const FAITH_SACRIFICE_IMPACT = 1;
-const FAITH_NO_SACRIFICE_IMPACT = -3;
-const HIGH_TRUST_IMPACT = 4;
-const LOW_TRUST_IMPACT = 1;
+import {GameEvent} from 'src/core/reducer/events';
+import parameters from 'src/core/parameters';
 
 const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Villager) => {
-  const sacrificeCount = villagers
-    .filter((villager: Villager) => villager.selected)
-    .length;
+  const sacrificeCount = villagers.filter((villager: Villager) => villager.selected).length;
 
   const hasSacrificed = sacrificeCount > 0;
   let impact = 0;
 
   if (hasSacrificed) {
     if (event.coef > 0) {
-      impact = HIGH_TRUST_IMPACT;
+      impact = parameters.highTrustImpact;
     } else {
-      impact = LOW_TRUST_IMPACT;
+      impact = parameters.lowTrustImpact;
     }
   } else {
     if (event.coef < 0) {
-      impact = HIGH_TRUST_IMPACT;
+      impact = parameters.highTrustImpact;
     } else {
-      impact = LOW_TRUST_IMPACT;
+      impact = parameters.lowTrustImpact;
     }
   }
 
-  const deltaTrust = event.coef * impact * ((villager.faith / 100) + 1);
+  const deltaTrust = event.coef * impact * (villager.faith / 100 + 1);
   const totalTrust = Math.round(Math.min(100, Math.max(villager.trust + deltaTrust, 0)));
 
   return {...villager, trust: totalTrust};
 };
 
 const updateFaith = (villagers: Villager[], event: GameEvent) => (villager: Villager) => {
-  const sacrificeCount = villagers
-    .filter((villager: Villager) => villager.selected)
-    .length;
+  const sacrificeCount = villagers.filter((villager: Villager) => villager.selected).length;
 
   const hasSacrificed = sacrificeCount > 0;
 
-  const impact = hasSacrificed
-    ? FAITH_SACRIFICE_IMPACT
-    : FAITH_NO_SACRIFICE_IMPACT;
-  const deltaFaith = event.coef * impact;
+  const impact = hasSacrificed ? parameters.faithSacrificeImpact : parameters.faithNoSacrificeImpact;
+
+  let deltaFaith = event.coef * impact;
+  deltaFaith = hasSacrificed ? deltaFaith * sacrificeCount : deltaFaith;
+
   const totalFaith = Math.round(Math.min(100, Math.max(villager.faith + deltaFaith, 0)));
 
   return {...villager, faith: totalFaith};
@@ -54,7 +47,7 @@ const updateAlive = (villager: Villager) => {
   return {...villager, alive: villager.alive && !villager.selected, selected: false};
 };
 
-export const applyCurrentEvent = (villagers: Villager[], currentEvent: GameEvent | null) => {
+export const applyGameEvent = (villagers: Villager[], currentEvent: GameEvent | null) => {
   if (null === currentEvent) {
     return villagers;
   }

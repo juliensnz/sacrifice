@@ -25,6 +25,24 @@ const parameters = {
 
   // Time elapsed after the end of selection phase and before the next cycle
   timeToDisplayAnnouncement: 5,
+
+  // The impact of events on faith, when we sacrificed someone
+  faithSacrificeImpact: 1,
+
+  // The impact of events on faith, when we didn't sacrifice someone
+  faithNoSacrificeImpact: -3,
+
+  // The impact in trust, if we:
+  // - sacrificed somebody and a positive event occured
+  // OR
+  // - didn't sacrifice somebody and a negative event occured
+  highTrustImpact: 4,
+
+  // The impact in trust, if we:
+  // - sacrificed somebody and a negative event occured
+  // OR
+  // - didn't sacrifice somebody and a positive event occured
+  lowTrustImpact: 1,
 };
 
 export default parameters;
