@@ -103,12 +103,12 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
     return Math.max(faithLevel, trustLevel) / 50; // Value from 0 to 1
   };
 
-  const maxInfluence = getState().villagers.reduce(
+  const maxInfluence = getAliveVillagers(getState().villagers).reduce(
     (max: number, villager: Villager) => (getInfluencerLevel(villager) > max ? getInfluencerLevel(villager) : max),
     0
   );
 
-  const villager = getRandomArray(getState().villagers);
+  const villager = getRandomArray(getAliveVillagers(getState().villagers));
 
   const faithLevel = Math.abs(villager.faith - 50);
   const trustLevel = Math.abs(villager.trust - 50);
@@ -137,3 +137,5 @@ const getRandomEvent = () => {
     ...getRandomArray(event.consequences),
   };
 };
+
+const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
