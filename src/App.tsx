@@ -5,9 +5,11 @@ import {Villager} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
 import {toggleSacrificed, selectionStart, factConfirmation} from 'src/core/action';
 import parameters from 'src/core/parameters';
+import {getAliveVillagers} from 'src/core/utils';
 
 type ViewState = {
   villagers: Villager[]
+  aliveVillagers: Villager[]
   time: number
   cycleCount: number
   sacrificeAnnouncement: string | null
@@ -26,13 +28,13 @@ type ViewDispatch = {
 
 const getFaith = (villagers: Villager[]) => {
   return villagers.reduce((faith: number, villager: Villager) => {
-    return faith += villager.faith;
+    return faith + villager.faith;
   }, 0) / villagers.length;
 }
 
 const getTrust = (villagers: Villager[]) => {
   return villagers.reduce((trust: number, villager: Villager) => {
-    return trust += villager.trust;
+    return trust + villager.trust;
   }, 0) / villagers.length;
 }
 
@@ -67,8 +69,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
         <div className="debug">
           cycle count: {this.props.cycleCount}<br/>
           time: {parameters.cycleLength - this.props.time}<br/>
-          faith: {Math.round(getFaith(this.props.villagers))}%<br/>
-          trust: {Math.round(getTrust(this.props.villagers))}%
+          faith: {Math.round(getFaith(this.props.aliveVillagers))}%<br/>
+          trust: {Math.round(getTrust(this.props.aliveVillagers))}%
         </div>
         <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.time < 4 ? 'newDay' : ''}`}>
           <div className="characters">
@@ -120,6 +122,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
 
 export default connect((state: GameState): ViewState => ({
   villagers: state.villagers,
+  aliveVillagers: getAliveVillagers(state.villagers),
   time: state.cycle.time,
   cycleCount: state.cycle.number,
   sacrificeAnnouncement: state.shaman.sacrificeAnnouncement,

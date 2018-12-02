@@ -1,28 +1,24 @@
 import {Villager} from 'src/core/model';
 import {GameEvent} from 'src/core/reducer/events';
-
-const FAITH_SACRIFICE_IMPACT = 1;
-const FAITH_NO_SACRIFICE_IMPACT = -3;
-const HIGH_TRUST_IMPACT = 4;
-const LOW_TRUST_IMPACT = 1;
+import parameters from 'src/core/parameters';
 
 const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Villager) => {
   const sacrificeCount = villagers.filter((villager: Villager) => villager.selected).length;
 
-  const hasSacrified = sacrificeCount > 0;
+  const hasSacrificed = sacrificeCount > 0;
   let impact = 0;
 
-  if (hasSacrified) {
+  if (hasSacrificed) {
     if (event.coef > 0) {
-      impact = HIGH_TRUST_IMPACT;
+      impact = parameters.highTrustImpact;
     } else {
-      impact = LOW_TRUST_IMPACT;
+      impact = parameters.lowTrustImpact;
     }
   } else {
     if (event.coef < 0) {
-      impact = HIGH_TRUST_IMPACT;
+      impact = parameters.highTrustImpact;
     } else {
-      impact = LOW_TRUST_IMPACT;
+      impact = parameters.lowTrustImpact;
     }
   }
 
@@ -35,9 +31,9 @@ const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Vill
 const updateFaith = (villagers: Villager[], event: GameEvent) => (villager: Villager) => {
   const sacrificeCount = villagers.filter((villager: Villager) => villager.selected).length;
 
-  const hasSacrified = sacrificeCount > 0;
+  const hasSacrificed = sacrificeCount > 0;
 
-  const impact = hasSacrified ? FAITH_SACRIFICE_IMPACT : FAITH_NO_SACRIFICE_IMPACT;
+  const impact = hasSacrificed ? parameters.faithSacrificeImpact : parameters.faithNoSacrificeImpact;
   const deltaFaith = event.coef * impact;
   const totalFaith = Math.round(Math.min(100, Math.max(villager.faith + deltaFaith, 0)));
 

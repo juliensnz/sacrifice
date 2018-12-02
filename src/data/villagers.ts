@@ -9,10 +9,10 @@ export default {
         `I heard a rebellion is in progress...`,
       ],
       bad: [
-        `foo`
+        `TODO Trust bad`
       ],
       good: [
-        `foo`
+        `TODO Trust good`
       ],
       loyal: [
         `Such a great Jarl.`,
@@ -23,10 +23,10 @@ export default {
     },
     faith: {
       chaotic: [
-        `foo`
+        `TODO Faith chaotic`
       ],
       bad: [
-        `foo`
+        `TODO Faith bad`
       ],
       good: [
         `Gods are good with us.`,

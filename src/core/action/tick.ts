@@ -1,44 +1,30 @@
 import parameters from 'src/core/parameters';
 import {GameState} from 'src/core/reducer';
 import {Villager} from 'src/core/model';
-import {getRandomArray} from 'src/core/utils';
+import {getRandomArray, getAliveVillagers} from 'src/core/utils';
 import villagers from 'src/data/villagers';
 import {endCycle} from 'src/core/action/cycle';
 import shaman from 'src/data/shaman';
+import {RandomGenerator} from "../RandomGenerator";
 
-class MessageGenerator {
-  static cloneObject(obj: any) {
-    let clone = {};
-    for(let i in obj) {
-      if(obj[i] != null &&  typeof(obj[i])=="object")
-        clone[i] = this.cloneObject(obj[i]);
-      else
-        clone[i] = obj[i];
+class MessagesGenerators {
+  static generators: any;
+
+  static pick(type: any, messageLevel: any) {
+    if (!this.generators) {
+      this.createGenerators();
     }
-    return clone;
+    return this.generators[type][messageLevel].pick();
   }
 
-  static initialMessages: any;
-  static remainingMessages: any;
-
-  static pick(type: string, messageLevel: string) {
-    if (!this.initialMessages) {
-      this.initialMessages = this.cloneObject(villagers.villagers);
-    }
-    if (!this.remainingMessages) {
-      this.remainingMessages = this.cloneObject(villagers.villagers);
-    }
-    let messages = Object.values(this.remainingMessages[type][messageLevel]);
-    if (messages.length === 0) {
-      this.remainingMessages[type][messageLevel] = this.cloneObject(this.initialMessages[type][messageLevel]);
-      messages = Object.values(this.remainingMessages[type][messageLevel]);
-    }
-
-    const randKey = Object.keys(this.remainingMessages[type][messageLevel])[Math.floor(Math.random() * messages.length)];
-    const result = this.remainingMessages[type][messageLevel][randKey];
-    delete this.remainingMessages[type][messageLevel][randKey];
-
-    return result;
+  private static createGenerators() {
+    this.generators = {};
+    Object.keys(villagers.villagers).forEach((type) => {
+      this.generators[type] = {};
+      Object.keys(villagers.villagers[type]).forEach((level) => {
+        this.generators[type][level] = new RandomGenerator(villagers.villagers[type][level]);
+      })
+    });
   }
 }
 
@@ -97,7 +83,7 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
   const influencerLevel = getInfluencerLevel(villager) / maxInfluence; // Value from 0 to 1
 
   if (influencerLevel > 1 - parameters.expressiveness) {
-    const message = MessageGenerator.pick(type, getMessageLevel(villager[type]));
+    const message = MessagesGenerators.pick(type, getMessageLevel(villager[type]));
 
     dispatch(villagerSpeaks(message, villager));
   }
@@ -122,13 +108,13 @@ const selectionAnnouncement = () => (dispatch: any, getState: () => GameState) =
 
   const getFaith = (villagers: Villager[]) => {
     return villagers.reduce((faith: number, villager: Villager) => {
-      return faith += villager.faith;
+      return faith + villager.faith;
     }, 0) / villagers.length;
   };
 
   const getTrust = (villagers: Villager[]) => {
     return villagers.reduce((trust: number, villager: Villager) => {
-      return trust += villager.trust;
+      return trust + villager.trust;
     }, 0) / villagers.length;
   };
 
@@ -147,5 +133,3 @@ const selectionAnnouncement = () => (dispatch: any, getState: () => GameState) =
 
   dispatch({type: 'SELECTION_ANNOUNCEMENT', message: message.text});
 };
-
-const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
