@@ -4,6 +4,7 @@ import {Villager} from 'src/core/model';
 import {getRandomArray} from 'src/core/utils';
 import villagers from 'src/data/villagers';
 import {endCycle} from 'src/core/action/cycle';
+import shaman from 'src/data/shaman';
 
 export const tick = () => (dispatch: any) => {
   dispatch({type: 'TICK'});
@@ -70,8 +71,45 @@ const villagerSpeaks = (message: string, villager: Villager) => {
   return {type: 'VILLAGER_SPEAKS', message, id: villager.id};
 };
 
-const selectionAnnouncement = () => (dispatch: any) => {
-  dispatch({type: 'SELECTION_ANNOUNCEMENT', message: "hey! that's selection time!"});
+const selectionAnnouncement = () => (dispatch: any, getState: () => GameState) => {
+  const getLevel = (level: number) => {
+    if (level < 25) {
+      return 'chaotic';
+    } else if (level < 50) {
+      return 'bad';
+    } else if (level < 75) {
+      return 'good';
+    } else {
+      return 'loyal';
+    }
+  };
+
+  const getFaith = (villagers: Villager[]) => {
+    return villagers.reduce((faith: number, villager: Villager) => {
+      return faith += villager.faith;
+    }, 0) / villagers.length;
+  };
+
+  const getTrust = (villagers: Villager[]) => {
+    return villagers.reduce((trust: number, villager: Villager) => {
+      return trust += villager.trust;
+    }, 0) / villagers.length;
+  };
+
+  const aliveVillagers = getAliveVillagers(getState().villagers);
+  const trustLevel = getLevel(getTrust(aliveVillagers));
+  const faithLevel = getLevel(getFaith(aliveVillagers));
+
+  const messages = shaman.shaman;
+  let message = messages.find((message) => {
+    return message.faith === faithLevel && message.trust === trustLevel;
+  });
+
+  if (message === undefined) {
+    message = {faith: '', trust:'', text: 'Sacrifice!'};
+  }
+
+  dispatch({type: 'SELECTION_ANNOUNCEMENT', message: message.text});
 };
 
 const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
