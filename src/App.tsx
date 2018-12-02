@@ -35,6 +35,10 @@ type ViewDispatch = {
 
 class App extends React.Component<ViewState & ViewDispatch> {
   private videos: {[key: string]: React.RefObject<HTMLVideoElement>} = {};
+  private gameoverAnnouncementVideo: React.RefObject<HTMLVideoElement>;
+  private factAnnouncementVideo: React.RefObject<HTMLVideoElement>;
+  private decisionAnnouncementVideo: React.RefObject<HTMLVideoElement>;
+  private decisionAnswerVideo: React.RefObject<HTMLVideoElement>;
 
   constructor(props: ViewState & ViewDispatch) {
     super(props);
@@ -42,6 +46,11 @@ class App extends React.Component<ViewState & ViewDispatch> {
     this.videos = props.villagers.reduce((refs: {[key: string]: React.RefObject<HTMLVideoElement>}, villager: Villager) => {
       return {...refs, [villager.id]: React.createRef<HTMLVideoElement>()}
     }, {});
+
+    this.gameoverAnnouncementVideo = React.createRef<HTMLVideoElement>();
+    this.factAnnouncementVideo = React.createRef<HTMLVideoElement>();
+    this.decisionAnnouncementVideo = React.createRef<HTMLVideoElement>();
+    this.decisionAnswerVideo = React.createRef<HTMLVideoElement>();
   }
 
   componentDidMount() {
@@ -52,9 +61,43 @@ class App extends React.Component<ViewState & ViewDispatch> {
 
       setInterval(() => {
         if (null !== video.current) {
-          video.current.paused ? video.current.play() : video.current.pause();
+          video.current.paused ? video.current.play().catch(error => {}) : video.current.pause();
         }
-      }, Math.random() * 2000 + 1000);
+      }, Math.random() * 2000 + 3000);
+    }
+  }
+
+  componentDidUpdate() {
+    if (null !== this.gameoverAnnouncementVideo.current) {
+      if (null !== this.props.gameover) {
+        this.gameoverAnnouncementVideo.current.play().catch(error => {});
+      } else {
+        this.gameoverAnnouncementVideo.current.pause();
+      }
+    }
+
+    if (null !== this.factAnnouncementVideo.current) {
+      if (null !== this.props.factAnnouncement) {
+        this.factAnnouncementVideo.current.play().catch(error => {});
+      } else {
+        this.factAnnouncementVideo.current.pause();
+      }
+    }
+
+    if (null !== this.decisionAnnouncementVideo.current) {
+      if (null !== this.props.decisionAnnouncement) {
+        this.decisionAnnouncementVideo.current.play().catch(error => {});
+      } else {
+        this.decisionAnnouncementVideo.current.pause();
+      }
+    }
+
+    if (null !== this.decisionAnswerVideo.current) {
+      if (null !== this.props.decisionAnswer) {
+        this.decisionAnswerVideo.current.play().catch(error => {});
+      } else {
+        this.decisionAnswerVideo.current.pause();
+      }
     }
   }
 
@@ -85,7 +128,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
               <div key={villager.id} className={`character ${villager.selected ? 'selected' : ''} ${!villager.alive ? 'dead' : ''}`} onClick={() => this.props.toggleSacrificed(villager.id)}>
                 <div className={`characterImageContainer rot${villager.rot} ${villager.flip ? 'flip' : ''}`}>
                   <video className="characterImage" autoPlay loop muted ref={this.videos[villager.id]}>
-                    <source src={`asset/${villager.asset}.mp4`} type="video/mp4"/>
+                    <source src={`asset/small/${villager.asset}.mp4`} type="video/mp4"/>
                   </video>
                   <div className="characterShield"></div>
                   <div className={`characterFaith ${this.getTrustAndFaithClass(villager.faith)}`}></div>
@@ -106,7 +149,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
             ) )}
           </div>
           <div className={`sacrificeAnnouncement ${null !== this.props.sacrificeAnnouncement ? 'visible' : ''}`}>
-            <video className="characterImageBig" autoPlay loop>
+            <video className="characterImageBig" autoPlay loop muted>
               <source src="asset/shaman.mp4" type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
@@ -121,7 +164,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
           <div className="iris4"/>
         </div>
         <div className={`gameoverAnnouncement ${null !== this.props.gameover ? 'visible' : ''}`}>
-          <video className="characterImageBig" autoPlay loop>
+          <video className="characterImageBig" autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
             <source src="asset/shaman.mp4" type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
@@ -130,8 +173,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
           </div>
         </div>
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
-          <video className="characterImageBig" autoPlay loop>
-            <source src={`asset/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+          <video className="characterImageBig" autoPlay loop muted ref={this.factAnnouncementVideo}>
+            <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
           <div className="shamanMessage">
@@ -140,7 +183,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
           <div className="shamanOK" onClick={this.props.factConfirmation}>OK</div>
         </div>
         <div className={`decisionAnnouncement ${null !== this.props.decisionAnnouncement ? 'visible' : ''}`}>
-          <video className="characterImageBig" autoPlay loop>
+          <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnnouncementVideo}>
             <source src="asset/shaman.mp4" type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
@@ -151,7 +194,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
           <div className="shamanNO" onClick={() => this.props.decisionConfirmation('no')}>No</div>
         </div>
         <div className={`decisionAnswer ${null !== this.props.decisionAnswer ? 'visible' : ''}`}>
-          <video className="characterImageBig" autoPlay loop>
+          <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnswerVideo}>
             <source src="asset/shaman.mp4" type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
