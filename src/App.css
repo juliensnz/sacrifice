@@ -2,14 +2,16 @@ body, html, div {
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 20px;
 }
+
 body {
   background-color: black;
   overflow-x: hidden;
 }
 
 @keyframes fadeToBlack {
-  from {clip-path: circle(1000px at center)}
-  to {clip-path: circle(0px at center)}
+  0% {clip-path: circle(1000px at center); opacity: 1}
+  20% {clip-path: circle(0px at center); opacity: 0}
+  100% {clip-path: circle(0px at center); opacity: 0}
 }
 
 @keyframes newDay {
@@ -22,14 +24,21 @@ body {
   width: 100vw;
   height: 100vh;
   color: white;
+  opacity: 1;
+  transition: opacity 1s linear;
 }
 
 .App.selectionPhase {
   animation-name: fadeToBlack;
-  animation-duration: 9s;
+  animation-duration: 10s;
+  animation-delay: 5s;
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
-  clip-path: circle(0px at center);
+  clip-path: circle(1000px at center);
+}
+
+.App.announcementPhase {
+  opacity: 0;
 }
 
 .App.newDay {
