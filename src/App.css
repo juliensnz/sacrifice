@@ -70,12 +70,58 @@ body {
   position: relative;
 }
 
-.characterImage, .characterShield, .characterPancarte, .characterName, .deadVideo {
+.characterImage, .characterShield, .characterPancarte, .characterName, .deadVideo, .characterTrust, .characterFaith {
   position: absolute;
   width: 180px;
   height: 180px;
   border-radius: 10000px;
   margin: -100px 0 0 -100px;
+}
+
+.characterImageContainer:hover .characterTrust,
+.characterImageContainer:hover .characterFaith {
+  opacity: 1;
+}
+
+.characterTrust,
+.characterFaith {
+  opacity: 0;
+  background-size: contain;
+  width: 70px;
+  background-repeat: no-repeat;
+  transition: opacity 0.2s;
+  transform: none;
+}
+
+.characterFaith {
+  background-image: url('faith-chaotic.png');
+  margin: -81px 0 0 -115px;
+}
+
+.characterFaith.bad {
+  background-image: url('faith-bad.png');
+}
+.characterFaith.good {
+  background-image: url('faith-good.png');
+}
+.characterFaith.loyal {
+  background-image: url('faith-loyal.png');
+}
+
+.characterTrust.bad {
+  background-image: url('trust-bad.png');
+}
+.characterTrust.good {
+  background-image: url('trust-good.png');
+}
+.characterTrust.loyal {
+  background-image: url('trust-loyal.png');
+}
+
+
+.characterTrust {
+  background-image: url('trust-chaotic.png');
+  margin: -81px 0 0 26px;
 }
 
 .characterPancarte {
@@ -89,27 +135,27 @@ body {
   background-image: url('pancartedead.png');
 }
 
-.characterImageContainer.rot5 > div {
+.characterImageContainer.rot5 > div:not(.characterFaith):not(.characterTrust) {
   transform: rotate(4deg);
 }
 
-.characterImageContainer.rot10 > div {
+.characterImageContainer.rot10 > div:not(.characterFaith):not(.characterTrust) {
   transform: rotate(7deg);
 }
 
-.characterImageContainer.rot15 > div {
+.characterImageContainer.rot15 > div:not(.characterFaith):not(.characterTrust) {
   transform: rotate(10deg);
 }
 
-.characterImageContainer.rot-5 > div {
+.characterImageContainer.rot-5 > div:not(.characterFaith):not(.characterTrust) {
   transform: rotate(-4deg);
 }
 
-.characterImageContainer.rot-10 > div {
+.characterImageContainer.rot-10 > div:not(.characterFaith):not(.characterTrust) {
   transform: rotate(-7deg);
 }
 
-.characterImageContainer.rot-15 > div {
+.characterImageContainer.rot-15 > div:not(.characterFaith):not(.characterTrust) {
   transform: rotate(-10deg);
 }
 
