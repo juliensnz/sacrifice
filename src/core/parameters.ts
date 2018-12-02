@@ -2,7 +2,7 @@ const parameters = {
   debug: false,
 
   // Time in second for one cycle
-  cycleLength: 200,
+  cycleLength: 60,
 
   // Time in second for the selection phase
   selectionLength: 10,

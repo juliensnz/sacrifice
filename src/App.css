@@ -67,7 +67,6 @@ body {
 
 .characters {
   background: #000000;
-  /* flex-grow: 1; */
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
@@ -239,7 +238,7 @@ body {
 
 .characterText {
   background: url('Bulle.png');
-  margin: -100px 0 0 -100px;
+  margin: -110px 0 0 -110px;
   width: 200px;
   height: 200px;
   background-size: contain;
