@@ -72,7 +72,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
           faith: {Math.round(getFaith(this.props.aliveVillagers))}%<br/>
           trust: {Math.round(getTrust(this.props.aliveVillagers))}%
         </div>
-        <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.time < 4 ? 'newDay' : ''}`}>
+        <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.factAnnouncement ? 'announcementPhase' : ''} ${this.props.time < 4 ? 'newDay' : ''}`}>
           <div className="characters">
             {this.props.villagers.map((villager: Villager) => (
               <div key={villager.id} className={`character ${villager.selected ? 'selected' : ''} ${!villager.alive ? 'dead' : ''}`} onClick={() => this.props.toggleSacrificed(villager.id)}>
