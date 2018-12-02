@@ -1,7 +1,7 @@
 import data from 'src/data/names';
 import {guid} from 'src/core/utils';
 import parameters from 'src/core/parameters';
-import {RandomGenerator} from "./RandomGenerator";
+import {RandomGenerator} from './RandomGenerator';
 
 export type Villager = {
   id: string;
@@ -34,7 +34,7 @@ export const generateVillager = (): Villager => {
     asset: 'viking_' + id,
     flip: Math.random() > 0.5,
     message: null,
-  }
+  };
 };
 
 export type RawEvent = {
@@ -46,6 +46,19 @@ export type RawEvent = {
 export type RawEventConsequence = {
   consequence: string;
   coef: number;
+  decision?: Decision;
+};
+
+export type Decision = {
+  text: string;
+  yes: {
+    text: string;
+    coef: number;
+  };
+  no: {
+    text: string;
+    coef: number;
+  };
 };
 
 export type GameEvent = {
@@ -53,8 +66,38 @@ export type GameEvent = {
   type: string;
   text: string;
   coef: number;
+  decision: Decision | null;
 };
 
 const firstNameMaleGenerator = new RandomGenerator(data.names.male);
 const firstNameFemaleGenerator = new RandomGenerator(data.names.female);
-const characterImageNumberGenerator = new RandomGenerator([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]);
+const characterImageNumberGenerator = new RandomGenerator([
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+]);

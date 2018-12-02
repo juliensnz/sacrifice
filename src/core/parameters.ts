@@ -5,6 +5,9 @@ const parameters = {
   // Time in second for the selection phase
   selectionLength: 10,
 
+  // Time in second for decision question (following a cycle event) after the start of the cycle
+  decisionLength: 5,
+
   // Maximal number of cycle in one game
   cycleCount: 20,
 
