@@ -1,11 +1,11 @@
 import './App.css';
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Villager, Decision} from 'src/core/model';
+import {Villager, Decision, imageNumbers} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
 import {toggleSacrificed, selectionStart, factConfirmation} from 'src/core/action';
 import parameters from 'src/core/parameters';
-import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
+import {getAliveVillagers, getFaith, getRandomArray, getTrust} from 'src/core/utils';
 import gameMessages from 'src/data/game-messages';
 import {decisionConfirmation} from 'src/core/action/decision';
 
@@ -125,7 +125,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         </div>
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <video className="characterImageBig" autoPlay loop>
-            <source src="asset/shaman.mp4" type="video/mp4"/>
+            <source src={`asset/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
           <div className="shamanMessage">

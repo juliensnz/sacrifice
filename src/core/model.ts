@@ -3,6 +3,37 @@ import {guid} from 'src/core/utils';
 import parameters from 'src/core/parameters';
 import {RandomGenerator} from './RandomGenerator';
 
+export const imageNumbers = [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+];
+
 export type Villager = {
   id: string;
   name: string;
@@ -77,33 +108,4 @@ export type Cycle = {
 
 const firstNameMaleGenerator = new RandomGenerator(data.names.male);
 const firstNameFemaleGenerator = new RandomGenerator(data.names.female);
-const characterImageNumberGenerator = new RandomGenerator([
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-  26,
-  27,
-  28,
-]);
+const characterImageNumberGenerator = new RandomGenerator(imageNumbers);
