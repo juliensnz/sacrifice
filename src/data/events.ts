@@ -136,7 +136,15 @@ export default {
         "Lightning hit a barn.",
       ],
       consequences: [
-        {consequence: "Fortunately, villagers had time to flee.", coef: -1},
+        {
+          consequence: "Fortunately, villagers had time to flee.",
+          coef: -1,
+          decision: {
+            text: "Do you want to rebuild what the thunderstorm destroyed? This could delay the construction of the ships.",
+            yes: {coef: 1, text: "Our best carpenters have been mobilised to rebuild. It has been done quickly and without delaying the construction of the ships."},
+            no: {coef: -1, text: "The villagers didn't understand your decision. Those buildings were important."},
+          }
+        },
         {consequence: "An entire family died.", coef: -6},
       ]
     },

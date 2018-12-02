@@ -8,12 +8,12 @@ body {
 }
 
 @keyframes fadeToBlack {
-  from {clip-path: circle(1000px at center);};
-  to {clip-path: circle(0px at center);}
+  from {clip-path: circle(1000px at center)}
+  to {clip-path: circle(0px at center)}
 }
 
 @keyframes newDay {
-  from {opacity: 0};
+  from {opacity: 0}
   to {opacity: 1}
 }
 
@@ -70,7 +70,7 @@ body {
   position: relative;
 }
 
-.characterImage, .characterShield, .characterPancarte, .characterName {
+.characterImage, .characterShield, .characterPancarte, .characterName, .deadVideo {
   position: absolute;
   width: 180px;
   height: 180px;
@@ -81,8 +81,12 @@ body {
 .characterPancarte {
   height: 190px;
   border-radius: 0;
-  background: url('pancarte.png');
+  background-image: url('pancarte.png');
   background-size: 100%;
+}
+
+.dead .characterPancarte {
+  background-image: url('pancartedead.png');
 }
 
 .characterImageContainer.rot5 > div {
@@ -179,8 +183,16 @@ body {
   background: green;
 }
 
-.dead {
-  background: red;
+.character .deadVideo {
+  display: none;
+  clip-path: circle(83px at center)
+}
+.character.dead .deadVideo {
+  display: block;
+}
+.character.dead .characterImage,
+.character.dead .characterShield {
+  display: none;
 }
 
 .sacrificeAnnouncement, .factAnnouncement {
@@ -228,7 +240,8 @@ body {
 .shamanMessage {
   margin: 310px 0 0 -70px;
   width: 428px;
-  font-size: 40px;
+  font-size: 33px;
+  text-align: left;
   display: inline-flex;
   position: absolute;
   color: white;
