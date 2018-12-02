@@ -1,6 +1,6 @@
 import {Villager, generateVillager} from 'src/core/model';
 import parameters from 'src/core/parameters';
-import {applyCurrentEvents} from 'src/core/reducer/villager';
+import {applyCurrentEvent} from 'src/core/reducer/villager';
 import rawEvents from 'src/data/events';
 
 type RawEventConsequence = {
@@ -28,10 +28,13 @@ export type GameState = {
   };
   selectionStarted: boolean;
   shaman: {
-    factAnnouncement: string[];
+    factAnnouncement: {
+      text: string;
+      type: string;
+    } | null;
     sacrificeAnnouncement: string | null;
   };
-  currentEvents: GameEvent[];
+  currentEvent: GameEvent | null;
   possibleEvents: GameEvent[];
   paused: boolean;
 };
@@ -62,10 +65,10 @@ const initialState = {
   },
   selectionStarted: false,
   shaman: {
-    factAnnouncement: [],
+    factAnnouncement: null,
     sacrificeAnnouncement: null,
   },
-  currentEvents: [],
+  currentEvent: null,
   possibleEvents: generateEventsFrom(rawEvents.events),
   paused: false,
 };
@@ -79,7 +82,7 @@ export default (state: GameState = initialState, action: any) => {
           number: state.cycle.number + 1,
           time: 0,
         },
-        shaman: {...state.shaman, factAnnouncement: []},
+        shaman: {...state.shaman, factAnnouncement: null},
         selectionStarted: false,
       };
       break;
@@ -106,15 +109,19 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'FACT_ANNOUNCEMENT':
-      state = {...state, paused: true, shaman: {...state.shaman, factAnnouncement: action.messages}};
+      state = {
+        ...state,
+        paused: true,
+        shaman: {...state.shaman, factAnnouncement: {text: action.event.text, type: action.event.type}}
+      };
       break;
 
     case 'SELECTION_START':
       state = {...state, paused: false, selectionStarted: true, shaman: {...state.shaman, sacrificeAnnouncement: null}};
       break;
 
-    case 'APPLY_GAME_EVENT':
-      state = {...state, currentEvents: [...state.currentEvents, action.gameEvent]};
+    case 'REGISTER_GAME_EVENT':
+      state = {...state, currentEvent: action.gameEvent};
       break;
 
     case 'VILLAGER_SPEAKS':
@@ -163,7 +170,7 @@ export default (state: GameState = initialState, action: any) => {
       state = {
         ...state,
         paused: true,
-        villagers: applyCurrentEvents(state.villagers, state.currentEvents),
+        villagers: applyCurrentEvent(state.villagers, state.currentEvent),
       };
       break;
 
