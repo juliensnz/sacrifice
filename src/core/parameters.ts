@@ -18,7 +18,7 @@ const parameters = {
   trustLevelStartRange: 10,
 
   // range of random top and bottom faith. So at the beginning of the game all villager will have a faith of 50 +- 15
-  faithLevelStartRange: 30,
+  faithLevelStartRange: 80,
 
   // When a villager speaks, how much time it's displayed (second)
   villagerMessageDuration: 3,
