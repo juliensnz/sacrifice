@@ -6,7 +6,7 @@ import rawEvents from 'src/data/events';
 type RawEventConsequence = {
   consequence: string;
   coef: number;
-}
+};
 
 type RawEvent = {
   type: string;
@@ -39,23 +39,22 @@ export type GameState = {
   paused: boolean;
 };
 
-const generateEventsFrom = (rawEvents: RawEvent[]): GameEvent[] => rawEvents.reduce(
-  (gameEvents: GameEvent[], rawEvent: RawEvent) => [
-    ...gameEvents,
-    ...rawEvent.facts.reduce(
-      (generatedEvents: GameEvent[], fact: string) => [
-        ...generatedEvents,
-        ...rawEvent.consequences.map(
-            (consequence: RawEventConsequence) => {
-              return {type: rawEvent.type, text: `${fact} ${consequence.consequence}`, coef: consequence.coef}
-            }
-          )
-      ],
-      []
-    )
-  ],
-  []
-);
+const generateEventsFrom = (rawEvents: RawEvent[]): GameEvent[] =>
+  rawEvents.reduce(
+    (gameEvents: GameEvent[], rawEvent: RawEvent) => [
+      ...gameEvents,
+      ...rawEvent.facts.reduce(
+        (generatedEvents: GameEvent[], fact: string) => [
+          ...generatedEvents,
+          ...rawEvent.consequences.map((consequence: RawEventConsequence) => {
+            return {type: rawEvent.type, text: `${fact} ${consequence.consequence}`, coef: consequence.coef};
+          }),
+        ],
+        []
+      ),
+    ],
+    []
+  );
 
 const initialState = {
   villagers: Array.apply(null, Array(parameters.villagerCount)).map(generateVillager),
@@ -112,7 +111,7 @@ export default (state: GameState = initialState, action: any) => {
       state = {
         ...state,
         paused: true,
-        shaman: {...state.shaman, factAnnouncement: {text: action.event.text, type: action.event.type}}
+        shaman: {...state.shaman, factAnnouncement: {text: action.event.text, type: action.event.type}},
       };
       break;
 
