@@ -1,6 +1,6 @@
 import {Villager} from 'src/core/model';
-import {GameEvent} from 'src/core/reducer/events';
 import parameters from 'src/core/parameters';
+import {GameEvent} from 'src/core/action/events';
 
 const updateTrust = (villagers: Villager[], event: GameEvent) => (villager: Villager) => {
   const sacrificeCount = villagers.filter((villager: Villager) => villager.selected).length;

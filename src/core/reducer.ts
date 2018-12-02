@@ -1,7 +1,7 @@
 import {Villager, generateVillager} from 'src/core/model';
 import parameters from 'src/core/parameters';
 import {applyGameEvent} from 'src/core/reducer/villager';
-import {GameEvent} from 'src/core/reducer/events';
+import {GameEvent} from 'src/core/action/events';
 
 type Cycle = {
   time: number;
