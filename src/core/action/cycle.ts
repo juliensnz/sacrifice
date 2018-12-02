@@ -2,6 +2,7 @@ import {GameState, GameEvent} from 'src/core/reducer';
 import {getSelectedVillagers} from 'src/core/reducer/villager';
 import parameters from 'src/core/parameters';
 import {getRandomArray} from 'src/core/utils';
+import events from 'src/data/events';
 import {endGame} from 'src/core/action';
 
 export const startCycle = () => (dispatch: any) => {
@@ -10,7 +11,7 @@ export const startCycle = () => (dispatch: any) => {
 };
 
 export const endCycle = () => (dispatch: any, getState: () => GameState) => {
-  dispatch({type: 'APPLY_GAME_EVENT', gameEvent: getRandomArray(getState().possibleEvents)});
+  dispatch({type: 'REGISTER_GAME_EVENT', gameEvent: getRandomEvent()});
 
   const numberOfSacrificed = getSelectedVillagers(getState().villagers).length;
   dispatch({type: 'PLAY_SOUND', sound: 0 === numberOfSacrificed ? 'no_sacrifice' : 'sacrifice'});
@@ -22,6 +23,16 @@ export const endCycle = () => (dispatch: any, getState: () => GameState) => {
       dispatch(factAnnouncement());
     }, 1000 * parameters.timeToDisplayAnnouncement);
   }
+};
+
+const getRandomEvent = () => {
+  const event = getRandomArray(events.events);
+
+  return {
+    type: event.type,
+    fact: getRandomArray(event.facts),
+    ...getRandomArray(event.consequences),
+  };
 };
 
 const factAnnouncement = () => (dispatch: any, getState: () => GameState) => {

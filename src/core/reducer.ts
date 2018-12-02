@@ -163,7 +163,7 @@ export default (state: GameState = initialState, action: any) => {
       state = {
         ...state,
         paused: true,
-        villagers: applyCurrentEvents(state.villagers, [action.randomGameEvent]),
+        villagers: applyCurrentEvents(state.villagers, state.currentEvents),
       };
       break;
 

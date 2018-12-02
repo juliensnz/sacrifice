@@ -3,7 +3,7 @@ export default {
     {
       trust: 'chaotic',
       faith: 'good',
-      data: `You're the most illegitimate ruler I've ever seen. 
+      text: `You're the most illegitimate ruler I've ever seen. 
       Despite your incapability to take good decisions, Gods are good to us, and our people are grateful to them.
       But you... You're a shame. Take your responsibilities, sacrifice someone, and pray the Gods for their pity.
       `
@@ -11,20 +11,20 @@ export default {
     {
       trust: 'bad',
       faith: 'good',
-      data: `Jarl. We've avoided many sufferings thanks to our actions. 
+      text: `Jarl. We've avoided many sufferings thanks to our actions. 
       But it's not enough. Gods deserve more. They deserve fresh blood. They deserve a soul. They deserve... A sacrifice.
       `,
     },
     {
       trust: 'good',
       faith: 'good',
-      data: `My friend. We are on a good way. But the Gods still need the proof of our devotion.
+      text: `My friend. We are on a good way. But the Gods still need the proof of our devotion.
       I know you're the one we need to lead us to glory. We're so close. Just one more...`,
     },
     {
       trust: 'loyal',
       faith: 'good',
-      data: `My Jarl. Gods are satisfied. People see you as a great ruler.
+      text: `My Jarl. Gods are satisfied. People see you as a great ruler.
         If you want the Gods to welcome you as one of them, sacrifices must be made.
         So, who will you choose?`,
     },
