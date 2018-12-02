@@ -61,13 +61,13 @@ class App extends React.Component<ViewState & ViewDispatch> {
   public render() {
     return (
       <React.Fragment>
+        <div className="debug">
+          cycle count: {this.props.cycleCount}<br/>
+          time: {parameters.cycleLength - this.props.time}<br/>
+          faith: {Math.round(getFaith(this.props.villagers))}%<br/>
+          trust: {Math.round(getTrust(this.props.villagers))}%
+        </div>
         <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.time < 4 ? 'newDay' : ''}`}>
-          <div className="events">
-            cycle count: {this.props.cycleCount}<br/>
-            time: {parameters.cycleLength - this.props.time}<br/>
-            faith: {getFaith(this.props.villagers)}<br/>
-            trust: {getTrust(this.props.villagers)}
-          </div>
           <div className="characters">
             {this.props.villagers.map((villager: Villager) => (
               <div key={villager.id} className={`character ${villager.selected ? 'selected' : ''} ${!villager.alive ? 'dead' : ''}`} onClick={() => this.props.toggleSacrificed(villager.id)}>
@@ -77,7 +77,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
                   </video>
                   <div className="characterShield"></div>
                   <div className="characterPancarte"></div>
-                  <div className="characterName">{villager.name}</div>
+                  <div className="characterName">{villager.trust} - {villager.name} - {villager.faith}</div>
                   <div className="characterText">{null !== villager.message ?
                     (<div className="characterTextInner">{villager.message.message}</div>) :
                     ''
