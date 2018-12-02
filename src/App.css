@@ -138,27 +138,27 @@ body {
   background-image: url('pancartedead.png');
 }
 
-.characterImageContainer.rot5 > div:not(.characterFaith):not(.characterTrust) {
+.characterImageContainer.rot5 > *:not(.characterFaith):not(.characterTrust) {
   transform: rotate(4deg);
 }
 
-.characterImageContainer.rot10 > div:not(.characterFaith):not(.characterTrust) {
+.characterImageContainer.rot10 > *:not(.characterFaith):not(.characterTrust) {
   transform: rotate(7deg);
 }
 
-.characterImageContainer.rot15 > div:not(.characterFaith):not(.characterTrust) {
+.characterImageContainer.rot15 > *:not(.characterFaith):not(.characterTrust) {
   transform: rotate(10deg);
 }
 
-.characterImageContainer.rot-5 > div:not(.characterFaith):not(.characterTrust) {
+.characterImageContainer.rot-5 > *:not(.characterFaith):not(.characterTrust) {
   transform: rotate(-4deg);
 }
 
-.characterImageContainer.rot-10 > div:not(.characterFaith):not(.characterTrust) {
+.characterImageContainer.rot-10 > *:not(.characterFaith):not(.characterTrust) {
   transform: rotate(-7deg);
 }
 
-.characterImageContainer.rot-15 > div:not(.characterFaith):not(.characterTrust) {
+.characterImageContainer.rot-15 > *:not(.characterFaith):not(.characterTrust) {
   transform: rotate(-10deg);
 }
 
