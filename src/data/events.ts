@@ -19,7 +19,7 @@ export default {
         "Our merchants come back from the trading post.",
       ],
       consequences: [
-        {consequence: "Business is booming, our chest are full of gold.", coef: 8},
+        {consequence: "Business is booming, our chests are full of gold.", coef: 8},
         {consequence: "This opens up great financial prospects for our village.", coef: 3},
       ]
     },
@@ -27,7 +27,7 @@ export default {
       type: "mild weather",
       facts: [
         "Temperatures are incredibly mild right now.",
-        "The weather has been exceptionnaly mild with us for many moons.",
+        "The weather has been exceptionally mild with us for many moons.",
       ],
       consequences: [
         {consequence: "The crops will be amazing.", coef: 6},

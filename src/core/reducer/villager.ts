@@ -13,7 +13,7 @@ const updateAlive = (villager: Villager) => {
   return {...villager, alive: villager.alive && !villager.selected, selected: false};
 };
 
-export const applyGameEvents = (villagers: Villager[], events: GameEvent[]) => {
+export const applyCurrentEvents = (villagers: Villager[], events: GameEvent[]) => {
   return villagers.map(updateTrust(villagers, events)).map(updateAlive);
 };
 
