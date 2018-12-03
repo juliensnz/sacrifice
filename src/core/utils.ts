@@ -53,11 +53,15 @@ const loadAsset = async (path: string): Promise<void> => {
     case 'jpeg':
     case 'gif':
       return new Promise<void>((resolve: any) => {
-        const downloadingImage = new Image();
-        downloadingImage.onload = () => {
+        try {
+          const downloadingImage = new Image();
+          downloadingImage.onload = () => {
+            resolve();
+          };
+          downloadingImage.src = path;
+        } catch {
           resolve();
-        };
-        downloadingImage.src = path;
+        }
       });
       break;
 
@@ -65,34 +69,42 @@ const loadAsset = async (path: string): Promise<void> => {
     case 'ogg':
     case 'mov':
       return new Promise<void>((resolve: any) => {
-        const downloadingVideo = document.createElement('video');
-        downloadingVideo.muted = true;
-        downloadingVideo.src = basePath + path;
-        downloadingVideo
-          .play()
-          .then(() => {
-            resolve();
-          })
-          .catch(() => {
-            resolve();
-          });
+        try {
+          const downloadingVideo = document.createElement('video');
+          downloadingVideo.muted = true;
+          downloadingVideo.src = basePath + path;
+          downloadingVideo
+            .play()
+            .then(() => {
+              resolve();
+            })
+            .catch(() => {
+              resolve();
+            });
+        } catch {
+          resolve();
+        }
       });
       break;
 
     case 'mp3':
     case 'm4a':
       return new Promise<void>((resolve: any) => {
-        const downloadingAudio = new Audio();
-        downloadingAudio.addEventListener(
-          'canplaythrough',
-          () => {
-            resolve();
-          },
-          false
-        );
-        downloadingAudio.src = basePath + path;
-        downloadingAudio.muted = true;
-        downloadingAudio.load();
+        try {
+          const downloadingAudio = new Audio();
+          downloadingAudio.addEventListener(
+            'canplaythrough',
+            () => {
+              resolve();
+            },
+            false
+          );
+          downloadingAudio.src = basePath + path;
+          downloadingAudio.muted = true;
+          downloadingAudio.load();
+        } catch {
+          resolve();
+        }
       });
       break;
 
