@@ -12,12 +12,6 @@ body {
   overflow-x: hidden;
 }
 
-/* @keyframes fadeToBlack {
-  0% {clip-path: circle(1000px at center); opacity: 1}
-  20% {clip-path: circle(0px at center); opacity: 0}
-  100% {clip-path: circle(0px at center); opacity: 0}
-} */
-
 @keyframes newDay {
   from {opacity: 0}
   to {opacity: 1}
@@ -44,7 +38,7 @@ body {
 .App .iris1 {
   top: 0;
   left: 0;
-  background-image: url("images/images/Texture_1.png");
+  background-image: url("images/Texture_1.png");
   transform: translate(-100vw, -100vw);
 }
 
@@ -55,7 +49,7 @@ body {
 .App .iris2 {
   bottom: 0;
   right: 0;
-  background-image: url("images/images/Texture_2.png");
+  background-image: url("images/Texture_2.png");
   transform: translate(100vw, 100vw);
 }
 
@@ -66,7 +60,7 @@ body {
 .App .iris3 {
   top: 0;
   right: 0;
-  background-image: url("images/images/Texture_3.png");
+  background-image: url("images/Texture_3.png");
   transform: translate(100vw, -100vw);
 }
 
@@ -77,7 +71,7 @@ body {
 .App .iris4 {
   bottom: 0;
   left: 0;
-  background-image: url("images/images/Texture_4.png");
+  background-image: url("images/Texture_4.png");
   transform: translate(-100vw, 100vw);
 }
 

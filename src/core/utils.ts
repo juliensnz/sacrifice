@@ -30,3 +30,67 @@ export const getTrust = (villagers: Villager[]) => {
     }, 0) / villagers.length
   );
 };
+
+export const loadAssets = async (assetPaths: string[], onUpdate: (progress: number) => void) => {
+  let assetDownloadedCount = 0;
+
+  return Promise.all(
+    assetPaths.map(async (path: string) => {
+      await loadAsset(path);
+      assetDownloadedCount++;
+      onUpdate(assetDownloadedCount);
+    })
+  );
+};
+
+const loadAsset = async (path: string): Promise<void> => {
+  const extension = path.split('.').pop();
+
+  switch (extension) {
+    case 'png':
+    case 'jpg':
+    case 'jpeg':
+    case 'gif':
+      return new Promise<void>((resolve: any) => {
+        const downloadingImage = new Image();
+        downloadingImage.onload = () => {
+          resolve();
+        };
+        downloadingImage.src = path;
+      });
+      break;
+
+    case 'mp4':
+    case 'ogg':
+    case 'mov':
+      return new Promise<void>((resolve: any) => {
+        const downloadingVideo = document.createElement('video');
+        downloadingVideo.muted = true;
+        downloadingVideo.src = window.location + path;
+        downloadingVideo.play().then(() => {
+          resolve();
+        });
+      });
+      break;
+
+    case 'mp3':
+    case 'm4a':
+      return new Promise<void>((resolve: any) => {
+        const downloadingAudio = new Audio();
+        downloadingAudio.addEventListener(
+          'canplaythrough',
+          () => {
+            resolve();
+          },
+          false
+        );
+        downloadingAudio.src = window.location + path;
+        downloadingAudio.muted = true;
+        downloadingAudio.load();
+      });
+      break;
+
+    default:
+      break;
+  }
+};
