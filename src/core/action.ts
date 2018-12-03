@@ -40,6 +40,14 @@ export const letterConfirmation = () => ({
   type: 'LETTER_CONFIRMATION',
 });
 
+export const gameplayStart = () => ({
+  type: 'GAMEPLAY_START',
+});
+
+export const gameplayConfirmation = () => ({
+  type: 'GAMEPLAY_CONFIRMATION',
+});
+
 export const toggleSacrificed = (id: string) => ({
   type: 'TOGGLE_SACRIFICED',
   id,
