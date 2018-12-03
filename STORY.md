@@ -53,7 +53,7 @@ Ah ah ah! You really listened to me and sacrificed all of your people? You fool.
 
 ### No more trust
 
-Ah ah ah! My people don't trust you anymore. They they started a rebellion and elected me as their new Jarl. I finally obtain what I always wanted. Your father was too powerful and respected. But you... You wretch... You are nothing. Guards! Put him in jail! He will be the next sacrificed! He will be my gift for them! Ah ah ah!
+Ah ah ah! My people don't trust you anymore. They they started a rebellion and elected me as their new Jarl. I finally obtain what I always wanted. Your father was too powerful and respected. But you... You wretch... You are nothing. Guards! Put him in jail! Exile is a way too soft punishment. He will be the next sacrificed! He will be my gift for Odin! Ah ah ah!
 
 – The shaman
 
