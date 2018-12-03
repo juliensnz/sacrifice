@@ -69,6 +69,15 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
+    case 'VILLAGERS_STOP_TO_SPEAK':
+      state = {
+        ...state,
+        villagers: state.villagers.map((villager: Villager) => {
+          return {...villager, message: null};
+        }),
+      };
+      break;
+
     case 'DECISION_START':
       state = {...state, paused: true, decision: action.decision};
       break;

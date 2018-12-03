@@ -28,6 +28,7 @@ const whatToDo = () => (dispatch: any, getState: () => GameState) => {
 
   // ANNOUCEMENT OF THE SACRIFICE PHASE
   if (parameters.cycleLength - parameters.selectionLength === getState().cycle.time) {
+    dispatch(villagersStopToSpeak());
     dispatch(selectionAnnouncement());
   }
 
@@ -86,4 +87,8 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
 
 const villagerSpeaks = (message: string, villager: Villager) => {
   return {type: 'VILLAGER_SPEAKS', message, id: villager.id};
+};
+
+const villagersStopToSpeak = () => {
+  return {type: 'VILLAGERS_STOP_TO_SPEAK'};
 };

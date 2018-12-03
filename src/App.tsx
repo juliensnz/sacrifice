@@ -135,9 +135,11 @@ class App extends React.Component<ViewState & ViewDispatch> {
                   <div className={`characterTrust ${this.getTrustAndFaithClass(villager.trust)}`}></div>
                   <div className="characterPlumeLeft"></div>
                   <div className="characterPlumeRight"></div>
-                  <video className="deadVideo" autoPlay loop muted>
-                    <source src={`asset/death.mp4`} type="video/mp4"/>
-                  </video>
+                  {!villager.alive ? (
+                    <video className="deadVideo" autoPlay loop muted>
+                      <source src={`asset/death.mp4`} type="video/mp4"/>
+                    </video>
+                  ) : null}
                   <div className="characterPancarte"></div>
                   <div className="characterName">{villager.name}</div>
                   <div className="characterText">{null !== villager.message ?

@@ -243,27 +243,27 @@ body {
 }
 
 .characterImageContainer.rot5 > *:not(.characterFaith):not(.characterTrust) {
-  transform: rotate(4deg);
+  transform: rotate(1deg);
 }
 
 .characterImageContainer.rot10 > *:not(.characterFaith):not(.characterTrust) {
-  transform: rotate(7deg);
+  transform: rotate(3deg);
 }
 
 .characterImageContainer.rot15 > *:not(.characterFaith):not(.characterTrust) {
-  transform: rotate(10deg);
+  transform: rotate(5deg);
 }
 
 .characterImageContainer.rot-5 > *:not(.characterFaith):not(.characterTrust) {
-  transform: rotate(-4deg);
+  transform: rotate(-1deg);
 }
 
 .characterImageContainer.rot-10 > *:not(.characterFaith):not(.characterTrust) {
-  transform: rotate(-7deg);
+  transform: rotate(-3deg);
 }
 
 .characterImageContainer.rot-15 > *:not(.characterFaith):not(.characterTrust) {
-  transform: rotate(-10deg);
+  transform: rotate(-5deg);
 }
 
 .characterImageContainer.flip > video {
@@ -334,11 +334,7 @@ body {
 }
 
 .character .deadVideo {
-  display: none;
   clip-path: circle(84.5px at center)
-}
-.character.dead .deadVideo {
-  display: block;
 }
 
 .character.dead .characterImage,

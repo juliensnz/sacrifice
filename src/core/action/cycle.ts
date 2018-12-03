@@ -13,15 +13,17 @@ export const startCycle = () => (dispatch: any) => {
 
 export const endCycle = () => (dispatch: any, getState: () => GameState) => {
   const alreadyHappenedEventIds = getState().previousCycles.map(
-    (cycle: Cycle): string|null => null === cycle.gameEvent ? null : cycle.gameEvent.id
+    (cycle: Cycle): string | null => (null === cycle.gameEvent ? null : cycle.gameEvent.id)
   );
-  const neverHappenedEvents = possibleEvents.filter((event: GameEvent) => -1 === alreadyHappenedEventIds.indexOf(event.id));
+  const neverHappenedEvents = possibleEvents.filter(
+    (event: GameEvent) => -1 === alreadyHappenedEventIds.indexOf(event.id)
+  );
   const eventChoices = neverHappenedEvents.length > 0 ? neverHappenedEvents : possibleEvents;
   dispatch({type: 'REGISTER_GAME_EVENT', gameEvent: getRandomArray(eventChoices)});
 
   const numberOfSacrificed = getSelectedVillagers(getState().villagers).length;
-  dispatch({type: 'PLAY_SOUND', sound: 0 === numberOfSacrificed ? 'no_sacrifice' : 'sacrifice'});
   dispatch({type: 'END_CYCLE'});
+  dispatch({type: 'PLAY_SOUND', sound: 0 === numberOfSacrificed ? 'no_sacrifice' : 'sacrifice'});
 
   const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
   const aliveVillagers = getAliveVillagers(getState().villagers);
