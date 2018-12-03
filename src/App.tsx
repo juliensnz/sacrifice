@@ -189,7 +189,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         </div>
         <div className={`decisionAnnouncement ${null !== this.props.decisionAnnouncement ? 'visible' : ''}`}>
           <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnnouncementVideo}>
-            <source src="asset/shaman.mp4" type="video/mp4"/>
+            <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
           <div className="shamanMessage">
@@ -200,7 +200,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         </div>
         <div className={`decisionAnswer ${null !== this.props.decisionAnswer ? 'visible' : ''}`}>
           <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnswerVideo}>
-            <source src="asset/shaman.mp4" type="video/mp4"/>
+            <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
           <div className="shamanMessage">

@@ -87,7 +87,7 @@ export default (state: GameState = initialState, action: any) => {
         break;
       }
 
-      const decisionAnswer = state.decision[action.type];
+      const decisionAnswer = state.decision[action.choice];
       state = {
         ...state,
         decision: null,
