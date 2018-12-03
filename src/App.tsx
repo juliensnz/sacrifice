@@ -141,10 +141,10 @@ class App extends React.Component<ViewState & ViewDispatch> {
         </div>
         <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.factAnnouncement ? 'announcementPhase' : ''} ${this.props.time < 4 && !this.props.isIntro && !this.props.isLanding ? 'newDay' : ''}`}>
           <div className="sacrificeInstruction">
-            Who do you want to sacrifice? {parameters.cycleLength - this.props.time - 2 > 0 ? parameters.cycleLength - this.props.time - 3 : 0}
+            Who do you want to sacrifice? {parameters.cycleLength - this.props.time - 2 > 0 ? parameters.cycleLength - this.props.time - 3 : 0}s
           </div>
           <div className="cycleInstruction">
-            Next full moon in {parameters.cycleLength - this.props.time - parameters.selectionLength}
+            Next full moon in {parameters.cycleLength - this.props.time - parameters.selectionLength}s
           </div>
           <div className="characters">
             {this.props.villagers.map((villager: Villager) => (
