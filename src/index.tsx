@@ -30,4 +30,4 @@ loadAssets(assets.intro, console.log).then(() => {
   }
 );
 
-registerServiceWorker();
+//registerServiceWorker();
