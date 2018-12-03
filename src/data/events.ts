@@ -11,7 +11,7 @@ export default {
             text: "Do you want to give a name to our new longship?",
             yes: {
               coef: 1,
-              text: "We christened it Njordu, in honor of the God of wind and sea.",
+              text: "We christened it Njordu, in honor of the God of wind and sea. The village celebrated this choice.",
             },
             no: {
               coef: 0,
@@ -26,11 +26,11 @@ export default {
             text: "We are at low tide, but should we try the new ship right away?",
             yes: {
               coef: -1,
-              text: "The ship get blocked near the shore of Farum. We'll have to wait tomorrow, to release it at high tide.",
+              text: "Sadly, the ship get blocked near the shore of Farum. We'll have to wait tomorrow, to release it at high tide.",
             },
             no: {
               coef: 1,
-              text: "We'll try tomorrow then, at high tide."
+              text: "We'll try tomorrow then, at high tide. I'm sure it will be a great success!"
             },
           },
         },
@@ -76,7 +76,7 @@ export default {
             text: "Should we build a new barn to be able harvest so much wheat and barley?",
             yes: {
               coef: 1,
-              text: "The new barn is finished and ready to store our next harvest.",
+              text: "Good news, the new barn is finished and ready to store our next harvest.",
             },
             no: {
               coef: 1,
@@ -151,7 +151,7 @@ export default {
             text: "Should we investigate the cause of the bear family death?",
             yes: {
               coef: -1,
-              text: "Our hunters have been wounded by a wolf pack.",
+              text: "Too bad, our hunters have been wounded by a wolf pack.",
             },
             no: {
               coef: 1,
@@ -198,7 +198,7 @@ export default {
             },
             no: {
               coef: -1,
-              text: "The farmers checked their barns and are formal. We don't enough to hold out until winter."
+              text: "The farmers checked their barns and are formal. We don't have enough to hold out until winter."
             },
           },
         },
@@ -240,11 +240,11 @@ export default {
             text: "Commander, should we punish the fearful soldiers that fled?",
             yes: {
               coef: -1,
-              text: "Survivors escaped before we could put them in jail.",
+              text: "Crap! Survivors escaped before we could put them in jail!",
             },
             no: {
               coef: -1,
-              text: "There is a revolt inside our troops. Cowards are not tolerated among us."
+              text: "A revolt broke out inside our troops. Cowards are not tolerated among us."
             },
           },
         },
@@ -265,7 +265,7 @@ export default {
             text: "I'm afraid it's already too late for the sick persons, but should we pick the doctor of Garðaríki up?",
             yes: {
               coef: 1,
-              text: "The doctor was able to save a few persons and quarantine the others. The contamination stopped.",
+              text: "The doctor was able to save a few persons and quarantine the others. The contamination stopped, it's a relief.",
             },
             no: {
               coef: -1,
@@ -280,11 +280,11 @@ export default {
             text: "Should we end the suffering of the sick villagers?",
             yes: {
               coef: 1,
-              text: "This stops the contamination. It was a blessing in disguise.",
+              text: "This stopped the contamination. It was a blessing in disguise.",
             },
             no: {
               coef: -1,
-              text: "They contaminated other villagers!"
+              text: "They contaminated other villagers! It's a disaster!"
             },
           },
         },
@@ -306,11 +306,11 @@ export default {
             text: "Should we ask the shaman if he can do something about the sick animals?",
             yes: {
               coef: -1,
-              text: "The shaman decided to sacrifice all the herd in the name of Loki.",
+              text: "The shaman decided to sacrifice all the herd in the name of Loki. It's a big loss for the village.",
             },
             no: {
               coef: 1,
-              text: "We quarantine the ill animals. The rest of the herd is safe."
+              text: "We quarantine the ill animals. The rest of the herd is safe now."
             },
           },
         },
@@ -357,7 +357,7 @@ export default {
             },
             no: {
               coef: -1,
-              text: "The farmers checked their barns and are formal. We don't enough to hold out until winter."
+              text: "The farmers checked their barns and are formal. We don't have enough to hold out until winter."
             },
           },
         },
