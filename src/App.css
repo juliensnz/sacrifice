@@ -521,11 +521,11 @@ body {
 }
 
 .shamanYES {
-  margin: 590px 0px 0 -50px;
+  right: 300px;
 }
 
 .shamanNO {
-  margin: 590px 0px 0 170px;
+  right: 95px;
 }
 
 .hide {
