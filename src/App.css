@@ -339,7 +339,7 @@ body {
 }
 
 .sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement, .decisionAnswer {
-  background: black;
+  background: #000000ed;
   display: none;
   position: fixed;
   top: 0;
