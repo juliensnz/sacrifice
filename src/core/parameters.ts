@@ -48,6 +48,9 @@ const parameters = {
   // OR
   // - didn't sacrifice somebody and a positive event occured
   lowTrustImpact: 1,
+
+  // Multilplicator for decision impact (ex: -5 * decisionTrustMultiplicator)
+  trustDecisionMultiplicator: 1,
 };
 
 export default parameters;

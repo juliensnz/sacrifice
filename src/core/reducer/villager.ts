@@ -63,5 +63,10 @@ export const getSelectedVillagers = (villagers: Villager[]): Villager[] => {
 };
 
 export const applyDecisionEvent = (villagers: Villager[], coef: number) => {
+  villagers.map(villager => {
+    const deltaTrust = coef * parameters.trustDecisionMultiplicator;
+    villager.trust = Math.round(Math.min(100, Math.max(villager.trust + deltaTrust, 0)));
+  });
+
   return villagers;
 };
