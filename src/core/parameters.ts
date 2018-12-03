@@ -5,7 +5,7 @@ const parameters = {
   introLength: 70,
 
   // Time in second for one cycle
-  cycleLength: 60,
+  cycleLength: 55,
 
   // Time in second for the selection phase
   selectionLength: 13,
@@ -23,7 +23,7 @@ const parameters = {
   expressiveness: 0.3,
 
   // range of random top and bottom trust. So at the beginning of the game all villager will have a trust of 50 +- 5
-  trustLevelStartRange: 10,
+  trustLevelStartRange: 30,
 
   // range of random top and bottom faith. So at the beginning of the game all villager will have a faith of 50 +- 15
   faithLevelStartRange: 80,
@@ -50,7 +50,7 @@ const parameters = {
   // - sacrificed somebody and a negative event occured
   // OR
   // - didn't sacrifice somebody and a positive event occured
-  lowTrustImpact: 1,
+  lowTrustImpact: 1.5,
 
   // Multilplicator for decision impact (ex: -5 * decisionTrustMultiplicator)
   trustDecisionMultiplicator: 1,
