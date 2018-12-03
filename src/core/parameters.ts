@@ -5,7 +5,7 @@ const parameters = {
   introLength: 70,
 
   // Time in second for one cycle
-  cycleLength: 55,
+  cycleLength: 45,
 
   // Time in second for the selection phase
   selectionLength: 13,
