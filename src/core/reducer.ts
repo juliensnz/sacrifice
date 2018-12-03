@@ -1,6 +1,7 @@
 import {Villager, generateVillager, Cycle, Decision} from 'src/core/model';
 import parameters from 'src/core/parameters';
 import {applyGameEvent, applyDecisionEvent} from 'src/core/reducer/villager';
+import {getRandomArray} from 'src/core/utils';
 
 export type GameState = {
   villagers: Villager[];
@@ -22,8 +23,10 @@ export type GameState = {
   gameover: string | null;
 };
 
+const initialVillagers = Array.apply(null, Array(parameters.villagerCount)).map(generateVillager) as Villager[];
+
 const initialState = {
-  villagers: Array.apply(null, Array(parameters.villagerCount)).map(generateVillager),
+  villagers: initialVillagers,
   previousCycles: [],
   isIntro: false,
   isLanding: true,
@@ -31,6 +34,7 @@ const initialState = {
     number: 0,
     time: 0,
     gameEvent: null,
+    messager: getRandomArray(initialVillagers),
   },
   decision: null,
   decisionAnswer: null,
@@ -67,6 +71,7 @@ export default (state: GameState = initialState, action: any) => {
           number: state.cycle.number + 1,
           time: 0,
           gameEvent: null,
+          messager: getRandomArray(state.villagers),
         },
         selectionStarted: false,
       };

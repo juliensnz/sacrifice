@@ -1,11 +1,11 @@
 import './App.css';
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Villager, Decision, imageNumbers} from 'src/core/model';
+import {Villager, Decision} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
 import {toggleSacrificed, selectionStart, factConfirmation, dismissDecision} from 'src/core/action';
 import parameters from 'src/core/parameters';
-import {getAliveVillagers, getFaith, getRandomArray, getTrust} from 'src/core/utils';
+import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
 import gameMessages from 'src/data/game-messages';
 import {decisionConfirmation} from 'src/core/action/decision';
 import Intro from 'src/component/intro';
@@ -27,6 +27,7 @@ type ViewState = {
   gameover: string|null
   isIntro: boolean
   isLanding: boolean
+  messager: Villager
 }
 
 type ViewDispatch = {
@@ -130,14 +131,14 @@ class App extends React.Component<ViewState & ViewDispatch> {
         <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.factAnnouncement ? 'announcementPhase' : ''} ${this.props.time < 4 && !this.props.isIntro && !this.props.isLanding ? 'newDay' : ''}`}>
           <div className="sacrificeInstruction">
             Choose people to sacrifice... <br/>
-            {parameters.cycleLength - this.props.time}
+            {parameters.cycleLength - this.props.time - 3}
           </div>
           <div className="characters">
             {this.props.villagers.map((villager: Villager) => (
               <div key={villager.id} className={`character ${villager.selected ? 'selected' : ''} ${!villager.alive ? 'dead' : ''}`} onClick={() => this.props.toggleSacrificed(villager.id)}>
                 <div className={`characterImageContainer rot${villager.rot} ${villager.flip ? 'flip' : ''}`}>
                   <video className="characterImage" autoPlay loop muted ref={this.videos[villager.id]}>
-                    <source src={`asset/small/${villager.asset}.mp4`} type="video/mp4"/>
+                    <source src={`asset/thumbnail/${villager.asset}.mp4`} type="video/mp4"/>
                   </video>
                   <div className="characterShield"></div>
                   <div className={`characterFaith ${this.getTrustAndFaithClass(villager.faith)}`}></div>
@@ -182,7 +183,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
               <source src="asset/shaman.mp4" type="video/mp4"/>
             </video>
             <video className={this.props.gameover !== 'no_more_faith' ? "characterImageBig hide" : "characterImageBig"} autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
-              <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+              <source src={`asset/small/viking_${this.props.messager.asset}.mp4`} type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
             <div className="shamanMessage">
@@ -193,7 +194,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <div className="popinContainer">
             <video className="characterImageBig" autoPlay loop muted ref={this.factAnnouncementVideo}>
-              <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+              <source src={`asset/small/viking_${this.props.messager.asset}.mp4`} type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
             <div className="shamanMessage">
@@ -205,7 +206,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         <div className={`decisionAnnouncement ${null !== this.props.decisionAnnouncement ? 'visible' : ''}`}>
           <div className="popinContainer">
             <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnnouncementVideo}>
-              <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+              <source src={`asset/small/viking_${this.props.messager.asset}.mp4`} type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
             <div className="shamanMessage">
@@ -218,7 +219,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         <div className={`decisionAnswer ${null !== this.props.decisionAnswer ? 'visible' : ''}`}>
           <div className="popinContainer">
             <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnswerVideo}>
-              <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+              <source src={`asset/small/viking_${this.props.messager.asset}.mp4`} type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
             <div className="shamanMessage">
@@ -250,7 +251,8 @@ export default connect((state: GameState): ViewState => ({
   selectionStarted: state.selectionStarted,
   gameover: state.gameover,
   isIntro: state.isIntro,
-  isLanding: state.isLanding
+  isLanding: state.isLanding,
+  messager: state.cycle.messager
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart()),

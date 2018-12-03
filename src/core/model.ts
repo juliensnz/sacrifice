@@ -104,6 +104,7 @@ export type Cycle = {
   time: number;
   number: number;
   gameEvent: GameEvent | null;
+  messager: Villager;
 };
 
 const firstNameMaleGenerator = new RandomGenerator(data.names.male);

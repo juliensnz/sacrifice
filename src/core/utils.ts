@@ -68,9 +68,14 @@ const loadAsset = async (path: string): Promise<void> => {
         const downloadingVideo = document.createElement('video');
         downloadingVideo.muted = true;
         downloadingVideo.src = basePath + path;
-        downloadingVideo.play().then(() => {
-          resolve();
-        });
+        downloadingVideo
+          .play()
+          .then(() => {
+            resolve();
+          })
+          .catch(() => {
+            resolve();
+          });
       });
       break;
 
