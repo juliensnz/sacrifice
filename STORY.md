@@ -65,7 +65,7 @@ My Jarl, on behalf of the whole village, thank you. Our people is free. Free fro
 
 ### Explanations
 
-A people faithful to its Gods will tend to find a religious explanation of every event. A people which trust its ruler will understand and support its choices.
+A people faithful to its Gods will tend to find a religious explanation to every event. A people which trust its ruler will understand and support its decisions.
 
 The villagers must trust (TRUST SIGN) in you Jarl. But they also have faith (FAITH SIGN) in the Gods.
 
