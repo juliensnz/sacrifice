@@ -166,8 +166,11 @@ class App extends React.Component<ViewState & ViewDispatch> {
           <div className="iris4"/>
         </div>
         <div className={`gameoverAnnouncement ${null !== this.props.gameover ? 'visible' : ''}`}>
-          <video className="characterImageBig" autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
+          <video className={this.props.gameover === 'no_more_faith' ? "characterImageBig hide" : "characterImageBig"} autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
             <source src="asset/shaman.mp4" type="video/mp4"/>
+          </video>
+          <video className={this.props.gameover !== 'no_more_faith' ? "characterImageBig hide" : "characterImageBig"} autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
+            <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
           </video>
           <div className="shamanBigShield"></div>
           <div className="shamanMessage">

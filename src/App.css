@@ -410,3 +410,7 @@ body {
 .shamanNO {
   margin: 590px 0px 0 170px;
 }
+
+.hide {
+  opacity: 0 !important
+}
