@@ -1,10 +1,12 @@
 import {GameState} from 'src/core/reducer';
+import parameters from 'src/core/parameters';
 
 export const startIntro = () => (dispatch: any, getState: () => GameState) => {
   dispatch({type: 'START_INTRO'});
-  dispatch({type: 'PLAY_SOUND', sound: 'fornir'});
 
-  setTimeout(() => {}, 1000 * 12);
+  setTimeout(() => {
+    dispatch({type: 'PLAY_SOUND', sound: 'fornir'});
+  }, (parameters.introLength - 55) * 1000);
 };
 export const loadingUpdated = (progress: number) => ({
   type: 'LOADING_UPDATED',

@@ -132,7 +132,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         </div>
         <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.factAnnouncement ? 'announcementPhase' : ''} ${this.props.time < 4 && !this.props.isIntro && !this.props.isLanding ? 'newDay' : ''}`}>
           <div className="sacrificeInstruction">
-            Who do you want to sacrifice?<br/>
+            Who do you want to sacrifice?
             {parameters.cycleLength - this.props.time - 2 > 0 ? parameters.cycleLength - this.props.time - 3 : 0}
           </div>
           <div className="cycleInstruction">
@@ -277,6 +277,18 @@ export default connect((state: GameState): ViewState => ({
   factConfirmation: () => dispatch(factConfirmation()),
   dismissDecision: () => dispatch(dismissDecision()),
   letterConfirmation: () => dispatch(letterConfirmation()),
-  startIntro: () => dispatch(startIntro()),
+  startIntro: () => {
+    const root = document.getElementById('root');
+    if (null !== root && undefined !== root.requestFullscreen) {
+      root.requestFullscreen().then(() => {
+        dispatch(startIntro())
+      }).catch(() => {
+        dispatch(startIntro())
+      })
+    } else {
+      dispatch(startIntro())
+    }
+
+  },
   decisionConfirmation: (type: string) => dispatch(decisionConfirmation(type))
 }))(App);
