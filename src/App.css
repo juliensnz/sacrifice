@@ -67,7 +67,7 @@ body {
   height: 100vh;
   top: 0;
   left: 0;
-  background-image: url("images/screen.jpg");
+  background-image: url("images/background.png");
   background-repeat: no-repeat;
   background-color: white;
   background-position: bottom center;
@@ -76,7 +76,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 120px;
+  padding-top: 100px;
 }
 
 .intro .start {
