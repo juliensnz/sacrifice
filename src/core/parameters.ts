@@ -29,7 +29,7 @@ const parameters = {
   faithLevelStartRange: 80,
 
   // When a villager speaks, how much time it's displayed (second)
-  villagerMessageDuration: 3,
+  villagerMessageDuration: 4,
 
   // Time elapsed after the end of selection phase and before the next cycle
   timeToDisplayAnnouncement: 5,

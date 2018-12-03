@@ -131,6 +131,8 @@ class App extends React.Component<ViewState & ViewDispatch> {
   }
 
   public render() {
+    const progressInCycle = (this.props.time) / parameters.cycleLength;
+
     return (
       <React.Fragment>
         <div className={parameters.debug ? 'debug visible' : 'debug'}>
@@ -140,11 +142,11 @@ class App extends React.Component<ViewState & ViewDispatch> {
           trust: {Math.round(getTrust(this.props.aliveVillagers))}%
         </div>
         <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.factAnnouncement ? 'announcementPhase' : ''} ${this.props.time < 4 && !this.props.isIntro && !this.props.isLanding ? 'newDay' : ''}`}>
-          <div className="sacrificeInstruction">
-            Who do you want to sacrifice? {parameters.cycleLength - this.props.time - 2 > 0 ? parameters.cycleLength - this.props.time - 3 : 0}
+          <div className="moon">
+            <div className="mask" style={{top: `${((1 === progressInCycle ? 0 : progressInCycle) * 84) - 35}px`}}></div>
           </div>
-          <div className="cycleInstruction">
-            Next full moon in {parameters.cycleLength - this.props.time - parameters.selectionLength}
+          <div className="sacrificeInstruction">
+            Who do you want to sacrifice? {parameters.cycleLength - this.props.time - 4 > 0 ? parameters.cycleLength - this.props.time - 4 : 0}
           </div>
           <div className="characters">
             {this.props.villagers.map((villager: Villager) => (
@@ -258,7 +260,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className="anonymousLetter">
               <div className="letterContent">
                 <p>A people faithful to its Gods will tend to find a religious explanation to every event. A people which trust its ruler will understand and support its decisions.</p>
-                <p>The villagers must trust (TRUST SIGN) in you Jarl. But they also have faith (FAITH SIGN) in the Gods.</p>
+                <p>The villagers must trust (<span className="trustSign"></span>) in you Jarl. But they also have faith (<span className="faithSign"></span>) in the Gods.</p>
                 <p>Which kind of Jarl will you be?</p>
               </div>
               <div className="shamanOK" onClick={this.props.gameplayConfirmation}>OK</div>

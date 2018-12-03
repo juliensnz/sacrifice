@@ -99,6 +99,48 @@ body {
   width: 800px;
 }
 
+.trustSign, .faithSign {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  position: relative;
+  top: 12px;
+  background-size: auto 100%;
+  margin: 0 3px;
+}
+
+.moon {
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  top: -180px;
+  left: calc(50vw - 150px);
+  background-image: url("images/moon.png");
+  background-size: 100% 100%;
+  z-index: -1;
+}
+
+.moon .mask {
+  filter: blur(3px);
+  background: #181818;
+  width: 210px;
+  height: 210px;
+  position: relative;
+  border-radius: 10000px;
+  opacity: 0.95;
+  top: 42px;
+  transition: top 2s ease-in-out;
+  left: 47px;
+}
+
+.trustSign {
+  background: url("images/trust-sign.png");
+}
+
+.faithSign {
+  background: url("images/faith-sign.png");
+}
+
 .startGame {
   transition: transform .3s ease-in-out;
   font-size: 25px;
@@ -143,7 +185,7 @@ body {
   position: fixed;
   background-size: 100% 100%;
   transition: transform 2s ease-in-out;
-  transition-delay: 7s;
+  transition-delay: 8s;
 }
 
 .App .iris1 {
@@ -550,7 +592,7 @@ body {
 }
 
 .App.selectionPhase .sacrificeInstruction {
-  display: flex;
+  display: block;
 }
 
 .sacrificeInstruction {
@@ -578,7 +620,7 @@ body {
 }
 
 .letterContent {
-  font-size: 40px;
+  font-size: 30px;
   text-align: left;
   padding: 30px 95px 0 95px;
 }
