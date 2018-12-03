@@ -5,7 +5,7 @@ body, html, div {
 
 body {
   background-color: #181818;
-  background-image: url("background.png");
+  background-image: url("images/background.png");
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -44,7 +44,7 @@ body {
 .App .iris1 {
   top: 0;
   left: 0;
-  background-image: url("images/Texture_1.png");
+  background-image: url("images/images/Texture_1.png");
   transform: translate(-100vw, -100vw);
 }
 
@@ -55,7 +55,7 @@ body {
 .App .iris2 {
   bottom: 0;
   right: 0;
-  background-image: url("images/Texture_2.png");
+  background-image: url("images/images/Texture_2.png");
   transform: translate(100vw, 100vw);
 }
 
@@ -66,7 +66,7 @@ body {
 .App .iris3 {
   top: 0;
   right: 0;
-  background-image: url("images/Texture_3.png");
+  background-image: url("images/images/Texture_3.png");
   transform: translate(100vw, -100vw);
 }
 
@@ -77,22 +77,13 @@ body {
 .App .iris4 {
   bottom: 0;
   left: 0;
-  background-image: url("images/Texture_4.png");
+  background-image: url("images/images/Texture_4.png");
   transform: translate(-100vw, 100vw);
 }
 
 .App.selectionPhase .iris4 {
   transform: translate(0, 50vh);
 }
-
-/* .App.selectionPhase {
-  animation-name: fadeToBlack;
-  animation-duration: 10s;
-  animation-delay: 7s;
-  animation-timing-function: ease-in;
-  animation-iteration-count: 1;
-  clip-path: circle(1000px at center);
-} */
 
 .App.announcementPhase {
   animation-timing-function: linear;
@@ -172,11 +163,11 @@ body {
 }
 
 .characterPlumeLeft {
-  background-image: url('plumeleft.png');
+  background-image: url("images/plumeleft.png");
   margin-left: -134px;
 }
 .characterPlumeRight {
-  background-image: url('plumeright.png');
+  background-image: url("images/plumeright.png");
   margin-left: -10px;
 }
 
@@ -201,45 +192,45 @@ body {
 }
 
 .characterFaith {
-  background-image: url('faith-chaotic.png');
+  background-image: url("images/faith-chaotic.png");
   margin: -81px 0 0 -115px;
 }
 
 .characterFaith.bad {
-  background-image: url('faith-bad.png');
+  background-image: url("images/faith-bad.png");
 }
 .characterFaith.good {
-  background-image: url('faith-good.png');
+  background-image: url("images/faith-good.png");
 }
 .characterFaith.loyal {
-  background-image: url('faith-loyal.png');
+  background-image: url("images/faith-loyal.png");
 }
 
 .characterTrust.bad {
-  background-image: url('trust-bad.png');
+  background-image: url("images/trust-bad.png");
 }
 .characterTrust.good {
-  background-image: url('trust-good.png');
+  background-image: url("images/trust-good.png");
 }
 .characterTrust.loyal {
-  background-image: url('trust-loyal.png');
+  background-image: url("images/trust-loyal.png");
 }
 
 
 .characterTrust {
-  background-image: url('trust-chaotic.png');
+  background-image: url("images/trust-chaotic.png");
   margin: -81px 0 0 26px;
 }
 
 .characterPancarte {
   height: 190px;
   border-radius: 0;
-  background-image: url('pancarte.png');
+  background-image: url("images/pancarte.png");
   background-size: 100%;
 }
 
 .dead .characterPancarte {
-  background-image: url('pancartedead.png');
+  background-image: url("images/pancartedead.png");
 }
 
 .characterImageContainer.rot5 > *:not(.characterFaith):not(.characterTrust) {
@@ -285,7 +276,7 @@ body {
 }
 
 .characterShield {
-  background: url('hublot.png');
+  background: url("images/hublot.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -298,7 +289,7 @@ body {
 }
 
 .characterText {
-  background: url('Bulle.png');
+  background: url("images/Bulle.png");
   margin: -110px 0 0 -110px;
   width: 200px;
   height: 200px;
@@ -351,7 +342,7 @@ body {
   width: 100vw;
   height: 100vh;
   text-align: center;
-  background-image: url('bigPancarte.png');
+  background-image: url("images/bigPancarte.png");
   background-position: center 180px;
   background-repeat: no-repeat;
 }
@@ -383,7 +374,7 @@ body {
 }
 
 .shamanBigShield {
-  background-image: url('hublot.png');
+  background-image: url("images/hublot.png");
   width: 550px;
   height: 550px;
   background-size: contain;
@@ -408,7 +399,7 @@ body {
   height: 80px;
   display: inline-flex;
   position: absolute;
-  background: url('pancarteButton.png');
+  background: url("images/pancarteButton.png");
   background-repeat: no-repeat;
   background-size: contain;
   color: black;
