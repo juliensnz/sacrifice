@@ -27,5 +27,7 @@ loadAssets(assets.intro, console.log).then(() => {
     document.getElementById('root') as HTMLElement
     );
 
-    registerServiceWorker();
-  })
+  }
+);
+
+registerServiceWorker();
