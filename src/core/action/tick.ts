@@ -28,7 +28,7 @@ const whatToDo = () => (dispatch: any, getState: () => GameState) => {
   }
 
   // DISPLAY ANONYMOUS LETTER
-  if (parameters.anonymousLetterCycle === getState().cycle.time && 1 < getState().cycle.number) {
+  if (3 === getState().cycle.time && parameters.anonymousLetterCycle === getState().cycle.number) {
     dispatch(letterStart());
   }
 
