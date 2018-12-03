@@ -3,7 +3,14 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Villager, Decision} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
-import {toggleSacrificed, selectionStart, factConfirmation, dismissDecision, letterConfirmation} from 'src/core/action';
+import {
+  toggleSacrificed,
+  selectionStart,
+  factConfirmation,
+  dismissDecision,
+  letterConfirmation,
+  gameplayConfirmation
+} from 'src/core/action';
 import parameters from 'src/core/parameters';
 import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
 import gameMessages from 'src/data/game-messages';
@@ -24,6 +31,7 @@ type ViewState = {
     type: string;
   } | null;
   displayAnonymousLetter: boolean;
+  displayGameplay: boolean;
   selectionStarted: boolean,
   gameover: string|null
   isIntro: boolean
@@ -36,6 +44,7 @@ type ViewDispatch = {
   announcementValidation: () => void
   factConfirmation: () => void
   letterConfirmation: () => void
+  gameplayConfirmation: () => void
   dismissDecision: () => void
   startIntro: () => void
   decisionConfirmation: (type: string) => void
@@ -245,6 +254,18 @@ class App extends React.Component<ViewState & ViewDispatch> {
             </div>
           </div>
         </div>
+        <div className={`gameplayAnnouncement ${this.props.displayGameplay ? 'visible' : ''}`}>
+          <div className="letterPopinContainer">
+            <div className="anonymousLetter">
+              <div className="letterContent">
+                <p>A people faithful to its Gods will tend to find a religious explanation to every event. A people which trust its ruler will understand and support its decisions.</p>
+                <p>The villagers must trust (TRUST SIGN) in you Jarl. But they also have faith (FAITH SIGN) in the Gods.</p>
+                <p>Which kind of Jarl will you be?</p>
+              </div>
+              <div className="shamanOK" onClick={this.props.gameplayConfirmation}>OK</div>
+            </div>
+          </div>
+        </div>
         {this.props.isIntro ? <Intro /> : null}
         {this.props.isLanding ? (
         <div className="landing">
@@ -270,13 +291,15 @@ export default connect((state: GameState): ViewState => ({
   isIntro: state.isIntro,
   isLanding: state.isLanding,
   messager: state.cycle.messager,
-  displayAnonymousLetter: state.anonymousLetterDisplayed
+  displayAnonymousLetter: state.anonymousLetterDisplayed,
+  displayGameplay: state.gameplayDisplayed
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart()),
   factConfirmation: () => dispatch(factConfirmation()),
   dismissDecision: () => dispatch(dismissDecision()),
   letterConfirmation: () => dispatch(letterConfirmation()),
+  gameplayConfirmation: () => dispatch(gameplayConfirmation()),
   startIntro: () => dispatch(startIntro()),
   decisionConfirmation: (type: string) => dispatch(decisionConfirmation(type))
 }))(App);

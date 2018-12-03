@@ -450,7 +450,14 @@ body {
   left: 100px;
 }
 
-.sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement, .decisionAnswer, .anonymousLetterAnnouncement {
+
+.sacrificeAnnouncement,
+.factAnnouncement,
+.decisionAnnouncement,
+.gameoverAnnouncement,
+.decisionAnswer,
+.anonymousLetterAnnouncement,
+.gameplayAnnouncement {
   background: #000000ed;
   display: none;
   position: fixed;
@@ -467,7 +474,8 @@ body {
 .decisionAnswer.visible,
 .decisionAnnouncement.visible,
 .factAnnouncement.visible,
-.anonymousLetterAnnouncement.visible {
+.anonymousLetterAnnouncement.visible,
+.gameplayAnnouncement.visible {
   display: flex;
   opacity: 1;
   animation: visible 2s ease-out;

@@ -22,6 +22,7 @@ export type GameState = {
   paused: boolean;
   gameover: string | null;
   anonymousLetterDisplayed: boolean;
+  gameplayDisplayed: boolean;
 };
 
 const initialVillagers = Array.apply(null, Array(parameters.villagerCount)).map(generateVillager) as Villager[];
@@ -47,6 +48,7 @@ const initialState = {
   paused: false,
   gameover: null,
   anonymousLetterDisplayed: false,
+  gameplayDisplayed: false,
 };
 
 export default (state: GameState = initialState, action: any) => {
@@ -110,6 +112,14 @@ export default (state: GameState = initialState, action: any) => {
 
     case 'LETTER_CONFIRMATION':
       state = {...state, paused: false, anonymousLetterDisplayed: false};
+      break;
+
+    case 'GAMEPLAY_START':
+      state = {...state, paused: true, gameplayDisplayed: true};
+      break;
+
+    case 'GAMEPLAY_CONFIRMATION':
+      state = {...state, paused: false, gameplayDisplayed: false};
       break;
 
     case 'DECISION_START':
