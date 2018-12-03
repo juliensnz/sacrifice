@@ -32,7 +32,7 @@ const parameters = {
   villagerMessageDuration: 4,
 
   // Time elapsed after the end of selection phase and before the next cycle
-  timeToDisplayAnnouncement: 5,
+  timeToDisplayAnnouncement: 4,
 
   // The impact of events on faith, when we sacrificed someone
   faithSacrificeImpact: 1,
@@ -57,6 +57,9 @@ const parameters = {
 
   // The cycle when the anonymous should appear to warn about the shaman
   anonymousLetterCycle: 3,
+
+  //When to display the gameplay mechanics (during first cycle) in second
+  gameplayMechanicsLength: 7,
 };
 
 export default parameters;

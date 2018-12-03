@@ -27,11 +27,20 @@ body {
   background: black;
 }
 
+.advice {
+  color: white;
+  width: 500px;
+  height: 200px;
+  margin: auto;
+  position: relative;
+  margin-top: 300px;
+  text-align: center;
+}
+
 .landing .startButton {
   display: block;
   margin: auto;
   text-align: center;
-  margin-top: 400px;
   color: white;
   font-size: 40px;
   transition: transform .3s ease-in-out;

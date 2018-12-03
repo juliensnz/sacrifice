@@ -260,7 +260,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className="anonymousLetter">
               <div className="letterContent">
                 <p>A people faithful to its Gods will tend to find a religious explanation to every event. A people which trust its ruler will understand and support its decisions.</p>
-                <p>The villagers must trust (<span className="trustSign"></span>) in you Jarl. But they also have faith (<span className="faithSign"></span>) in the Gods.</p>
+                <p>The villagers must trust (<span className="trustSign"></span>) you. But they also have faith (<span className="faithSign"></span>) in the Gods.</p>
                 <p>Which kind of Jarl will you be?</p>
               </div>
               <div className="shamanOK" onClick={this.props.gameplayConfirmation}>OK</div>
@@ -270,6 +270,11 @@ class App extends React.Component<ViewState & ViewDispatch> {
         {this.props.isIntro ? <Intro /> : null}
         {this.props.isLanding ? (
         <div className="landing">
+          <div className="advice">
+            Better experienced with headphones and fullscreen.<br/>
+            This game tells a story.<br/>
+            Read and listen carefouly.
+          </div>
           <span className="startButton" onClick={this.props.startIntro}>Start</span>
         </div>
         ) : null}

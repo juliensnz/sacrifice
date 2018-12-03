@@ -22,13 +22,13 @@ export const endCycle = () => (dispatch: any, getState: () => GameState) => {
   dispatch({type: 'REGISTER_GAME_EVENT', gameEvent: getRandomArray(eventChoices)});
 
   const numberOfSacrificed = getSelectedVillagers(getState().villagers).length;
-  dispatch({type: 'END_CYCLE'});
-  dispatch({type: 'PLAY_SOUND', sound: 0 === numberOfSacrificed ? 'no_sacrifice' : 'sacrifice'});
-
   const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
   const aliveVillagers = getAliveVillagers(getState().villagers);
   const trustLevel = getTrust(aliveVillagers);
   const faithLevel = getFaith(aliveVillagers);
+
+  dispatch({type: 'END_CYCLE'});
+  dispatch({type: 'PLAY_SOUND', sound: 0 === numberOfSacrificed ? 'no_sacrifice' : 'sacrifice'});
 
   setTimeout(() => {
     dispatch(factAnnouncement());

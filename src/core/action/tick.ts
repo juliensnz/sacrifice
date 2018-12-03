@@ -6,7 +6,7 @@ import {endCycle} from 'src/core/action/cycle';
 import {MessagesGenerators} from 'src/core/action/message';
 import {selectionAnnouncement} from 'src/core/action/announcement';
 import {startDecision} from 'src/core/action/decision';
-import {gameplayStart, letterStart} from "../action";
+import {gameplayStart, letterStart} from '../action';
 
 export const tick = () => (dispatch: any) => {
   dispatch({type: 'TICK'});
@@ -33,7 +33,7 @@ const whatToDo = () => (dispatch: any, getState: () => GameState) => {
   }
 
   // GAMEPLAY MECHANICS CYCLE 1
-  if (5 === getState().cycle.time && 1 === getState().cycle.number) {
+  if (parameters.gameplayMechanicsLength === getState().cycle.time && 1 === getState().cycle.number) {
     dispatch(gameplayStart());
   }
 
@@ -69,8 +69,9 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
     return Math.max(faithLevel, trustLevel) / 50; // Value from 0 to 1
   };
 
-  const nonSpeakingAliveVillagers = getAliveVillagers(getState().villagers)
-    .filter(villager => villager.message === null);
+  const nonSpeakingAliveVillagers = getAliveVillagers(getState().villagers).filter(
+    villager => villager.message === null
+  );
 
   if (nonSpeakingAliveVillagers.length === 0) {
     return;
