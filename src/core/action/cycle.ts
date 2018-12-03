@@ -23,12 +23,13 @@ export const endCycle = () => (dispatch: any, getState: () => GameState) => {
 
   const numberOfSacrificed = getSelectedVillagers(getState().villagers).length;
   const getAliveVillagers = (villagers: Villager[]) => villagers.filter((villager: Villager) => villager.alive);
-  const aliveVillagers = getAliveVillagers(getState().villagers);
-  const trustLevel = getTrust(aliveVillagers);
-  const faithLevel = getFaith(aliveVillagers);
 
   dispatch({type: 'END_CYCLE'});
   dispatch({type: 'PLAY_SOUND', sound: 0 === numberOfSacrificed ? 'no_sacrifice' : 'sacrifice'});
+
+  const aliveVillagers = getAliveVillagers(getState().villagers);
+  const trustLevel = getTrust(aliveVillagers);
+  const faithLevel = getFaith(aliveVillagers);
 
   setTimeout(() => {
     dispatch(factAnnouncement());

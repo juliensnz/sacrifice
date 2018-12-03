@@ -47,6 +47,7 @@ type ViewDispatch = {
   gameplayConfirmation: () => void
   dismissDecision: () => void
   startIntro: () => void
+  restart: () => void
   decisionConfirmation: (type: string) => void
 }
 
@@ -204,6 +205,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className="shamanMessage">
               {null !== this.props.gameover ? gameMessages.gameover[this.props.gameover] : ''}
             </div>
+          <span className="shamanOK" onClick={this.props.restart}>Replay</span>
           </div>
         </div>
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
@@ -307,5 +309,6 @@ export default connect((state: GameState): ViewState => ({
   letterConfirmation: () => dispatch(letterConfirmation()),
   gameplayConfirmation: () => dispatch(gameplayConfirmation()),
   startIntro: () => dispatch(startIntro()),
+  restart: () => window.location.reload(),
   decisionConfirmation: (type: string) => dispatch(decisionConfirmation(type))
 }))(App);
