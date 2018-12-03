@@ -496,7 +496,7 @@ body {
 .shamanMessage {
   left: 350px;
   top: 120px;
-  width: 428px;
+  width: 528px;
   font-size: 29px;
   text-align: left;
   display: inline-flex;
@@ -539,6 +539,15 @@ body {
 
 .sacrificeInstruction {
   display: none;
+  font-size: 40px;
+  text-align: center;
+}
+
+.App.selectionPhase .cycleInstruction {
+  display: none;
+}
+
+.cycleInstruction {
   font-size: 40px;
   text-align: center;
 }
