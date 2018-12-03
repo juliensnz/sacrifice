@@ -10,11 +10,11 @@
 (ECRAN NOIR, LE CONTEXTE EST EXPLIQUE AVANT LE DEBUT, COMME DANS UN FILM)
 (CHAQUE PARAGRAPHE DOIT S'AFFICHER EN FONDU)
 
-For ages **Vikings** raided and traded from their Northern European homelands across wide areas of Europe. The Viking society was divided into the three socio-economic classes: **Thralls**, **Karls** and **Jarls**.
+For ages **Vikings** raided and traded from their Northern European homelands across wide areas of Europe.
 
-**Thralls** were the lowest ranking class and were slaves. **Karls** were free peasants. They owned farms, land and cattle and engaged in daily chores like plowing the fields, milking the cattle, building houses and wagons, but used thralls to make ends meet.
+This pagan people believed in numerous anthropomorphic **Gods** and **Goddesses** who express human emotions and in some cases are married and have children.  Among them, Odin, Frigg, Thor, Aegir, Týr, Loki, Freyja, Heimdall and Balder are some of the most well-known.
 
-The **Jarls** were the aristocracy of the Viking society. They were wealthy and owned large estates with huge longhouses, horses and many thralls. They took care of administration, politics, hunting, sports, visited other **Jarls** or were abroad on expeditions. When a **Jarl** died and was buried, his household **Thralls** were sometimes sacrificially killed and buried next to him.
+The Viking society was divided into the three socio-economic classes: Thralls, Karls and **Jarls**. Thralls were the lowest ranking class and were slaves. Karls were free peasants. They owned farms, land and cattle. The **Jarls** were the aristocracy of the Viking society. They were wealthy, owned large estates and care of administration, politics, hunting, sports, visited other **Jarls** or were abroad on expeditions. When a **Jarl** died and was buried, his household thralls were sometimes **sacrificially killed** and buried next to him.
 
 ### Story
 
@@ -62,4 +62,3 @@ Ah ah ah! My people don't trust you anymore. They started a rebellion and electe
 My Jarl, on behalf of the whole village, thank you. Our people is free. Free from this malicious shaman. Free from this horrible ritual. Free from those useless beliefs. Decades of darkness are now behind us. The future is bright. You have opened our eyes and showed us the true light. Your are the worthy heir of your father. Long live the Jarl!
 
 – A villager
-
