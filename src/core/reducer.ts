@@ -6,6 +6,7 @@ export type GameState = {
   villagers: Villager[];
   previousCycles: Cycle[];
   isIntro: boolean;
+  isLanding: boolean;
   cycle: Cycle;
   decision: Decision | null;
   decisionAnswer: string | null;
@@ -25,6 +26,7 @@ const initialState = {
   villagers: Array.apply(null, Array(parameters.villagerCount)).map(generateVillager),
   previousCycles: [],
   isIntro: false,
+  isLanding: true,
   cycle: {
     number: 0,
     time: 0,
@@ -46,6 +48,7 @@ export default (state: GameState = initialState, action: any) => {
     case 'START_INTRO':
       state = {
         ...state,
+        isLanding: false,
         isIntro: true,
       };
       break;

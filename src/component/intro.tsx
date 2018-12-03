@@ -32,7 +32,7 @@ class Intro extends React.Component<{visible: boolean, onStartGame: () => void}>
       currentTime += paragraph.length * letterTime;
     });
 
-    scheduleMessage(historicContextMessages.length + storyMessages.length + 1, currentTime);
+    scheduleMessage(historicContextMessages.length + storyMessages.length + 1, currentTime + 3000);
 
     this.setState({visible: true, step: 0});
   }
@@ -53,7 +53,7 @@ class Intro extends React.Component<{visible: boolean, onStartGame: () => void}>
         <video className="logo" autoPlay loop muted ref={this.logoVideo}>
           <source src={`asset/logo.mp4`} type="video/mp4"/>
         </video>
-        <div className="startGame" onClick={this.props.onStartGame}>Start game</div>
+        <div className="startGame" onClick={this.props.onStartGame}>Let's rule</div>
       </div>
     </div>)
   }

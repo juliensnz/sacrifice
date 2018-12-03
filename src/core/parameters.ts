@@ -2,7 +2,7 @@ const parameters = {
   debug: false,
 
   // Length of the intro phase
-  introLength: 20,
+  introLength: 10,
 
   // Time in second for one cycle
   cycleLength: 60,

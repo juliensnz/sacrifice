@@ -9,6 +9,7 @@ import {getAliveVillagers, getFaith, getRandomArray, getTrust} from 'src/core/ut
 import gameMessages from 'src/data/game-messages';
 import {decisionConfirmation} from 'src/core/action/decision';
 import Intro from 'src/component/intro';
+import {startIntro} from 'src/core/action/intro';
 
 type ViewState = {
   villagers: Villager[]
@@ -25,6 +26,7 @@ type ViewState = {
   selectionStarted: boolean,
   gameover: string|null
   isIntro: boolean
+  isLanding: boolean
 }
 
 type ViewDispatch = {
@@ -32,6 +34,7 @@ type ViewDispatch = {
   announcementValidation: () => void
   factConfirmation: () => void
   dismissDecision: () => void
+  startIntro: () => void
   decisionConfirmation: (type: string) => void
 }
 
@@ -124,7 +127,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
           faith: {Math.round(getFaith(this.props.aliveVillagers))}%<br/>
           trust: {Math.round(getTrust(this.props.aliveVillagers))}%
         </div>
-        <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.factAnnouncement ? 'announcementPhase' : ''} ${this.props.time < 4 ? 'newDay' : ''}`}>
+        <div className={`App ${this.props.selectionStarted ? 'selectionPhase' : ''} ${this.props.factAnnouncement ? 'announcementPhase' : ''} ${this.props.time < 4 && !this.props.isIntro && !this.props.isLanding ? 'newDay' : ''}`}>
           <div className="sacrificeInstruction">
             Choose people to sacrifice... <br/>
             {parameters.cycleLength - this.props.time}
@@ -225,6 +228,11 @@ class App extends React.Component<ViewState & ViewDispatch> {
           </div>
         </div>
         {this.props.isIntro ? <Intro /> : null}
+        {this.props.isLanding ? (
+        <div className="landing">
+          <span className="startButton" onClick={this.props.startIntro}>Start</span>
+        </div>
+        ) : null}
       </React.Fragment>
     );
   }
@@ -241,11 +249,13 @@ export default connect((state: GameState): ViewState => ({
   decisionAnswer: state.decisionAnswer,
   selectionStarted: state.selectionStarted,
   gameover: state.gameover,
-  isIntro: state.isIntro
+  isIntro: state.isIntro,
+  isLanding: state.isLanding
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart()),
   factConfirmation: () => dispatch(factConfirmation()),
   dismissDecision: () => dispatch(dismissDecision()),
+  startIntro: () => dispatch(startIntro()),
   decisionConfirmation: (type: string) => dispatch(decisionConfirmation(type))
 }))(App);
