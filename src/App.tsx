@@ -183,7 +183,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
               <source src="asset/shaman.mp4" type="video/mp4"/>
             </video>
             <video className={this.props.gameover !== 'no_more_faith' ? "characterImageBig hide" : "characterImageBig"} autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
-              <source src={`asset/small/viking_${this.props.messager.asset}.mp4`} type="video/mp4"/>
+              <source src={`asset/small/${this.props.messager.asset}.mp4`} type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
             <div className="shamanMessage">
@@ -194,7 +194,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
           <div className="popinContainer">
             <video className="characterImageBig" autoPlay loop muted ref={this.factAnnouncementVideo}>
-              <source src={`asset/small/viking_${this.props.messager.asset}.mp4`} type="video/mp4"/>
+              <source src={`asset/small/${this.props.messager.asset}.mp4`} type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
             <div className="shamanMessage">
@@ -206,7 +206,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         <div className={`decisionAnnouncement ${null !== this.props.decisionAnnouncement ? 'visible' : ''}`}>
           <div className="popinContainer">
             <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnnouncementVideo}>
-              <source src={`asset/small/viking_${this.props.messager.asset}.mp4`} type="video/mp4"/>
+              <source src={`asset/small/${this.props.messager.asset}.mp4`} type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
             <div className="shamanMessage">
@@ -219,7 +219,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
         <div className={`decisionAnswer ${null !== this.props.decisionAnswer ? 'visible' : ''}`}>
           <div className="popinContainer">
             <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnswerVideo}>
-              <source src={`asset/small/viking_${this.props.messager.asset}.mp4`} type="video/mp4"/>
+              <source src={`asset/small/${this.props.messager.asset}.mp4`} type="video/mp4"/>
             </video>
             <div className="shamanBigShield"></div>
             <div className="shamanMessage">
