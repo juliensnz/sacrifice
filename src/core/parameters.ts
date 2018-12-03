@@ -1,6 +1,9 @@
 const parameters = {
   debug: false,
 
+  // Length of the intro phase
+  introLength: 20,
+
   // Time in second for one cycle
   cycleLength: 60,
 

@@ -5,6 +5,7 @@ import {applyGameEvent, applyDecisionEvent} from 'src/core/reducer/villager';
 export type GameState = {
   villagers: Villager[];
   previousCycles: Cycle[];
+  isIntro: boolean;
   cycle: Cycle;
   decision: Decision | null;
   decisionAnswer: string | null;
@@ -23,6 +24,7 @@ export type GameState = {
 const initialState = {
   villagers: Array.apply(null, Array(parameters.villagerCount)).map(generateVillager),
   previousCycles: [],
+  isIntro: false,
   cycle: {
     number: 0,
     time: 0,
@@ -41,6 +43,20 @@ const initialState = {
 
 export default (state: GameState = initialState, action: any) => {
   switch (action.type) {
+    case 'START_INTRO':
+      state = {
+        ...state,
+        isIntro: true,
+      };
+      break;
+
+    case 'START_GAME':
+      state = {
+        ...state,
+        isIntro: false,
+      };
+      break;
+
     case 'START_CYCLE':
       state = {
         ...state,

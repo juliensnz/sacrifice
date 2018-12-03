@@ -12,9 +12,101 @@ body {
   overflow-x: hidden;
 }
 
+
 @keyframes newDay {
   from {opacity: 0}
   to {opacity: 1}
+}
+
+.intro {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  background: black;
+}
+
+.intro.visible, .intro .historic-context.visible, .intro .story.visible, .intro .start.visible {
+  opacity: 1;
+}
+
+.intro .historic-context {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: black;
+  color: white;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 120px;
+}
+
+.intro .story {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: url("images/screen.jpg");
+  background-repeat: no-repeat;
+  background-color: white;
+  background-position: bottom center;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 120px;
+}
+
+.intro .start {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: url("images/background.png");
+  background-repeat: no-repeat;
+  background-color: white;
+  background-position: bottom center;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 800px;
+}
+
+.startGame {
+  font-size: 25px;
+}
+
+.startGame:hover {
+  font-weight: bold;
+}
+
+.paragraph {
+  width: 55vw;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.paragraph.visible {
+  opacity: 1;
 }
 
 .App {

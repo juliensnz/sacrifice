@@ -8,6 +8,7 @@ import parameters from 'src/core/parameters';
 import {getAliveVillagers, getFaith, getRandomArray, getTrust} from 'src/core/utils';
 import gameMessages from 'src/data/game-messages';
 import {decisionConfirmation} from 'src/core/action/decision';
+import Intro from 'src/component/intro';
 
 type ViewState = {
   villagers: Villager[]
@@ -23,6 +24,7 @@ type ViewState = {
   } | null;
   selectionStarted: boolean,
   gameover: string|null
+  isIntro: boolean
 }
 
 type ViewDispatch = {
@@ -208,6 +210,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
           </div>
           <div className="shamanOK" onClick={this.props.dismissDecision}>OK</div>
         </div>
+        {this.props.isIntro ? <Intro /> : null}
       </React.Fragment>
     );
   }
@@ -223,7 +226,8 @@ export default connect((state: GameState): ViewState => ({
   decisionAnnouncement: state.decision,
   decisionAnswer: state.decisionAnswer,
   selectionStarted: state.selectionStarted,
-  gameover: state.gameover
+  gameover: state.gameover,
+  isIntro: state.isIntro
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart()),

@@ -1,5 +1,5 @@
 export default {
-  intro: ['asset/fornir.mp3', 'asset/screen.jpg'],
+  intro: ['asset/logo.mp4', 'asset/fornir.mp3', 'asset/screen.jpg'],
   game: [
     'asset/shaman.mp4',
     'asset/death.mp4',
