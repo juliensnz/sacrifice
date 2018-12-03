@@ -76,7 +76,21 @@ export default {
         "As far as ancients can remember, temperatures have never been that low.",
       ],
       consequences: [
-        {consequence: "Our crops have become uneatable.", coef: -8},
+        {
+          consequence: "Our crops have become uneatable.",
+          coef: -8,
+          decision: {
+            text: "Do you want to send merchants to Märsta to buy wheat, fish and meat?",
+            yes: {
+              coef: 1,
+              text: "Merchants came back. They negotiated a good price. We'll be able to hold out until spring.",
+            },
+            no: {
+              coef: -1,
+              text: "The farmers checked their barns and are formal. We don't enough to hold out until winter."
+            },
+          },
+        },
         {consequence: "Fortunately, our wood stocks are enough.", coef: -0},
         {
           consequence:
@@ -91,9 +105,23 @@ export default {
     },
     {
       type: "lost battle",
-      facts: ["We lost the battle in the East.", "Our warriors have been ambushed."],
+      facts: ["We lost the battle at Skálholt.", "Our warriors have been ambushed at Tissø."],
       consequences: [
-        {consequence: "All our proud warriors have fallen in battle. Let them rest in Valhalla.", coef: -10},
+        {
+          consequence: "All our proud warriors have fallen in battle. Let them rest in Valhalla.",
+          coef: -10,
+          decision: {
+            text: "We are low in food, but do you want to organize a feast to honor their memory?",
+            yes: {
+              coef: -1,
+              text: "This feast was an error. We won't have enough to hold on until winter.",
+            },
+            no: {
+              coef: 1,
+              text: "It's a wise decision. We have to think about the alive villagers first. We'll bury them with the honors they deserve."
+            },
+          },
+        },
         {consequence: "We preferred to flee to save our lives.", coef: -3},
       ],
     },
@@ -106,10 +134,35 @@ export default {
       consequences: [
         {
           consequence:
-            "The epidemic is spreading far too quickly. Almost all the village has already contracted the disease.",
+            "The epidemic is spreading far too quickly. Almost a quarter of the villages have already contracted the disease.",
           coef: -9,
+          decision: {
+            text: "I'm afraid it's already too late but should we pick the doctor of Garðaríki up?",
+            yes: {
+              coef: 1,
+              text: "The doctor was able to save a few persons and quarantine the others. The contamination stopped.",
+            },
+            no: {
+              coef: -1,
+              text: "The contamination keeps on spreading quickly. Half the village is dead. It's a disaster!"
+            },
+          },
         },
-        {consequence: "We do not know how to cure them, their days are counted.", coef: -5},
+        {
+          consequence: "We do not know how to cure them, their days are counted.",
+          coef: -5,
+          decision: {
+            text: "Should we end their suffering?",
+            yes: {
+              coef: 1,
+              text: "This stops the contamination. It was a blessing in disguise.",
+            },
+            no: {
+              coef: -1,
+              text: "They contaminated other villagers!"
+            },
+          },
+        },
         {consequence: "They seem to recover, but they keep severe sequelae.", coef: -3},
         {consequence: "Fortunately, our shaman was able to find a cure for them.", coef: -1},
       ],
@@ -154,7 +207,21 @@ export default {
       ],
       consequences: [
         {consequence: "Our fields are ravaged, it's terrible.", coef: -4},
-        {consequence: "Harvests got mold, it is a big lack for the community.", coef: -8},
+        {
+          consequence: "Harvests got mold, it is a big lack for the community.",
+          coef: -8,
+          decision: {
+            text: "Do you want to send merchants to Märsta to buy wheat, fish and meat?",
+            yes: {
+              coef: 1,
+              text: "Merchants came back. They negotiated a good price. We'll be able to hold out until spring.",
+            },
+            no: {
+              coef: -1,
+              text: "The farmers checked their barns and are formal. We don't enough to hold out until winter."
+            },
+          },
+        },
       ],
     },
     {
@@ -165,10 +232,48 @@ export default {
         "A bear injured a villager.",
       ],
       consequences: [
-        {consequence: "We buried what's left of the victim's body.", coef: -5},
+        {
+          consequence: "We buried what's left of the victim's body.", coef: -5, decision: {
+            text: "Do you want to hunt down the wild animals which are roaming around the village?",
+            yes: {
+              coef: 1,
+              text: "Hunters came back. They killed two wolves and one bear. We're safe now.",
+            },
+            no: {
+              coef: -1,
+              text: "A wolf came closer to the village and afraid the kids that were playing."
+            },
+          },
+        },
         {consequence: "He died instantly.", coef: -4},
-        {consequence: "She died instantly.", coef: -4},
-        {consequence: "We had to amputate him to save his life. But now he's safe.", coef: -2},
+        {
+          consequence: "She died instantly.",
+          coef: -4,
+          decision: {
+            text: "Do you want to hunt down the wild animals which are roaming around the village?",
+            yes: {
+              coef: 1,
+              text: "Hunters came back. They killed two wolves and one bear. We're safe now.",
+            },
+            no: {
+              coef: -1,
+              text: "A wolf came closer to the village and afraid the kids that were playing."
+            },
+          },
+        },
+        {
+          consequence: "We had to amputate him to save his life. But now he's safe.", coef: -2, decision: {
+            text: "Do you want to hunt down the wild animals which are roaming around the village?",
+            yes: {
+              coef: -1,
+              text: "Hunters came back. Two of them are wounded.",
+            },
+            no: {
+              coef: -1,
+              text: "A wolf came closer to the village and afraid the kids that were playing."
+            },
+          },
+        },
       ],
     },
   ],
