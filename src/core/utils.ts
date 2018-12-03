@@ -38,13 +38,14 @@ export const loadAssets = async (assetPaths: string[], onUpdate: (progress: numb
     assetPaths.map(async (path: string) => {
       await loadAsset(path);
       assetDownloadedCount++;
-      onUpdate(assetDownloadedCount);
+      onUpdate(assetDownloadedCount / assetPaths.length);
     })
   );
 };
 
 const loadAsset = async (path: string): Promise<void> => {
   const extension = path.split('.').pop();
+  const basePath = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + '/';
 
   switch (extension) {
     case 'png':
@@ -66,7 +67,7 @@ const loadAsset = async (path: string): Promise<void> => {
       return new Promise<void>((resolve: any) => {
         const downloadingVideo = document.createElement('video');
         downloadingVideo.muted = true;
-        downloadingVideo.src = window.location + path;
+        downloadingVideo.src = basePath + path;
         downloadingVideo.play().then(() => {
           resolve();
         });
@@ -84,7 +85,7 @@ const loadAsset = async (path: string): Promise<void> => {
           },
           false
         );
-        downloadingAudio.src = window.location + path;
+        downloadingAudio.src = basePath + path;
         downloadingAudio.muted = true;
         downloadingAudio.load();
       });
