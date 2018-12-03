@@ -42,3 +42,24 @@ My dear Jarl,
 The shaman is malicious and cruel. He is not looking for the forgiveness of the Gods, but rather to increase its own power. Please, don't trust its advises blindly, this could lead to your end, and to the despair of your people.
 
 – An anonymous inhabitant that wants the well-being of his fellow citizen.
+
+## Game over
+
+### All villagers sacrificed
+
+Ah ah ah! You really listened to me and sacrificed all of your people? You fool. It has always been so difficult to convince your father. But it was a piece of cake with you. You're my pet now. You're, my puppet. And I have a last sacrifice to perform... The Gods will be proud of me! Ah ah ah!
+
+– The shaman
+
+### No more trust
+
+Ah ah ah! My people don't trust you anymore. They they started a rebellion and elected me as their new Jarl. I finally obtain what I always wanted. Your father was too powerful and respected. But you... You wretch... You are nothing. Guards! Put him in jail! He will be the next sacrificed! He will be my gift for them! Ah ah ah!
+
+– The shaman
+
+### No more faith
+
+On behalf of the whole village, thank you my Jarl. Our people is free. Free from this malicious shaman. Free from this horrible ritual. Free from those useless beliefs. Decades of darkness will move on a bright future. You have opened our eyes and showed us the true light. Hail to the Jarl!
+
+– A villager
+
