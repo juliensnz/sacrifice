@@ -264,7 +264,8 @@ body {
 
 .characterImageBig {
   border-radius: 1000px;
-  margin: 100px 0 0 -603px;
+  left: -170px;
+  top: -135px;
   width: 450px;
   position: absolute;
 }
@@ -327,6 +328,14 @@ body {
   display: none;
 }
 
+.popinContainer {
+  width: 990px;
+  height: 500px;
+  position: relative;
+  background-image: url("images/bigPancarte.png");
+  background-repeat: no-repeat;
+}
+
 .sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement, .decisionAnswer {
   background: black;
   display: none;
@@ -336,22 +345,21 @@ body {
   width: 100vw;
   height: 100vh;
   text-align: center;
-  background-image: url("images/bigPancarte.png");
-  background-position: center 180px;
-  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
 }
 
 .sacrificeAnnouncement.visible,
 .decisionAnswer.visible,
 .decisionAnnouncement.visible,
 .factAnnouncement.visible {
-  display: block;
+  display: flex;
   opacity: 1;
   animation: visible 2s ease-out;
 }
 
 .gameoverAnnouncement.visible {
-  display: block;
+  display: flex;
   opacity: 1;
   animation: visible 4s ease-out;
 }
@@ -374,11 +382,13 @@ body {
   background-size: contain;
   display: inline-flex;
   position: absolute;
-  margin: 50px 0 0 -650px;
+  left: -215px;
+  top: -175px;
 }
 
 .shamanMessage {
-  margin: 310px 0 0 -70px;
+  left: 350px;
+  top: 120px;
   width: 428px;
   font-size: 29px;
   text-align: left;
@@ -388,7 +398,8 @@ body {
 }
 
 .shamanOK, .shamanYES, .shamanNO {
-  margin: 590px 0px 0 120px;
+  bottom: -20px;
+  right: 95px;
   width: 200px;
   height: 80px;
   display: inline-flex;

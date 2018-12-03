@@ -151,14 +151,16 @@ class App extends React.Component<ViewState & ViewDispatch> {
             ) )}
           </div>
           <div className={`sacrificeAnnouncement ${null !== this.props.sacrificeAnnouncement ? 'visible' : ''}`}>
-            <video className="characterImageBig" autoPlay loop muted>
-              <source src="asset/shaman.mp4" type="video/mp4"/>
-            </video>
-            <div className="shamanBigShield"></div>
-            <div className="shamanMessage">
-              {this.props.sacrificeAnnouncement}
+            <div className="popinContainer">
+              <video className="characterImageBig" autoPlay loop muted>
+                <source src="asset/shaman.mp4" type="video/mp4"/>
+              </video>
+              <div className="shamanBigShield"></div>
+              <div className="shamanMessage">
+                {this.props.sacrificeAnnouncement}
+              </div>
+              <div className="shamanOK" onClick={this.props.announcementValidation}>OK</div>
             </div>
-            <div className="shamanOK" onClick={this.props.announcementValidation}>OK</div>
           </div>
           <div className="iris1"/>
           <div className="iris2"/>
@@ -166,47 +168,55 @@ class App extends React.Component<ViewState & ViewDispatch> {
           <div className="iris4"/>
         </div>
         <div className={`gameoverAnnouncement ${null !== this.props.gameover ? 'visible' : ''}`}>
-          <video className={this.props.gameover === 'no_more_faith' ? "characterImageBig hide" : "characterImageBig"} autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
-            <source src="asset/shaman.mp4" type="video/mp4"/>
-          </video>
-          <video className={this.props.gameover !== 'no_more_faith' ? "characterImageBig hide" : "characterImageBig"} autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
-            <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
-          </video>
-          <div className="shamanBigShield"></div>
-          <div className="shamanMessage">
-            {null !== this.props.gameover ? gameMessages.gameover[this.props.gameover] : ''}
+          <div className="popinContainer">
+            <video className={this.props.gameover === 'no_more_faith' ? "characterImageBig hide" : "characterImageBig"} autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
+              <source src="asset/shaman.mp4" type="video/mp4"/>
+            </video>
+            <video className={this.props.gameover !== 'no_more_faith' ? "characterImageBig hide" : "characterImageBig"} autoPlay loop muted ref={this.gameoverAnnouncementVideo}>
+              <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+            </video>
+            <div className="shamanBigShield"></div>
+            <div className="shamanMessage">
+              {null !== this.props.gameover ? gameMessages.gameover[this.props.gameover] : ''}
+            </div>
           </div>
         </div>
         <div className={`factAnnouncement ${null !== this.props.factAnnouncement ? 'visible' : ''}`}>
-          <video className="characterImageBig" autoPlay loop muted ref={this.factAnnouncementVideo}>
-            <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
-          </video>
-          <div className="shamanBigShield"></div>
-          <div className="shamanMessage">
-            {null !== this.props.factAnnouncement ? this.props.factAnnouncement.text : ''}
+          <div className="popinContainer">
+            <video className="characterImageBig" autoPlay loop muted ref={this.factAnnouncementVideo}>
+              <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+            </video>
+            <div className="shamanBigShield"></div>
+            <div className="shamanMessage">
+              {null !== this.props.factAnnouncement ? this.props.factAnnouncement.text : ''}
+            </div>
+            <div className="shamanOK" onClick={this.props.factConfirmation}>OK</div>
           </div>
-          <div className="shamanOK" onClick={this.props.factConfirmation}>OK</div>
         </div>
         <div className={`decisionAnnouncement ${null !== this.props.decisionAnnouncement ? 'visible' : ''}`}>
-          <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnnouncementVideo}>
-            <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
-          </video>
-          <div className="shamanBigShield"></div>
-          <div className="shamanMessage">
-            {null !== this.props.decisionAnnouncement ? this.props.decisionAnnouncement.text : ''}
+          <div className="popinContainer">
+            <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnnouncementVideo}>
+              <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+            </video>
+            <div className="shamanBigShield"></div>
+            <div className="shamanMessage">
+              {null !== this.props.decisionAnnouncement ? this.props.decisionAnnouncement.text : ''}
+            </div>
+            <div className="shamanYES" onClick={() => this.props.decisionConfirmation('yes')}>Yes</div>
+            <div className="shamanNO" onClick={() => this.props.decisionConfirmation('no')}>No</div>
           </div>
-          <div className="shamanYES" onClick={() => this.props.decisionConfirmation('yes')}>Yes</div>
-          <div className="shamanNO" onClick={() => this.props.decisionConfirmation('no')}>No</div>
         </div>
         <div className={`decisionAnswer ${null !== this.props.decisionAnswer ? 'visible' : ''}`}>
-          <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnswerVideo}>
-            <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
-          </video>
-          <div className="shamanBigShield"></div>
-          <div className="shamanMessage">
-            {null !== this.props.decisionAnswer ? this.props.decisionAnswer : ''}
+          <div className="popinContainer">
+            <video className="characterImageBig" autoPlay loop muted ref={this.decisionAnswerVideo}>
+              <source src={`asset/small/viking_${getRandomArray(imageNumbers)}.mp4`} type="video/mp4"/>
+            </video>
+            <div className="shamanBigShield"></div>
+            <div className="shamanMessage">
+              {null !== this.props.decisionAnswer ? this.props.decisionAnswer : ''}
+            </div>
+            <div className="shamanOK" onClick={this.props.dismissDecision}>OK</div>
           </div>
-          <div className="shamanOK" onClick={this.props.dismissDecision}>OK</div>
         </div>
       </React.Fragment>
     );
