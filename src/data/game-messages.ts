@@ -14,18 +14,8 @@ export default {
     ],
   },
   gameover: {
-    all_villagers_sacrificed: `
-      They died. They all died. I finally have what I wanted.
-      You're my puppet. And now I have a last sacrifice to do...
-      The Gods will be proud of me.
-      `,
-    no_more_trust: `
-      My people don't trust you anymore, they started a rebellion and hunt you down.
-      I let you a last chance, you fool. Flee while you still can... before I change my mind.
-    `,
-    no_more_faith: `
-      Thanks for freeing us from this shaman and his horrible practices.
-      All this for "Gods"? We were so blind, thank you my Jarl.
-    `,
+    all_villagers_sacrificed: `Ah ah ah! You really listened to me and sacrificed all of your people? You fool. It has always been so difficult to convince your father. But it was a piece of cake with you. You're my pet now. You're, my puppet. And I have a last sacrifice to perform... The Gods will be proud of me! Ah ah ah!`,
+    no_more_trust: `Ah ah ah! My people don't trust you anymore. They started a rebellion and elected me as their new Jarl. I finally obtain what I always wanted. Your father was too powerful and respected. But you... You wretch... You are nothing. Guards! Put him in jail! Exile is a way too soft punishment. He will be the next sacrificed! He will be my gift to Odin! Ah ah ah!`,
+    no_more_faith: `My Jarl, on behalf of the whole village, thank you. Our people is free. Free from this malicious shaman. Free from this horrible ritual. Free from those useless beliefs. Decades of darkness are now behind us. The future is bright. You have opened our eyes and showed us the true light. Your are the worthy heir of your father. Long live the Jarl!`,
   },
 };

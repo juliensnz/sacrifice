@@ -58,7 +58,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 120px;
+  padding-top: 40px;
 }
 
 .intro .story {
@@ -76,7 +76,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
 }
 
 .intro .start {
@@ -111,11 +110,15 @@ body {
 
 .paragraph {
   width: 55vw;
-  font-size: 30px;
+  font-size: 27px;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+}
+
+.paragraph:first-child {
+  margin-top: 80px;
 }
 
 .paragraph.visible {
@@ -220,6 +223,7 @@ body {
   padding: 10px;
   width: 1330px;
   height: 820px;
+  overflow: hidden;
 }
 
 .character {
@@ -227,6 +231,8 @@ body {
   height: 200px;
   display: flex;
   flex-direction: column;
+  padding-left: 25px;
+  box-sizing: border-box;
 }
 
 .characterImageContainer {
@@ -440,6 +446,8 @@ body {
   position: relative;
   background-image: url("images/bigPancarte.png");
   background-repeat: no-repeat;
+  top: 60px;
+  left: 100px;
 }
 
 .sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement, .decisionAnswer, .anonymousLetterAnnouncement {
