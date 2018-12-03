@@ -8,7 +8,7 @@ const parameters = {
   cycleLength: 60,
 
   // Time in second for the selection phase
-  selectionLength: 10,
+  selectionLength: 13,
 
   // Time in second for decision question (following a cycle event) after the start of the cycle
   decisionLength: 15,
