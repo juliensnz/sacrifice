@@ -442,7 +442,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement, .decisionAnswer {
+.sacrificeAnnouncement, .factAnnouncement, .decisionAnnouncement, .gameoverAnnouncement, .decisionAnswer, .anonymousLetterAnnouncement {
   background: #000000ed;
   display: none;
   position: fixed;
@@ -458,7 +458,8 @@ body {
 .sacrificeAnnouncement.visible,
 .decisionAnswer.visible,
 .decisionAnnouncement.visible,
-.factAnnouncement.visible {
+.factAnnouncement.visible,
+.anonymousLetterAnnouncement.visible {
   display: flex;
   opacity: 1;
   animation: visible 2s ease-out;
@@ -540,4 +541,19 @@ body {
   display: none;
   font-size: 40px;
   text-align: center;
+}
+
+.letterPopinContainer {
+  width: 990px;
+  height: 640px;
+  position: relative;
+  background-image: url('images/parchment.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.letterContent {
+  font-size: 40px;
+  text-align: left;
+  padding: 30px 95px 0 95px;
 }

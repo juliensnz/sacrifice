@@ -6,6 +6,7 @@ import {endCycle} from 'src/core/action/cycle';
 import {MessagesGenerators} from 'src/core/action/message';
 import {selectionAnnouncement} from 'src/core/action/announcement';
 import {startDecision} from 'src/core/action/decision';
+import {letterStart} from "../action";
 
 export const tick = () => (dispatch: any) => {
   dispatch({type: 'TICK'});
@@ -24,6 +25,11 @@ const whatToDo = () => (dispatch: any, getState: () => GameState) => {
     if (null !== previousCycleEvent.gameEvent && null !== previousCycleEvent.gameEvent.decision) {
       dispatch(startDecision(previousCycleEvent.gameEvent.decision));
     }
+  }
+
+  // DISPLAY ANONYMOUS LETTER
+  if (parameters.anonymousLetterCycle === getState().cycle.time && 1 < getState().cycle.number) {
+    dispatch(letterStart());
   }
 
   // ANNOUCEMENT OF THE SACRIFICE PHASE

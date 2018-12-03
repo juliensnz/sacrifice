@@ -32,6 +32,14 @@ export const dismissDecision = () => ({
   type: 'DISMISS_DECISION',
 });
 
+export const letterStart = () => ({
+  type: 'LETTER_START',
+});
+
+export const letterConfirmation = () => ({
+  type: 'LETTER_CONFIRMATION',
+});
+
 export const toggleSacrificed = (id: string) => ({
   type: 'TOGGLE_SACRIFICED',
   id,

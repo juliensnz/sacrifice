@@ -54,6 +54,9 @@ const parameters = {
 
   // Multilplicator for decision impact (ex: -5 * decisionTrustMultiplicator)
   trustDecisionMultiplicator: 1,
+
+  // The cycle when the anonymous should appear to warn about the shaman
+  anonymousLetterCycle: 3,
 };
 
 export default parameters;

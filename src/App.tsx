@@ -3,7 +3,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Villager, Decision} from 'src/core/model';
 import {GameState} from 'src/core/reducer';
-import {toggleSacrificed, selectionStart, factConfirmation, dismissDecision} from 'src/core/action';
+import {toggleSacrificed, selectionStart, factConfirmation, dismissDecision, letterConfirmation} from 'src/core/action';
 import parameters from 'src/core/parameters';
 import {getAliveVillagers, getFaith, getTrust} from 'src/core/utils';
 import gameMessages from 'src/data/game-messages';
@@ -23,6 +23,7 @@ type ViewState = {
     text: string;
     type: string;
   } | null;
+  displayAnonymousLetter: boolean;
   selectionStarted: boolean,
   gameover: string|null
   isIntro: boolean
@@ -34,6 +35,7 @@ type ViewDispatch = {
   toggleSacrificed: (id: string) => void
   announcementValidation: () => void
   factConfirmation: () => void
+  letterConfirmation: () => void
   dismissDecision: () => void
   startIntro: () => void
   decisionConfirmation: (type: string) => void
@@ -228,6 +230,18 @@ class App extends React.Component<ViewState & ViewDispatch> {
             <div className="shamanOK" onClick={this.props.dismissDecision}>OK</div>
           </div>
         </div>
+        <div className={`anonymousLetterAnnouncement ${this.props.displayAnonymousLetter ? 'visible' : ''}`}>
+          <div className="letterPopinContainer">
+            <div className="anonymousLetter">
+              <div className="letterContent">
+                <p>My dear Jarl,</p>
+                <p>The shaman is malicious and cruel. He is not looking for the forgiveness of the Gods, but rather to increase his own power. Please, don't trust his advises blindly, this could lead to your end, and to the despair of your people.</p>
+                <p>– An anonymous inhabitant that wants the well-being of his fellow citizen.</p>
+              </div>
+              <div className="shamanOK" onClick={this.props.letterConfirmation}>OK</div>
+            </div>
+          </div>
+        </div>
         {this.props.isIntro ? <Intro /> : null}
         {this.props.isLanding ? (
         <div className="landing">
@@ -252,12 +266,14 @@ export default connect((state: GameState): ViewState => ({
   gameover: state.gameover,
   isIntro: state.isIntro,
   isLanding: state.isLanding,
-  messager: state.cycle.messager
+  messager: state.cycle.messager,
+  displayAnonymousLetter: state.anonymousLetterDisplayed
 }), (dispatch: any): ViewDispatch => ({
   toggleSacrificed: (id: string) => dispatch(toggleSacrificed(id)),
   announcementValidation: () => dispatch(selectionStart()),
   factConfirmation: () => dispatch(factConfirmation()),
   dismissDecision: () => dispatch(dismissDecision()),
+  letterConfirmation: () => dispatch(letterConfirmation()),
   startIntro: () => dispatch(startIntro()),
   decisionConfirmation: (type: string) => dispatch(decisionConfirmation(type))
 }))(App);
