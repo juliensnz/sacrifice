@@ -1,8 +1,12 @@
 export default {
-  'intro': [
-    `first chapter`,
-    `second chapter...`,
-  ],
+  'intro': {
+    'historic-context': [
+      ""
+    ],
+    'story': [
+      ""
+    ],
+  },
   'gameover': {
     all_villagers_sacrificed: `
       They died. They all died. I finally have what I wanted.
