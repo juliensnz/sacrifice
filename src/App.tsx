@@ -273,7 +273,7 @@ class App extends React.Component<ViewState & ViewDispatch> {
           <div className="advice">
             Better experienced with headphones and fullscreen.<br/>
             This game tells a story.<br/>
-            Read and listen carefouly.
+            Read and listen carefully.
           </div>
           <span className="startButton" onClick={this.props.startIntro}>Start</span>
         </div>
