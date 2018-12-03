@@ -62,3 +62,11 @@ Ah ah ah! My people don't trust you anymore. They started a rebellion and electe
 My Jarl, on behalf of the whole village, thank you. Our people is free. Free from this malicious shaman. Free from this horrible ritual. Free from those useless beliefs. Decades of darkness are now behind us. The future is bright. You have opened our eyes and showed us the true light. Your are the worthy heir of your father. Long live the Jarl!
 
 – A villager
+
+### Explanations
+
+A people faithful to its Gods will tend to find a religious explanation of every event. A people which trust its ruler will understand and support its choices.
+
+The villagers must trust (TRUST SIGN) in you Jarl. But they also have faith (FAITH SIGN) in the Gods.
+
+Which kind of Jarl will you be?
