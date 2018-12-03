@@ -24,6 +24,9 @@ body {
   color: white;
   opacity: 1;
   transition: opacity 1s linear;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .App .iris1, .App .iris2, .App .iris3, .App .iris4 {
@@ -31,8 +34,8 @@ body {
   height: 100vw;
   position: fixed;
   background-size: 100% 100%;
-  transition: transform 5s ease-in-out;
-  transition-delay: 5s;
+  transition: transform 2s ease-in-out;
+  transition-delay: 7s;
 }
 
 .App .iris1 {
@@ -113,7 +116,6 @@ body {
   padding: 10px;
   width: 1330px;
   height: 820px;
-  margin: auto;
 }
 
 .character {
@@ -424,4 +426,14 @@ body {
 
 .hide {
   opacity: 0 !important
+}
+
+.App.selectionPhase .sacrificeInstruction {
+  display: flex;
+}
+
+.sacrificeInstruction {
+  display: none;
+  font-size: 40px;
+  text-align: center;
 }
