@@ -8,11 +8,12 @@ import parameters from 'src/core/parameters';
 const historicContextMessages = gameMessages.intro['historic-context'];
 const storyMessages = gameMessages.intro['story'];
 
-class Intro extends React.Component<{visible: boolean, onStartGame: () => void}> {
+class Intro extends React.Component<{visible: boolean, canSkip: boolean, onStartGame: () => void}> {
   state = {step: 0, visible: false};
   private logoVideo: React.RefObject<HTMLVideoElement>;
+  private timers: any[] = [];
 
-  constructor(props: {visible: boolean, onStartGame: () => void}) {
+  constructor(props: {visible: boolean, canSkip: boolean, onStartGame: () => void}) {
     super(props);
 
     this.logoVideo = React.createRef<HTMLVideoElement>();
@@ -21,9 +22,9 @@ class Intro extends React.Component<{visible: boolean, onStartGame: () => void}>
     const messages = [...historicContextMessages, ...storyMessages];
     const letterTime = (parameters.introLength * 1000) / messages.reduce((length: number, paragraph: string) => length + paragraph.length, 0);
     const scheduleMessage = (index: number, duration: number) => {
-      setTimeout(() => {
+      this.timers.push(setTimeout(() => {
         this.setState({step: index});
-      }, duration)
+      }, duration));
     };
 
     let currentTime = 0;
@@ -35,6 +36,13 @@ class Intro extends React.Component<{visible: boolean, onStartGame: () => void}>
     scheduleMessage(historicContextMessages.length + storyMessages.length + 1, currentTime + 3000);
 
     this.setState({visible: true, step: 0});
+  }
+
+  skip() {
+    this.timers.forEach((timer: any) => {
+      clearTimeout(timer);
+    })
+    this.setState({step: historicContextMessages.length + storyMessages.length + 1});
   }
 
   render () {
@@ -55,12 +63,14 @@ class Intro extends React.Component<{visible: boolean, onStartGame: () => void}>
         </video>
         <div className="startGame" onClick={this.props.onStartGame}>Let's rule</div>
       </div>
+      {this.props.canSkip ? (<div className="skipButton" onClick={this.skip.bind(this)}>Skip intro</div>) : null}
     </div>)
   }
 }
 
 export default connect((state: GameState) => ({
-  visible: state.isIntro
+  visible: state.isIntro,
+  canSkip: null !== localStorage.getItem('already_played_game')
 }), (dispatch: any) => ({
   onStartGame: () => {
     dispatch(startGame());

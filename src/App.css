@@ -54,6 +54,18 @@ body {
   opacity: 1;
 }
 
+.skipButton {
+  position: fixed;
+  color: white;
+  bottom: 30px;
+  right: 50px;
+  transition: transform .3s ease-in-out;
+}
+
+.skipButton:hover {
+  transform: scale(1.1);
+}
+
 .intro .historic-context {
   position: fixed;
   width: 100vw;

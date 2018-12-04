@@ -9,16 +9,12 @@ import gameReducer from 'src/core/reducer';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import sound from 'src/core/middleware/sound';
+import replay from 'src/core/middleware/replay';
 import {loadAssets} from 'src/core/utils';
-// import {loadingFinished, loadingUpdated} from 'src/core/action/intro';
 import assets from 'src/data/assets';
 
-loadAssets(assets.intro, console.log).then(() => {
-  const store = createStore(gameReducer, composeWithDevTools(applyMiddleware(thunk, sound)));
-
-  // loadAssets(assets.game, (progress: number) => store.dispatch(loadingUpdated(progress))).then(() => {
-  //   store.dispatch(loadingFinished());
-  // });
+loadAssets(assets.intro, () => {}).then(() => {
+  const store = createStore(gameReducer, composeWithDevTools(applyMiddleware(thunk, sound, replay)));
 
   ReactDOM.render(
     <Provider store={store}>
