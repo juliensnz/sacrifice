@@ -7,6 +7,9 @@ const parameters = {
   // Time in second for one cycle
   cycleLength: 45,
 
+  //Time in millisecond between each ticks
+  tickLength: 1000,
+
   // Time in second for the selection phase
   selectionLength: 13,
 

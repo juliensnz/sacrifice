@@ -220,6 +220,10 @@ export default (state: GameState = initialState, action: any) => {
       break;
 
     case 'TICK':
+      if (state.paused) {
+        break;
+      }
+
       state = {
         ...state,
         cycle: {...state.cycle, time: state.cycle.time + 1},

@@ -12,9 +12,15 @@ import sound from 'src/core/middleware/sound';
 import replay from 'src/core/middleware/replay';
 import {loadAssets} from 'src/core/utils';
 import assets from 'src/data/assets';
+import {tick} from 'src/core/action/tick';
+import parameters from 'src/core/parameters';
 
 loadAssets(assets.intro, () => {}).then(() => {
   const store = createStore(gameReducer, composeWithDevTools(applyMiddleware(thunk, sound, replay)));
+
+  setInterval(() => {
+    store.dispatch(tick());
+  }, parameters.tickLength);
 
   ReactDOM.render(
     <Provider store={store}>
