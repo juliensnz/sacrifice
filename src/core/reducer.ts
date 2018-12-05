@@ -81,7 +81,7 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
-    case 'VILLAGER_SPEAKS':
+    case 'VILLAGER_STARTS_TO_SPEAK':
       state = {
         ...state,
         villagers: state.villagers.map((villager: Villager) => {
@@ -106,23 +106,23 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
-    case 'LETTER_START':
+    case 'ANONYMOUS_LETTER_DISPLAY_START':
       state = {...state, paused: true, anonymousLetterDisplayed: true};
       break;
 
-    case 'LETTER_CONFIRMATION':
+    case 'ANONYMOUS_LETTER_DISMISS':
       state = {...state, paused: false, anonymousLetterDisplayed: false};
       break;
 
-    case 'GAMEPLAY_START':
+    case 'GAMEPLAY_TUTORIAL_START':
       state = {...state, paused: true, gameplayDisplayed: true};
       break;
 
-    case 'GAMEPLAY_CONFIRMATION':
+    case 'GAMEPLAY_TUTORIAL_DISMISS':
       state = {...state, paused: false, gameplayDisplayed: false};
       break;
 
-    case 'DECISION_START':
+    case 'DECISION_DISPLAY_START':
       state = {...state, paused: true, decision: action.decision};
       break;
 
@@ -140,7 +140,7 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
-    case 'DISMISS_DECISION':
+    case 'DECISION_CONSEQUENCE_DISMISS':
       state = {
         ...state,
         paused: false,
@@ -148,11 +148,11 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
-    case 'SELECTION_ANNOUNCEMENT':
+    case 'SELECTION_PHASE_ANNOUNCEMENT':
       state = {...state, paused: true, shaman: {...state.shaman, sacrificeAnnouncement: action.message}};
       break;
 
-    case 'SELECTION_START':
+    case 'SELECTION_PHASE_START':
       state = {...state, paused: false, selectionStarted: true, shaman: {...state.shaman, sacrificeAnnouncement: null}};
       break;
 
@@ -187,7 +187,7 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
-    case 'FACT_ANNOUNCEMENT':
+    case 'CYCLE_FACT_ANNOUNCEMENT_START':
       state = {
         ...state,
         paused: true,
@@ -195,7 +195,7 @@ export default (state: GameState = initialState, action: any) => {
       };
       break;
 
-    case 'DISMISS_FACT':
+    case 'CYCLE_FACT_ANNOUNCEMENT_DISMISS':
       state = {
         ...state,
         shaman: {...state.shaman, factAnnouncement: null},

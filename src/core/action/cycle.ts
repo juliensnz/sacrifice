@@ -46,7 +46,7 @@ export const endCycle = () => (dispatch: any, getState: () => GameState) => {
 
 const factAnnouncement = () => (dispatch: any, getState: () => GameState) => {
   dispatch({
-    type: 'FACT_ANNOUNCEMENT',
+    type: 'CYCLE_FACT_ANNOUNCEMENT_START',
     event: getState().cycle.gameEvent,
   });
 };

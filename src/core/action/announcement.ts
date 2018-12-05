@@ -28,5 +28,5 @@ export const selectionAnnouncement = () => (dispatch: any, getState: () => GameS
     message = {faith: '', trust: '', text: 'Sacrifice!'};
   }
 
-  dispatch({type: 'SELECTION_ANNOUNCEMENT', message: message.text});
+  dispatch({type: 'SELECTION_PHASE_ANNOUNCEMENT', message: message.text});
 };
