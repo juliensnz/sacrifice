@@ -99,7 +99,7 @@ const makeVillagerSpeak = () => (dispatch: any, getState: () => GameState) => {
 };
 
 const villagerSpeaks = (message: string, villager: Villager) => {
-  return {type: 'VILLAGER_SPEAKS', message, id: villager.id};
+  return {type: 'VILLAGER_STARTS_TO_SPEAK', message, id: villager.id};
 };
 
 const villagersStopToSpeak = () => {

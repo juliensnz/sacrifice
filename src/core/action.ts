@@ -19,27 +19,27 @@ export const factConfirmation = () => (dispatch: any, getState: () => GameState)
 };
 
 const dismissFact = () => ({
-  type: 'DISMISS_FACT',
+  type: 'CYCLE_FACT_ANNOUNCEMENT_DISMISS',
 });
 
 export const dismissDecision = () => ({
-  type: 'DISMISS_DECISION',
+  type: 'DECISION_CONSEQUENCE_DISMISS',
 });
 
 export const letterStart = () => ({
-  type: 'LETTER_START',
+  type: 'ANONYMOUS_LETTER_DISPLAY_START',
 });
 
 export const letterConfirmation = () => ({
-  type: 'LETTER_CONFIRMATION',
+  type: 'ANONYMOUS_LETTER_DISMISS',
 });
 
 export const gameplayStart = () => ({
-  type: 'GAMEPLAY_START',
+  type: 'GAMEPLAY_TUTORIAL_START',
 });
 
 export const gameplayConfirmation = () => ({
-  type: 'GAMEPLAY_CONFIRMATION',
+  type: 'GAMEPLAY_TUTORIAL_DISMISS',
 });
 
 export const toggleSacrificed = (id: string) => ({
@@ -53,6 +53,6 @@ export const resume = () => ({
 
 export const selectionStart = () => {
   return {
-    type: 'SELECTION_START',
+    type: 'SELECTION_PHASE_START',
   };
 };
